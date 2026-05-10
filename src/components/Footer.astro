@@ -1,0 +1,99 @@
+---
+// Footer limpio (solo links que funcionan)
+---
+
+<footer class="site-footer" id="contacto">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="luz-logo-img size-md"></span>
+        <p>
+          Ministerio cristiano evangélico costarricense.
+          Llevamos el Amor de Cristo a los colegios desde 2024.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Sitio</h4>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#que-hacemos">Qué hacemos</a>
+        <a href="#impacto">Impacto</a>
+        <a href="#sumate">Sumate</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:contacto@luzimpacto.org">contacto@luzimpacto.org</a>
+        <a href="https://wa.me/50685493929">WhatsApp +506 8549 3929</a>
+        <span>San José, Costa Rica</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Seguinos</h4>
+        <a href="https://instagram.com/luzimpacto_cr" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© {new Date().getFullYear()} Fundación LUZ Impacto · Todos los derechos reservados</div>
+      <div>luzimpacto.org</div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 80px 0 40px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  .footer-brand p {
+    font-size: 14px;
+    color: var(--on-dark-soft);
+    max-width: 280px;
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+  .footer-col h4 {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 16px;
+  }
+  .footer-col a, .footer-col span {
+    display: block;
+    color: var(--on-dark-soft);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--yellow); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--on-dark-soft);
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>

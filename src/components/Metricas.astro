@@ -1,0 +1,71 @@
+---
+// Banda de métricas con animación de números
+---
+
+<div class="metrics">
+  <div class="container">
+    <div class="metrics-band">
+      <div class="metric">
+        <div class="num"><span class="count" data-target="60">0</span><span class="plus">+</span></div>
+        <div class="label">Colegios visitados</div>
+      </div>
+      <div class="metric">
+        <div class="num"><span class="count" data-target="50" data-suffix="K">0</span><span class="plus">+</span></div>
+        <div class="label">Jóvenes alcanzados</div>
+      </div>
+      <div class="metric">
+        <div class="num"><span class="count" data-target="30">0</span><span class="plus">+</span></div>
+        <div class="label">Iglesias aliadas</div>
+      </div>
+      <div class="metric">
+        <div class="num">2024</div>
+        <div class="label">Desde</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .metrics {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 0 0 80px;
+  }
+  .metrics-band {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .metric {
+    padding: 56px 24px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .metric:last-child { border-right: none; }
+  .metric .num {
+    font-family: "Fraunces", serif;
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--yellow);
+  }
+  .metric .num .plus { font-size: 0.55em; vertical-align: super; }
+  .metric .label {
+    margin-top: 14px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--on-dark-soft);
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    .metrics { padding: 0 0 56px; }
+    .metrics-band { grid-template-columns: repeat(2, 1fr); }
+    .metric { padding: 32px 16px; }
+    .metric:nth-child(2) { border-right: none; }
+    .metric:nth-child(1), .metric:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  }
+</style>

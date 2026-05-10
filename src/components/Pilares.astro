@@ -1,0 +1,89 @@
+---
+// Los 4 pilares con números 01-04
+const pilares = [
+  {
+    n: "01",
+    titulo: "Desarrollo de Fe",
+    desc: "Cultivamos una relación profunda y duradera con Jesucristo como fundamento de todo crecimiento personal y liderazgo.",
+  },
+  {
+    n: "02",
+    titulo: "Liderazgo y Mentoría",
+    desc: "Formamos líderes éticos con propósito, equipados con la confianza y herramientas necesarias para impulsar cambios positivos.",
+  },
+  {
+    n: "03",
+    titulo: "Apoyo Académico y de Vida",
+    desc: "Brindamos recursos y mentoría para excelencia educativa y para el desarrollo personal esencial de cada joven.",
+  },
+  {
+    n: "04",
+    titulo: "Emprendimiento",
+    desc: "Capacitamos a jóvenes para lanzar emprendimientos sostenibles basados en valores cristianos y oportunidades reales de innovación.",
+  },
+];
+---
+
+<section class="section pilares-section" id="que-hacemos">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Qué hacemos</div>
+      <h2>Cuatro pilares.<br>Una visión integral.</h2>
+      <p class="lede">
+        No solo evangelizamos. Acompañamos a los jóvenes con un enfoque
+        holístico que combina fe, liderazgo, apoyo académico y emprendimiento.
+      </p>
+    </div>
+
+    <div class="pilares-grid">
+      {pilares.map((p) => (
+        <div class="pilar">
+          <div class="pilar-number">{p.n}</div>
+          <h3>{p.titulo}</h3>
+          <p>{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pilares-section {
+    background: var(--crema);
+    border: none;
+  }
+  .section-head .lede { margin-top: 24px; }
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .pilar {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .pilar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.06);
+  }
+  .pilar-number {
+    font-family: "Fraunces", serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--yellow);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+  }
+  .pilar h3 { margin-bottom: 10px; color: var(--ink); }
+  .pilar p { font-size: 15px; line-height: 1.6; }
+
+  @media (max-width: 900px) {
+    .pilares-grid { grid-template-columns: 1fr; }
+  }
+</style>

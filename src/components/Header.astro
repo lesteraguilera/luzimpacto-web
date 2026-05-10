@@ -1,0 +1,73 @@
+---
+// Header sticky con logo + nav + toggle ES/EN + CTA
+---
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="header-logo" aria-label="LUZ Impacto · Inicio">
+      <span class="luz-logo-img size-sm"></span>
+    </a>
+    <nav class="nav-main">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#que-hacemos">Qué hacemos</a>
+      <a href="#impacto">Impacto</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-tools">
+      <span class="lang-toggle"><span class="active">ES</span> · EN</span>
+      <a href="#sumate" class="btn btn-dark btn-sm">Sumate <span class="arrow">→</span></a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(250,247,242,0.92);
+  }
+  .site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .header-logo { text-decoration: none; }
+  .nav-main {
+    display: flex;
+    gap: 32px;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-main a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-main a:hover { color: var(--charcoal); }
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .lang-toggle {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+  }
+  .lang-toggle .active { color: var(--charcoal); }
+
+  @media (max-width: 900px) {
+    .nav-main { display: none; }
+  }
+  @media (max-width: 600px) {
+    .nav-tools .lang-toggle { display: none; }
+  }
+</style>

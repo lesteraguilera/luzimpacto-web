@@ -1,0 +1,81 @@
+---
+// Layout principal del sitio
+// Recibe: title, description (opcional)
+import "../styles/global.css";
+
+const {
+  title = "LUZ Impacto — Llevamos el Amor de Cristo a los colegios",
+  description = "Fundación LUZ Impacto: ministerio cristiano evangélico costarricense. Visitamos colegios con un mensaje de salvación y conectamos a los jóvenes con iglesias locales que los discipulen.",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://luzimpacto.org" />
+  <meta property="og:image" content="/assets/logos/luz.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/logos/luz.png" />
+
+  <!-- Google Fonts: Fraunces + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <slot />
+
+  <!-- Animación de números (Intersection Observer) -->
+  <script is:inline>
+    (function() {
+      const counters = document.querySelectorAll('.count');
+      const animate = (el) => {
+        const target = parseInt(el.dataset.target, 10);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1600;
+        const start = performance.now();
+        const tick = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+          else el.textContent = target + suffix;
+        };
+        requestAnimationFrame(tick);
+      };
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting && !e.target.dataset.done) {
+              e.target.dataset.done = '1';
+              animate(e.target);
+            }
+          });
+        }, { threshold: 0.4 });
+        counters.forEach((c) => obs.observe(c));
+      } else {
+        counters.forEach(animate);
+      }
+    })();
+  </script>
+</body>
+</html>
+

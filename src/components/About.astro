@@ -1,0 +1,98 @@
+---
+// Sección Quiénes somos con storytelling fuerte
+---
+
+<section class="section" id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image">
+        Foto del Pastor<br>Samuel Pizzo<br>predicando<br><br>(pendiente)
+      </div>
+      <div class="about-text">
+        <div class="eyebrow">Quiénes somos</div>
+        <h2>Un puente entre los jóvenes y las iglesias.</h2>
+
+        <p class="stat-line">
+          En Costa Rica, miles de jóvenes pasan <strong>11 años en colegios</strong>
+          sin escuchar nunca el evangelio.
+        </p>
+        <p>
+          Eso es lo que LUZ vino a cambiar. Somos un ministerio cristiano evangélico
+          costarricense fundado en 2024. <strong>No somos una iglesia</strong> — somos un puente.
+        </p>
+        <p>
+          Vamos a colegios de todo el país predicando el mensaje de salvación.
+          Cuando un joven recibe a Cristo, lo conectamos con iglesias locales
+          aliadas que lo pueden discipular y acompañar en su nueva vida.
+        </p>
+        <div class="quote-block">
+          "Vosotros sois la luz del mundo; una ciudad asentada sobre un monte no se puede esconder."
+          <div class="cite">— MATEO 5:14</div>
+        </div>
+        <a href="#que-hacemos" class="btn btn-ghost-dark">Conocer qué hacemos <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-image {
+    background: linear-gradient(135deg, var(--crema), var(--bg));
+    border-radius: 20px;
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 24px;
+    line-height: 1.5;
+    border: 1px dashed var(--line);
+  }
+  .about-text h2 { margin-bottom: 24px; }
+  .about-text p { font-size: 17px; margin-bottom: 16px; }
+  .about-text .stat-line {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .about-text .stat-line strong {
+    color: var(--charcoal);
+    border-bottom: 3px solid var(--yellow);
+  }
+  .about-text p:last-of-type { margin-bottom: 32px; }
+  .quote-block {
+    border-left: 3px solid var(--yellow);
+    padding: 12px 0 12px 24px;
+    margin: 32px 0;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .cite {
+    font-size: 14px;
+    font-style: normal;
+    color: var(--ink-faint);
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>

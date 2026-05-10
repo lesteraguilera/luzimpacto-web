@@ -1,0 +1,97 @@
+---
+// Testimonio destacado sobre fondo charcoal
+---
+
+<section class="testimonio" id="impacto">
+  <div class="container">
+    <div class="quote-mark">"</div>
+    <div class="quote">
+      Vine a un colegio sin esperanza,<br>
+      salí con una nueva vida en Cristo.<br>
+      <span class="highlight">LUZ cambió mi futuro.</span>
+    </div>
+    <div class="attribution">
+      <div class="avatar">M</div>
+      <div class="who">
+        <div class="name">María, 16 años</div>
+        <div class="role">Estudiante · Colegio en Heredia</div>
+      </div>
+    </div>
+    <div class="badge-wrap">
+      <span class="pendiente-badge dark">Testimonio placeholder · pendiente real</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonio {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonio::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(252,211,77,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .quote-mark {
+    font-family: "Fraunces", serif;
+    font-size: 120px;
+    color: var(--yellow);
+    line-height: 0.5;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+  .quote {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(24px, 3.5vw, 38px);
+    line-height: 1.3;
+    color: var(--on-dark);
+    max-width: 880px;
+    margin: 0 auto 40px;
+    letter-spacing: -0.01em;
+  }
+  .highlight { color: var(--yellow); }
+  .attribution {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--charcoal);
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .who { text-align: left; }
+  .who .name { font-weight: 600; font-size: 15px; color: var(--on-dark); }
+  .who .role { font-size: 13px; color: var(--on-dark-soft); margin-top: 2px; }
+
+  .badge-wrap { margin-top: 32px; }
+  .pendiente-badge.dark {
+    background: rgba(252,211,77,0.12);
+    color: var(--yellow);
+  }
+
+  @media (max-width: 600px) {
+    .testimonio { padding: 80px 0; }
+  }
+</style>

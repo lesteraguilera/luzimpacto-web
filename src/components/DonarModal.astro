@@ -54,7 +54,7 @@
         </div>
         <div class="opt-data">
           <p class="opt-desc">Para donantes fuera de Costa Rica, recibimos donaciones por PayPal.</p>
-          <a href="https://paypal.me/luzimpacto" target="_blank" rel="noopener" class="btn btn-yellow btn-sm">Donar por PayPal <span class="arrow">→</span></a>
+          <a href="https://paypal.me/LesterAguileraMorales" target="_blank" rel="noopener" class="btn btn-yellow btn-sm">Donar por PayPal <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -67,39 +67,61 @@
 
 <script is:inline>
   (function() {
-    const modal = document.getElementById('donarModal');
-    if (!modal) return;
-    const open = () => {
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    };
-    const close = () => {
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    };
+    const init = () => {
+      const modal = document.getElementById('donarModal');
+      if (!modal) return;
 
-    // Abrir desde cualquier link con href="#donar"
-    document.querySelectorAll('a[href="#donar"]').forEach((a) => {
-      a.addEventListener('click', (e) => { e.preventDefault(); open(); });
-    });
+      const open = () => {
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      };
+      const close = () => {
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
 
-    // Cerrar
-    modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', close));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-
-    // Copiar al portapapeles
-    modal.querySelectorAll('[data-copy]').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        const val = btn.getAttribute('data-copy');
-        try {
-          await navigator.clipboard.writeText(val);
-          const orig = btn.innerHTML;
-          btn.innerHTML = '¡Copiado! ✓';
-          btn.classList.add('copied');
-          setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 1500);
-        } catch (_) {}
+      // Event delegation a nivel documento — captura links agregados dinámicamente
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest && e.target.closest('a[href="#donar"]');
+        if (a) {
+          e.preventDefault();
+          open();
+          return;
+        }
+        const closer = e.target.closest && e.target.closest('[data-close]');
+        if (closer && modal.contains(closer)) {
+          close();
+          return;
+        }
+        const copyBtn = e.target.closest && e.target.closest('[data-copy]');
+        if (copyBtn) {
+          const val = copyBtn.getAttribute('data-copy');
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(val).then(() => {
+              const orig = copyBtn.innerHTML;
+              copyBtn.innerHTML = '¡Copiado! ✓';
+              copyBtn.classList.add('copied');
+              setTimeout(() => { copyBtn.innerHTML = orig; copyBtn.classList.remove('copied'); }, 1500);
+            }).catch(() => {
+              // Fallback: seleccionar texto
+              const r = document.createRange();
+              r.selectNodeContents(copyBtn);
+              const sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(r);
+            });
+          }
+        }
       });
-    });
+
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   })();
 </script>
 

@@ -1,74 +1,70 @@
 ---
-// Iglesias aliadas — banda con placeholders
+// Iglesias aliadas — statement institucional
 ---
 
 <section class="aliadas">
   <div class="container">
-    <div class="head">
-      <h3>30+ iglesias aliadas</h3>
-      <div class="sub">Una red en todo Costa Rica<br>que recibe a los jóvenes que evangelizamos.</div>
+    <div class="aliadas-card">
+      <div class="aliadas-number">+30</div>
+      <div class="aliadas-text">
+        <div class="eyebrow">Iglesias aliadas</div>
+        <h3>Una red de iglesias evangélicas en todo Costa Rica recibe a los jóvenes que evangelizamos.</h3>
+        <p>Cuando un joven recibe a Cristo en uno de nuestros eventos, lo conectamos con una iglesia local que pueda discipularlo, acompañarlo y formar parte de su crecimiento.</p>
+        <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20mi%20iglesia%20quiere%20aliarse" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-sm">¿Tu iglesia? Sumate <span class="arrow">→</span></a>
+      </div>
     </div>
-    <div class="aliadas-band">
-      {[1,2,3,4,5,6].map((i) => (
-        <div class="aliada-logo">Logo<br>iglesia {i}</div>
-      ))}
-    </div>
-    <div class="badge-wrap"><span class="pendiente-badge">Logos pendientes</span></div>
   </div>
 </section>
 
 <style>
   .aliadas {
     background: var(--bg);
-    padding: 80px 0;
+    padding: 100px 0;
     border-top: 1px solid var(--line);
   }
-  .head {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 40px;
+  .aliadas-card {
+    background: white;
+    border-radius: 24px;
+    padding: 56px 64px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 56px;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.04);
+    border-left: 4px solid var(--yellow);
   }
-  .head h3 {
-    font-family: "Inter", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 12px;
-  }
-  .sub {
+  .aliadas-number {
     font-family: "Fraunces", serif;
-    font-size: 26px;
+    font-size: clamp(80px, 12vw, 140px);
+    font-weight: 600;
+    color: var(--yellow);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .aliadas-text .eyebrow { margin-bottom: 12px; }
+  .aliadas-text h3 {
+    font-family: "Fraunces", serif;
+    font-size: clamp(22px, 2.4vw, 28px);
     font-weight: 500;
     color: var(--ink);
     line-height: 1.3;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
   }
-  .aliadas-band {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 16px;
+  .aliadas-text p {
+    font-size: 16px;
+    margin-bottom: 24px;
+    max-width: 580px;
   }
-  .aliada-logo {
-    background: white;
-    aspect-ratio: 3/2;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Fraunces", serif;
-    font-size: 13px;
-    color: var(--ink-faint);
-    border: 1px dashed var(--line);
-    text-align: center;
-    padding: 8px;
-  }
-  .badge-wrap { text-align: center; margin-top: 24px; }
 
-  @media (max-width: 900px) {
-    .aliadas-band { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 600px) {
-    .aliadas-band { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 800px) {
+    .aliadas { padding: 72px 0; }
+    .aliadas-card {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .aliadas-text p { margin-left: auto; margin-right: auto; }
   }
 </style>

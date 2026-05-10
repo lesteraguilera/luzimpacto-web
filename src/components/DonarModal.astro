@@ -1,0 +1,267 @@
+---
+// Modal de donación — se abre cuando alguien hace click en cualquier botón con href="#donar"
+// 3 opciones: SINPE Móvil (CR), IBAN (CR), PayPal (USD/internacional)
+---
+
+<div class="donar-modal" id="donarModal" aria-hidden="true" role="dialog" aria-labelledby="donarTitle">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel">
+    <button class="modal-close" aria-label="Cerrar" data-close>×</button>
+
+    <div class="modal-eyebrow">Tu aporte impacta vidas</div>
+    <h2 id="donarTitle">Cómo donar</h2>
+    <p class="modal-lede">Cada colón llega a un colegio. Cubre transporte, materiales, equipo y eventos donde los jóvenes escuchan el evangelio.</p>
+
+    <div class="donar-options">
+      <div class="donar-opt">
+        <div class="opt-head">
+          <div class="opt-tag">Costa Rica · más rápido</div>
+          <h3>SINPE Móvil</h3>
+        </div>
+        <div class="opt-data">
+          <div class="data-row">
+            <span class="data-label">Número</span>
+            <button class="data-value" data-copy="85493929">8549 3929 <span class="copy-ico">⧉</span></button>
+          </div>
+          <div class="data-row">
+            <span class="data-label">A nombre de</span>
+            <span class="data-value-static">Fundación LUZ Impacto</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="donar-opt">
+        <div class="opt-head">
+          <div class="opt-tag">Costa Rica · transferencia</div>
+          <h3>Cuenta IBAN</h3>
+        </div>
+        <div class="opt-data">
+          <div class="data-row">
+            <span class="data-label">IBAN</span>
+            <button class="data-value" data-copy="CR10015110720010495519">CR10 0151 1072 0010 4955 19 <span class="copy-ico">⧉</span></button>
+          </div>
+          <div class="data-row">
+            <span class="data-label">A nombre de</span>
+            <span class="data-value-static">Fundación LUZ Impacto</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="donar-opt opt-paypal">
+        <div class="opt-head">
+          <div class="opt-tag">Internacional · USD</div>
+          <h3>PayPal</h3>
+        </div>
+        <div class="opt-data">
+          <p class="opt-desc">Para donantes fuera de Costa Rica, recibimos donaciones por PayPal.</p>
+          <a href="https://paypal.me/luzimpacto" target="_blank" rel="noopener" class="btn btn-yellow btn-sm">Donar por PayPal <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      ¿Preferís hablar primero? <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20donar" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const modal = document.getElementById('donarModal');
+    if (!modal) return;
+    const open = () => {
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => {
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    // Abrir desde cualquier link con href="#donar"
+    document.querySelectorAll('a[href="#donar"]').forEach((a) => {
+      a.addEventListener('click', (e) => { e.preventDefault(); open(); });
+    });
+
+    // Cerrar
+    modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+    // Copiar al portapapeles
+    modal.querySelectorAll('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const val = btn.getAttribute('data-copy');
+        try {
+          await navigator.clipboard.writeText(val);
+          const orig = btn.innerHTML;
+          btn.innerHTML = '¡Copiado! ✓';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 1500);
+        } catch (_) {}
+      });
+    });
+  })();
+</script>
+
+<style>
+  .donar-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s, visibility 0.25s;
+  }
+  .donar-modal[aria-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+  }
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(31,33,37,0.65);
+    backdrop-filter: blur(4px);
+  }
+  .modal-panel {
+    position: relative;
+    background: var(--bg);
+    border-radius: 24px;
+    max-width: 640px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 48px 48px 32px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+    border-top: 4px solid var(--yellow);
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--line); }
+
+  .modal-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 10px;
+  }
+  #donarTitle {
+    font-family: "Fraunces", serif;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .modal-lede {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+
+  .donar-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .donar-opt {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--line);
+  }
+  .opt-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .donar-opt h3 {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .opt-data { display: flex; flex-direction: column; gap: 10px; }
+  .data-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .data-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .data-value {
+    font-family: "Fraunces", serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--crema);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, border-color 0.2s;
+    font-variant-numeric: tabular-nums;
+  }
+  .data-value:hover { background: var(--yellow-soft); border-color: var(--yellow); }
+  .data-value.copied { background: var(--yellow); border-color: var(--yellow); color: var(--charcoal); }
+  .data-value-static {
+    font-family: "Fraunces", serif;
+    font-size: 16px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .copy-ico { font-size: 14px; opacity: 0.6; }
+
+  .opt-paypal .opt-desc { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
+
+  .modal-foot {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .modal-foot a { color: var(--charcoal); font-weight: 600; text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .modal-panel { padding: 36px 24px 24px; border-radius: 20px; }
+    #donarTitle { font-size: 32px; }
+    .data-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .data-value { font-size: 15px; }
+  }
+</style>

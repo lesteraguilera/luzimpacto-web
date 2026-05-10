@@ -2,38 +2,47 @@
 // Sumate a la misión — 4 caminos
 const caminos = [
   {
-    icon: "💝",
+    iconKey: "heart",
     titulo: "Donar",
     desc: "Tu aporte nos lleva a colegios. Cubre transporte, materiales, equipo y eventos.",
     cta: "Donar ahora",
     btnClass: "btn-yellow",
-    href: "#",
+    href: "#donar",
+    isDonate: true,
   },
   {
-    icon: "⛪",
-    titulo: "Aliarse (Iglesias)",
+    iconKey: "church",
+    titulo: "Aliarse · Iglesias",
     desc: "Tu iglesia puede recibir a los jóvenes que reciben a Cristo en nuestras visitas a colegios.",
     cta: "Solicitar alianza",
     btnClass: "btn-dark",
-    href: "#",
+    href: "https://wa.me/50685493929?text=Hola%20LUZ%2C%20mi%20iglesia%20quiere%20aliarse",
   },
   {
-    icon: "🧑",
+    iconKey: "people",
     titulo: "Sumarme al equipo",
-    desc: "¿Tenés talento, tiempo y fe? Buscamos voluntarios para crecer juntos.",
+    desc: "¿Tenés talento, tiempo y fe? Buscamos voluntarios para crecer juntos en esta visión.",
     cta: "Postularme",
     btnClass: "btn-dark",
-    href: "#",
+    href: "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20sumarme%20al%20equipo",
   },
   {
-    icon: "📣",
-    titulo: "Compartir el evangelio",
+    iconKey: "megaphone",
+    titulo: "Compartir la misión",
     desc: "Orá por nosotros. Compartí nuestras visitas. Difundí la misión entre quienes la necesiten.",
-    cta: "Seguirnos",
+    cta: "Seguirnos en IG",
     btnClass: "btn-dark",
     href: "https://instagram.com/luzimpacto_cr",
   },
 ];
+
+// Iconos SVG inline (Lucide-style, stroke=1.75)
+const icons = {
+  heart: `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>`,
+  church: `<path d="M10 9h4"/><path d="M12 7v5"/><path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/><path d="M18 22V5.5a1 1 0 0 0-.5-.866L12 1.5 6.5 4.634A1 1 0 0 0 6 5.5V22"/><path d="M22 22V9.4a.8.8 0 0 0-.45-.717L18 7"/><path d="M2 22V9.4a.8.8 0 0 1 .45-.717L6 7"/><path d="M18 22H6"/>`,
+  people: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+  megaphone: `<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>`,
+};
 ---
 
 <section class="section" id="sumate">
@@ -47,10 +56,12 @@ const caminos = [
     <div class="sumate-grid">
       {caminos.map((c) => (
         <div class="camino">
-          <div class="camino-icon">{c.icon}</div>
+          <div class="camino-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icons[c.iconKey]} />
+          </div>
           <h3>{c.titulo}</h3>
           <p>{c.desc}</p>
-          <a href={c.href} class={`btn ${c.btnClass} btn-sm`}>{c.cta} <span class="arrow">→</span></a>
+          <a href={c.href} class={`btn ${c.btnClass} btn-sm`} {...(c.href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})}>{c.cta} <span class="arrow">→</span></a>
         </div>
       ))}
     </div>
@@ -82,8 +93,8 @@ const caminos = [
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    font-size: 26px;
   }
+  .camino-icon svg { width: 28px; height: 28px; }
   .camino h3 { margin-bottom: 10px; }
   .camino p { font-size: 15px; line-height: 1.6; flex: 1; margin-bottom: 24px; }
   .camino .btn { align-self: flex-start; }

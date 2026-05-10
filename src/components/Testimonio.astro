@@ -1,25 +1,17 @@
 ---
-// Testimonio destacado sobre fondo charcoal
+// Bloque emocional con cita bíblica (mientras no haya testimonio real)
+// Cuando llegue uno real, este componente vuelve a su forma de testimonio
 ---
 
 <section class="testimonio" id="impacto">
   <div class="container">
     <div class="quote-mark">"</div>
     <div class="quote">
-      Vine a un colegio sin esperanza,<br>
-      salí con una nueva vida en Cristo.<br>
-      <span class="highlight">LUZ cambió mi futuro.</span>
+      Vosotros sois la <span class="highlight">luz</span> del mundo;<br>
+      una ciudad asentada sobre un monte<br>
+      no se puede esconder.
     </div>
-    <div class="attribution">
-      <div class="avatar">M</div>
-      <div class="who">
-        <div class="name">María, 16 años</div>
-        <div class="role">Estudiante · Colegio en Heredia</div>
-      </div>
-    </div>
-    <div class="badge-wrap">
-      <span class="pendiente-badge dark">Testimonio placeholder · pendiente real</span>
-    </div>
+    <div class="cite">— Jesús · Mateo 5:14</div>
   </div>
 </section>
 
@@ -37,9 +29,19 @@
     position: absolute;
     top: -100px;
     left: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(252,211,77,0.08) 0%, transparent 70%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(252,211,77,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .testimonio::after {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(252,211,77,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
   .quote-mark {
@@ -47,51 +49,68 @@
     font-size: 120px;
     color: var(--yellow);
     line-height: 0.5;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     opacity: 0.5;
   }
   .quote {
     font-family: "Fraunces", serif;
     font-style: italic;
     font-weight: 500;
-    font-size: clamp(24px, 3.5vw, 38px);
-    line-height: 1.3;
+    font-size: clamp(26px, 4vw, 44px);
+    line-height: 1.35;
     color: var(--on-dark);
-    max-width: 880px;
-    margin: 0 auto 40px;
+    max-width: 900px;
+    margin: 0 auto 24px;
     letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
   }
-  .highlight { color: var(--yellow); }
-  .attribution {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-  }
-  .avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--yellow);
-    color: var(--charcoal);
-    font-family: "Fraunces", serif;
+  .highlight { color: var(--yellow); font-style: normal; font-weight: 600; }
+  .cite {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
     font-weight: 600;
-    font-size: 18px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--on-dark-soft);
+  }
+
+  .impact-line {
+    margin-top: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
   }
-  .who { text-align: left; }
-  .who .name { font-weight: 600; font-size: 15px; color: var(--on-dark); }
-  .who .role { font-size: 13px; color: var(--on-dark-soft); margin-top: 2px; }
-
-  .badge-wrap { margin-top: 32px; }
-  .pendiente-badge.dark {
-    background: rgba(252,211,77,0.12);
+  .impact-item { text-align: center; }
+  .impact-num {
+    font-family: "Fraunces", serif;
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 600;
     color: var(--yellow);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .impact-label {
+    margin-top: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--on-dark-soft);
+    font-weight: 600;
+  }
+  .impact-sep {
+    width: 1px;
+    height: 48px;
+    background: rgba(255,255,255,0.15);
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     .testimonio { padding: 80px 0; }
+    .impact-line { gap: 24px; margin-top: 56px; }
+    .impact-sep { display: none; }
   }
 </style>

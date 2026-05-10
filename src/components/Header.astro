@@ -1,5 +1,5 @@
 ---
-// Header sticky con logo + nav + toggle ES/EN + CTA
+// Header sticky con logo + nav + toggle ES/EN + CTA + drawer móvil
 ---
 
 <header class="site-header">
@@ -16,9 +16,41 @@
     <div class="nav-tools">
       <span class="lang-toggle"><span class="active">ES</span> · EN</span>
       <a href="#sumate" class="btn btn-dark btn-sm">Sumate <span class="arrow">→</span></a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="drawer-inner">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#que-hacemos">Qué hacemos</a>
+      <a href="#impacto">Impacto</a>
+      <a href="#sumate">Sumate</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://wa.me/50685493929" class="btn btn-yellow drawer-cta" target="_blank" rel="noopener">WhatsApp <span class="arrow">→</span></a>
     </div>
   </div>
 </header>
+
+<script is:inline>
+  (function() {
+    const toggle = document.getElementById('navToggle');
+    const drawer = document.getElementById('navDrawer');
+    if (!toggle || !drawer) return;
+    const setState = (open) => {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      setState(open);
+    });
+    drawer.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setState(false)));
+  })();
+</script>
 
 <style>
   .site-header {
@@ -64,10 +96,71 @@
   }
   .lang-toggle .active { color: var(--charcoal); }
 
+  .nav-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 8px;
+    position: relative;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--charcoal);
+    margin: 5px 0;
+    transition: transform 0.25s, opacity 0.25s;
+    border-radius: 2px;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-drawer {
+    position: fixed;
+    inset: 64px 0 0 0;
+    background: var(--bg);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+    visibility: hidden;
+  }
+  .nav-drawer[aria-hidden="false"] {
+    transform: translateY(0);
+    visibility: visible;
+  }
+  .drawer-inner {
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .drawer-inner a {
+    font-family: "Fraunces", serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    letter-spacing: -0.01em;
+  }
+  .drawer-cta {
+    margin-top: 24px;
+    align-self: flex-start;
+    font-family: "Inter", sans-serif !important;
+    font-size: 15px !important;
+    border-bottom: none !important;
+    padding: 14px 26px !important;
+  }
+
   @media (max-width: 900px) {
     .nav-main { display: none; }
-  }
-  @media (max-width: 600px) {
     .nav-tools .lang-toggle { display: none; }
+    .nav-tools .btn { display: none; }
+    .nav-toggle { display: block; }
   }
 </style>

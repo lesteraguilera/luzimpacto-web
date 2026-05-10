@@ -26,3 +26,9 @@ pnpm-debug.log*
 
 # Photos: originals son enormes, solo thumbs van al sitio
 public/assets/photos/originals/
+
+# Screenshots y archivos temporales locales
+_check_*.jpg
+_full_*.jpg
+render_check.cjs
+render_full.cjs

@@ -21,18 +21,19 @@
       </button>
     </div>
   </div>
-
-  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
-    <div class="drawer-inner">
-      <a href="#nosotros">Nosotros</a>
-      <a href="#que-hacemos">Qué hacemos</a>
-      <a href="#impacto">Impacto</a>
-      <a href="#sumate">Sumate</a>
-      <a href="#contacto">Contacto</a>
-      <a href="https://wa.me/50685493929" class="btn btn-yellow drawer-cta" target="_blank" rel="noopener">WhatsApp <span class="arrow">→</span></a>
-    </div>
-  </div>
 </header>
+
+<!-- Drawer fuera del header para evitar stacking-context bug -->
+<div class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <div class="drawer-inner">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#que-hacemos">Qué hacemos</a>
+    <a href="#impacto">Impacto</a>
+    <a href="#sumate">Sumate</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/50685493929" class="btn btn-yellow drawer-cta" target="_blank" rel="noopener">WhatsApp <span class="arrow">→</span></a>
+  </div>
+</div>
 
 <script is:inline>
   (function() {
@@ -121,12 +122,14 @@
 
   .nav-drawer {
     position: fixed;
-    inset: 64px 0 0 0;
+    inset: 0;
+    padding-top: 80px;
     background: var(--bg);
     transform: translateY(-100%);
     transition: transform 0.3s ease;
-    z-index: 99;
+    z-index: 150;
     visibility: hidden;
+    overflow-y: auto;
   }
   .nav-drawer[aria-hidden="false"] {
     transform: translateY(0);

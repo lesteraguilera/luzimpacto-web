@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # astro
 .astro/
+
+# Photos: originals son enormes, solo thumbs van al sitio
+public/assets/photos/originals/

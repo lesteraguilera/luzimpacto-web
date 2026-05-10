@@ -16,7 +16,7 @@
 </style></head>
 <body>
 <h1>LUZ Impacto — Catálogo visual</h1>
-<p class="sub">22 fotos · numeradas para selección · zoomeá tocando cualquiera</p>
+<p class="sub">30 fotos · #1-#22 procesadas · #23-#30 nuevas (DNG profesionales) · faltan ~33 DNG por bajar</p>
 <div class="grid" id="g"></div>
 <script>
 const fotos = [
@@ -41,10 +41,18 @@ const fotos = [
   {n:19, t:"Equipo con señor mayor de bigote", tag:""},
   {n:20, t:"Presentación con joven en pantalla", tag:""},
   {n:21, t:"Carrera de sacos en césped", tag:""},
-  {n:22, t:"Dinámicas con red", tag:""}
+  {n:22, t:"Dinámicas con red", tag:""},
+  {n:23, t:"4 jóvenes posando en pasillo naranja", tag:""},
+  {n:24, t:"Líder con niños en evento", tag:""},
+  {n:25, t:"Líder abrazando 2 niñas en evento", tag:""},
+  {n:26, t:"Selfie en colegio con uniformes", tag:""},
+  {n:27, t:"Selfie en pasillo de colegio", tag:""},
+  {n:28, t:"Líder con niña en uniforme lila", tag:""},
+  {n:29, t:"Líder con grupo de 6 niñas (cancha)", tag:""},
+  {n:30, t:"Líder con grupo de 6 niñas (variante)", tag:""}
 ];
-const titles = ["f0ea7dd9-2ca5-4611-b655-99c45c535db5","d6597a89-9112-4cf5-be43-0cd9c1205ffc","17BEA455-8F61-4C8A-90AC-F57D6AF16B7C","D9E1BEA6-4DD4-4CD9-ACB6-B2D9B7B361D4","IMG_4843","IMG_4834","IMG_4824","IMG_4829","7299b820-d22e-4ea1-8011-1d3f54862bcf","a316c362-e0a7-4ce9-b874-122c0a7eee6a","6cfebcd5-c260-4dc4-915a-78f67c2b66e8","048b403d-a267-4228-95d4-5412045d3a9a","a19dd697-a37d-4298-a0ef-bbea97930050","f0c8a3e6-31d4-4701-a73e-8c616a5895df","a71879ec-8f43-489e-8ecb-33b76149d913","e72b3b7d-aa9a-4939-b4f2-18560ac84b8d","2b96b299-e755-4fc3-a83a-bd62cb1ad8eb","de976589-d4df-488f-8b15-e247205f1d12","a7ad284b-b9de-4383-aeb0-04aebec0e113","77ea2e65-6ae1-46d1-8f9c-fe9e36ceeddf","d78af50e-8078-44d8-a27f-5349b88e0426","IMG_2830"];
-const exts = [".jpeg",".jpeg",".jpeg",".jpeg",".PNG",".PNG",".PNG",".PNG",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg",".jpeg"];
+const titles = ["f0ea7dd9-2ca5-4611-b655-99c45c535db5","d6597a89-9112-4cf5-be43-0cd9c1205ffc","17BEA455-8F61-4C8A-90AC-F57D6AF16B7C","D9E1BEA6-4DD4-4CD9-ACB6-B2D9B7B361D4","IMG_4843","IMG_4834","IMG_4824","IMG_4829","7299b820-d22e-4ea1-8011-1d3f54862bcf","a316c362-e0a7-4ce9-b874-122c0a7eee6a","6cfebcd5-c260-4dc4-915a-78f67c2b66e8","048b403d-a267-4228-95d4-5412045d3a9a","a19dd697-a37d-4298-a0ef-bbea97930050","f0c8a3e6-31d4-4701-a73e-8c616a5895df","a71879ec-8f43-489e-8ecb-33b76149d913","e72b3b7d-aa9a-4939-b4f2-18560ac84b8d","2b96b299-e755-4fc3-a83a-bd62cb1ad8eb","de976589-d4df-488f-8b15-e247205f1d12","a7ad284b-b9de-4383-aeb0-04aebec0e113","77ea2e65-6ae1-46d1-8f9c-fe9e36ceeddf","d78af50e-8078-44d8-a27f-5349b88e0426","IMG_2830","IMG_7606","IMG_7845","IMG_7872","IMG_7920","IMG_7967","IMG_7969","IMG_8014","IMG_8015"];
+// extensions no longer needed — all thumbs are .jpg
 const g = document.getElementById('g');
 fotos.forEach((f, i) => {
   const num = String(f.n).padStart(2,'0');

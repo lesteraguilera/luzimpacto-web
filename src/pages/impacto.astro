@@ -1,0 +1,272 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import CTAFinal from "../components/CTAFinal.astro";
+import Footer from "../components/Footer.astro";
+import DonarModal from "../components/DonarModal.astro";
+
+const provincias = [
+  { nombre: "San José", visitada: true },
+  { nombre: "Alajuela", visitada: true },
+  { nombre: "Cartago", visitada: true },
+  { nombre: "Heredia", visitada: true },
+  { nombre: "Guanacaste", visitada: true },
+  { nombre: "Puntarenas", visitada: true },
+  { nombre: "Limón", visitada: false },
+];
+const visitadas = provincias.filter(p => p.visitada).length;
+---
+
+<BaseLayout title="Impacto · LUZ Impacto" description="El alcance real de LUZ Impacto en Costa Rica: colegios visitados, jóvenes alcanzados, iglesias aliadas.">
+  <Header />
+
+  <PageHero
+    eyebrow="Impacto"
+    title="Cifras reales.<br><span class='marker'>Vidas reales.</span>"
+    lede="Cada número representa colegios reales, jóvenes reales que escucharon el evangelio, iglesias reales que abrieron sus puertas."
+  />
+
+  <section class="metricas-big">
+    <div class="container">
+      <div class="grid">
+        <div class="met">
+          <div class="num"><span class="count" data-target="60">0</span><span class="plus">+</span></div>
+          <div class="label">Colegios visitados</div>
+          <p>Cada visita es coordinada con dirección académica y adaptada al contexto del colegio.</p>
+        </div>
+        <div class="met">
+          <div class="num"><span class="count" data-target="50" data-suffix="K">0</span><span class="plus">+</span></div>
+          <div class="label">Jóvenes alcanzados</div>
+          <p>Miles de estudiantes han escuchado el mensaje de Cristo en eventos realizados con LUZ.</p>
+        </div>
+        <div class="met">
+          <div class="num"><span class="count" data-target="30">0</span><span class="plus">+</span></div>
+          <div class="label">Iglesias aliadas</div>
+          <p>Una red de iglesias evangélicas en todo el país recibe a los jóvenes que reciben a Cristo.</p>
+        </div>
+        <div class="met">
+          <div class="num">{visitadas}<span class="of">/7</span></div>
+          <div class="label">Provincias alcanzadas</div>
+          <p>Hemos llevado el mensaje a colegios en {visitadas} de las 7 provincias de Costa Rica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-crema">
+    <div class="container">
+      <div class="head">
+        <div class="eyebrow">Dónde estamos</div>
+        <h2>{visitadas} de las 7 provincias.<br><span class='marker'>Costa Rica completa.</span></h2>
+        <p class="lede">Hemos llevado el mensaje a colegios en casi todo el país. Y vamos por la última.</p>
+      </div>
+
+      <div class="provincias-grid">
+        {provincias.map((p) => (
+          <div class={`provincia ${p.visitada ? "visitada" : "pendiente"}`}>
+            <div class="check">{p.visitada ? "✓" : "○"}</div>
+            <div class="nombre">{p.nombre}</div>
+            <div class="estado">{p.visitada ? "Visitada" : "Próxima"}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="testimonial-pendiente">
+        <div class="quote-mark">"</div>
+        <div class="quote">
+          Vosotros sois la <span class="highlight">luz</span> del mundo;<br>
+          una ciudad asentada sobre un monte<br>
+          no se puede esconder.
+        </div>
+        <div class="cite">— Jesús · Mateo 5:14</div>
+        <p class="note">Estamos recopilando testimonios reales de jóvenes, pastores y voluntarios. Pronto los compartiremos aquí.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal />
+  <Footer />
+  <DonarModal />
+</BaseLayout>
+
+<style>
+  .metricas-big {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 80px 0;
+  }
+  .metricas-big .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .metricas-big .met {
+    padding: 24px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+  .metricas-big .met:first-child { border-left: none; }
+  .metricas-big .num {
+    font-family: "Fraunces", serif;
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 600;
+    color: var(--yellow);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .metricas-big .num .plus, .metricas-big .num .of { font-size: 0.55em; opacity: 0.7; }
+  .metricas-big .label {
+    margin: 12px 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--on-dark);
+  }
+  .metricas-big .met p {
+    font-size: 14px;
+    color: var(--on-dark-soft);
+    margin-bottom: 0;
+    line-height: 1.55;
+  }
+
+  .section-crema { background: var(--crema); border: none; }
+  .head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+  .head h2 { margin-bottom: 16px; }
+  .head h2 :global(.marker) {
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    line-height: 1;
+    font-weight: 700;
+    font-family: "Fraunces", serif;
+  }
+  .head .lede { margin: 0 auto; }
+
+  .provincias-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .provincia {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .provincia.visitada { border-top: 3px solid var(--yellow); }
+  .provincia.pendiente { opacity: 0.55; border-top: 3px solid var(--line); }
+  .check {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--charcoal);
+    color: var(--yellow);
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Fraunces", serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .provincia.pendiente .check {
+    background: transparent;
+    border: 1px dashed var(--ink-faint);
+    color: var(--ink-faint);
+  }
+  .nombre {
+    font-family: "Fraunces", serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .estado {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .provincia.visitada .estado { color: var(--charcoal); }
+
+  .testimonial-pendiente {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 80px 48px;
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonial-pendiente::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(252,211,77,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .quote-mark {
+    font-family: "Fraunces", serif;
+    font-size: 100px;
+    color: var(--yellow);
+    line-height: 0.5;
+    margin-bottom: 16px;
+    opacity: 0.5;
+    position: relative;
+  }
+  .quote {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: clamp(22px, 3vw, 34px);
+    line-height: 1.35;
+    color: var(--on-dark);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .highlight { color: var(--yellow); font-style: normal; font-weight: 600; }
+  .cite {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--on-dark-soft);
+  }
+  .note {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    color: var(--on-dark-soft);
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 900px) {
+    .metricas-big .grid { grid-template-columns: repeat(2, 1fr); }
+    .metricas-big .met:nth-child(3) { border-left: none; }
+  }
+  @media (max-width: 700px) {
+    .provincias-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonial-pendiente { padding: 56px 24px; }
+  }
+  @media (max-width: 500px) {
+    .metricas-big .grid { grid-template-columns: 1fr; gap: 24px; }
+    .metricas-big .met { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; }
+    .metricas-big .met:first-child { border-top: none; padding-top: 0; }
+  }
+</style>

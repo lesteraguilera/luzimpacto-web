@@ -1,0 +1,202 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import CTAFinal from "../components/CTAFinal.astro";
+import Footer from "../components/Footer.astro";
+import DonarModal from "../components/DonarModal.astro";
+---
+
+<BaseLayout title="Nosotros · LUZ Impacto" description="Quiénes somos: Fundación LUZ Impacto, ministerio cristiano evangélico costarricense que conecta a jóvenes con iglesias.">
+  <Header />
+
+  <PageHero
+    eyebrow="Quiénes somos"
+    title="Un puente entre los <span class='marker'>jóvenes</span> y las iglesias."
+    lede="Somos un ministerio cristiano evangélico costarricense que va a los colegios con un mensaje de salvación y conecta a los jóvenes con iglesias locales que los puedan discipular."
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="eyebrow">Nuestra historia</div>
+      <h2>Una visión que nació en el corazón de los colegios.</h2>
+
+      <p>
+        Fundación LUZ Impacto nació en 2024 con una convicción simple y urgente:
+        en Costa Rica, miles de jóvenes pasan once años en colegios sin escuchar
+        nunca el evangelio. Y mientras tanto, hay decenas de iglesias listas
+        para acompañar a quien lo necesite — pero sin manera de llegar a esos
+        jóvenes.
+      </p>
+
+      <p>
+        Decidimos ser ese puente. Vamos a los colegios, predicamos el mensaje
+        de Cristo, y cuando un joven recibe el evangelio, lo conectamos con una
+        iglesia local que lo pueda discipular. No competimos con las iglesias —
+        las servimos.
+      </p>
+
+      <blockquote class="big-quote">
+        "Vosotros sois la luz del mundo;<br>
+        una ciudad asentada sobre un monte<br>
+        no se puede esconder."
+        <div class="cite">— Mateo 5:14</div>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="section section-crema">
+    <div class="container">
+      <div class="eyebrow center">Nuestra misión y visión</div>
+      <div class="mision-grid">
+        <div class="mision-card">
+          <div class="mision-num">M</div>
+          <h3>Misión</h3>
+          <p>
+            Llevar el mensaje de salvación de Jesucristo a los colegios de
+            Costa Rica, y conectar a los jóvenes que reciben a Cristo con
+            iglesias locales que los puedan discipular y acompañar en su
+            nueva vida en Él.
+          </p>
+        </div>
+        <div class="mision-card">
+          <div class="mision-num">V</div>
+          <h3>Visión</h3>
+          <p>
+            Una generación de jóvenes costarricenses que conozca el amor de
+            Cristo, viva con propósito, y se levante como líderes de fe en
+            sus colegios, sus familias y sus comunidades.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">El equipo</div>
+      <h2>Las personas detrás de la misión.</h2>
+      <p class="lede" style="margin-top: 16px; max-width: 720px;">
+        LUZ es un equipo pequeño y comprometido. Cada uno trae su talento,
+        su historia y su llamado a esta visión.
+      </p>
+
+      <div class="equipo-grid">
+        <div class="equipo-card">
+          <div class="equipo-foto"></div>
+          <h3>Samuel Pizzo</h3>
+          <div class="equipo-rol">Fundador · Director</div>
+          <p>Pastor y predicador. Su corazón por los jóvenes y su pasión por el evangelio dieron origen a LUZ.</p>
+        </div>
+        <div class="equipo-card">
+          <div class="equipo-foto"></div>
+          <h3>Lester Aguilera</h3>
+          <div class="equipo-rol">Asistente estratégico</div>
+          <p>Trabaja en operaciones, estrategia digital y crecimiento del ministerio.</p>
+        </div>
+        <div class="equipo-card">
+          <div class="equipo-foto"></div>
+          <h3>Silvia Rodríguez</h3>
+          <div class="equipo-rol">Operaciones · Comunicación</div>
+          <p>Coordina la presencia en redes sociales y el contacto con prospectos y colegios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal />
+  <Footer />
+  <DonarModal />
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 780px; }
+  .section .eyebrow { margin-bottom: 16px; }
+  .section .eyebrow.center { text-align: center; margin-bottom: 32px; }
+  .section h2 { margin-bottom: 28px; max-width: 780px; }
+  .section p { margin-bottom: 20px; font-size: 17px; }
+
+  .big-quote {
+    margin: 48px 0 0;
+    padding: 24px 0 24px 28px;
+    border-left: 3px solid var(--yellow);
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.35;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .big-quote .cite {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 16px;
+  }
+
+  .section-crema { background: var(--crema); border: none; }
+
+  .mision-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .mision-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+  }
+  .mision-num {
+    font-family: "Fraunces", serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--yellow);
+    line-height: 1;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 12px;
+  }
+  .mision-card h3 { margin-bottom: 14px; }
+  .mision-card p { font-size: 16px; margin-bottom: 0; }
+
+  .equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .equipo-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    text-align: center;
+  }
+  .equipo-foto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--crema);
+    margin: 0 auto 20px;
+    border: 1px dashed var(--line);
+  }
+  .equipo-card h3 { margin-bottom: 4px; }
+  .equipo-rol {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 12px;
+  }
+  .equipo-card p { font-size: 14px; margin-bottom: 0; line-height: 1.6; }
+
+  @media (max-width: 900px) {
+    .mision-grid, .equipo-grid { grid-template-columns: 1fr; }
+  }
+</style>

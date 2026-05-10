@@ -1,0 +1,57 @@
+---
+// Hero compacto para páginas internas (no la home)
+const { eyebrow, title, lede } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container">
+    <div class="eyebrow hero-eyebrow">{eyebrow}</div>
+    <h1 set:html={title}></h1>
+    {lede && <p class="lede">{lede}</p>}
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(252,211,77,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero .container { position: relative; max-width: 900px; }
+  .page-hero h1 {
+    color: var(--on-dark);
+    font-size: clamp(40px, 6vw, 72px);
+    margin-bottom: 24px;
+  }
+  .page-hero h1 :global(.marker) {
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    line-height: 1;
+    font-weight: 700;
+    font-family: "Fraunces", serif;
+  }
+  .page-hero .lede {
+    color: var(--on-dark);
+    max-width: 700px;
+    font-weight: 400;
+    opacity: 0.9;
+  }
+  @media (max-width: 600px) {
+    .page-hero { padding: 64px 0 56px; }
+  }
+</style>

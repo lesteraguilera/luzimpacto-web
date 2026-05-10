@@ -1,0 +1,198 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import CTAFinal from "../components/CTAFinal.astro";
+import Footer from "../components/Footer.astro";
+import DonarModal from "../components/DonarModal.astro";
+
+const pilares = [
+  {
+    n: "01",
+    titulo: "Desarrollo de Fe",
+    desc: "Cultivamos una relación profunda y duradera con Jesucristo como fundamento de todo crecimiento personal y liderazgo.",
+    detalle: "Cada visita comienza con la predicación del mensaje de salvación. Acompañamos a los jóvenes que reciben a Cristo conectándolos con iglesias locales aliadas.",
+  },
+  {
+    n: "02",
+    titulo: "Liderazgo y Mentoría",
+    desc: "Formamos líderes éticos con propósito, equipados con la confianza y herramientas necesarias para impulsar cambios positivos.",
+    detalle: "Talleres, charlas y mentoría continua con líderes del equipo y de las iglesias aliadas.",
+  },
+  {
+    n: "03",
+    titulo: "Apoyo Académico y de Vida",
+    desc: "Brindamos recursos y mentoría para excelencia educativa y para el desarrollo personal esencial de cada joven.",
+    detalle: "Acompañamiento en decisiones de vida, vocación, relaciones y salud emocional con enfoque cristiano.",
+  },
+  {
+    n: "04",
+    titulo: "Emprendimiento",
+    desc: "Capacitamos a jóvenes para lanzar emprendimientos sostenibles basados en valores cristianos y oportunidades reales de innovación.",
+    detalle: "Visión integral: que el joven no solo conozca a Cristo, sino que también construya un futuro con propósito.",
+  },
+];
+
+const proceso = [
+  { n: "1", titulo: "Coordinamos con un colegio", desc: "Trabajamos con dirección académica para agendar una visita que se integre al calendario escolar." },
+  { n: "2", titulo: "Llegamos con el equipo", desc: "Llevamos un evento que combina música, testimonios, dinámicas y predicación del evangelio." },
+  { n: "3", titulo: "Los jóvenes responden", desc: "Quienes reciben a Cristo dejan sus datos y se les invita a un seguimiento personal." },
+  { n: "4", titulo: "Los conectamos con una iglesia", desc: "Los referimos a una iglesia local aliada cerca de su casa, donde pueden ser discipulados." },
+];
+---
+
+<BaseLayout title="Qué hacemos · LUZ Impacto" description="Cuatro pilares y un proceso claro: cómo LUZ Impacto lleva el evangelio a los colegios de Costa Rica.">
+  <Header />
+
+  <PageHero
+    eyebrow="Qué hacemos"
+    title="Cuatro pilares.<br><span class='marker'>Una visión integral.</span>"
+    lede="No solo evangelizamos. Acompañamos a los jóvenes con un enfoque holístico que combina fe, liderazgo, apoyo académico y emprendimiento."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="pilares-grid">
+        {pilares.map((p) => (
+          <div class="pilar-card">
+            <div class="pilar-num">{p.n}</div>
+            <h3>{p.titulo}</h3>
+            <p class="pilar-desc">{p.desc}</p>
+            <p class="pilar-detalle">{p.detalle}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-crema">
+    <div class="container">
+      <div class="head">
+        <div class="eyebrow">Cómo lo hacemos</div>
+        <h2>Un proceso simple,<br>una visión clara.</h2>
+        <p class="lede">Cada visita sigue cuatro pasos que aseguran que ningún joven quede solo después de recibir a Cristo.</p>
+      </div>
+
+      <div class="proceso-grid">
+        {proceso.map((p, i) => (
+          <div class="proceso-step">
+            <div class="proceso-num">{p.n}</div>
+            <h3>{p.titulo}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="que-hacemos-cta">
+        <h2>¿Sos parte de un colegio que quiere recibirnos?</h2>
+        <p>Escribinos por WhatsApp y conversamos sobre cómo coordinar una visita.</p>
+        <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20somos%20un%20colegio%20interesado%20en%20recibirlos" target="_blank" rel="noopener" class="btn btn-dark">Hablemos por WhatsApp <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal />
+  <Footer />
+  <DonarModal />
+</BaseLayout>
+
+<style>
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .pilar-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .pilar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.06);
+  }
+  .pilar-num {
+    font-family: "Fraunces", serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--yellow);
+    line-height: 1;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
+  .pilar-card h3 { margin-bottom: 12px; }
+  .pilar-desc { font-size: 16px; margin-bottom: 14px; color: var(--ink); }
+  .pilar-detalle { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+  .section-crema { background: var(--crema); border: none; }
+  .head { max-width: 720px; margin-bottom: 56px; }
+  .head .lede { margin-top: 16px; }
+
+  .proceso-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .proceso-step {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .proceso-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--charcoal);
+    color: var(--yellow);
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+  }
+  .proceso-step h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .proceso-step p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  .que-hacemos-cta {
+    background: var(--crema);
+    border-radius: 24px;
+    padding: 56px 48px;
+    text-align: center;
+    border-left: 4px solid var(--yellow);
+  }
+  .que-hacemos-cta h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    margin-bottom: 12px;
+  }
+  .que-hacemos-cta p {
+    font-size: 17px;
+    margin-bottom: 24px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 900px) {
+    .pilares-grid { grid-template-columns: 1fr; }
+    .proceso-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .proceso-grid { grid-template-columns: 1fr; }
+    .que-hacemos-cta { padding: 36px 24px; }
+  }
+</style>

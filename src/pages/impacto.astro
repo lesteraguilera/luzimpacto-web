@@ -5,6 +5,7 @@ import PageHero from "../components/PageHero.astro";
 import CTAFinal from "../components/CTAFinal.astro";
 import Footer from "../components/Footer.astro";
 import DonarModal from "../components/DonarModal.astro";
+import MapaCR from "../components/MapaCR.astro";
 
 const provincias = [
   { nombre: "San José", visitada: true },
@@ -54,23 +55,9 @@ const visitadas = provincias.filter(p => p.visitada).length;
     </div>
   </section>
 
-  <section class="section section-crema">
+  <section class="section">
     <div class="container">
-      <div class="head">
-        <div class="eyebrow">Dónde estamos</div>
-        <h2>{visitadas} de las 7 provincias.<br><span class='marker'>Costa Rica completa.</span></h2>
-        <p class="lede">Hemos llevado el mensaje a colegios en casi todo el país. Y vamos por la última.</p>
-      </div>
-
-      <div class="provincias-grid">
-        {provincias.map((p) => (
-          <div class={`provincia ${p.visitada ? "visitada" : "pendiente"}`}>
-            <div class="check">{p.visitada ? "✓" : "○"}</div>
-            <div class="nombre">{p.nombre}</div>
-            <div class="estado">{p.visitada ? "Visitada" : "Próxima"}</div>
-          </div>
-        ))}
-      </div>
+      <MapaCR />
     </div>
   </section>
 

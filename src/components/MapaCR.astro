@@ -1,0 +1,239 @@
+---
+// Mapa de Costa Rica con outline real (Wikimedia Commons, CC BY-SA)
+// Sobre el outline gris se ponen marcadores amarillos en las 6 provincias visitadas
+// y un marcador punteado gris en Limón (pendiente).
+import fs from "node:fs";
+import path from "node:path";
+
+const svgPath = path.resolve("src/components/cr_map_paths.svg");
+const countryPaths = fs.readFileSync(svgPath, "utf8")
+  .replace(/^<svg[^>]*>/, "")
+  .replace(/<\/svg>$/, "");
+
+// Posiciones aproximadas del centro de cada provincia (label en SVG original)
+const markers = [
+  { id: "guanacaste", nombre: "Guanacaste", x: 176, y: 193, visitada: true },
+  { id: "alajuela",   nombre: "Alajuela",   x: 377, y: 224, visitada: true },
+  { id: "heredia",    nombre: "Heredia",    x: 459, y: 244, visitada: true },
+  { id: "limon",      nombre: "Limón",      x: 580, y: 280, visitada: false },
+  { id: "san-jose",   nombre: "San José",   x: 402, y: 347, visitada: true },
+  { id: "cartago",    nombre: "Cartago",    x: 531, y: 339, visitada: true },
+  { id: "puntarenas", nombre: "Puntarenas", x: 480, y: 460, visitada: true },
+];
+const visitadas = markers.filter(m => m.visitada).length;
+---
+
+<div class="mapa-wrap">
+  <div class="mapa-header">
+    <div class="eyebrow">Dónde estamos</div>
+    <h2><span class="num-grande">{visitadas}</span><span class="num-de"> de </span><span class="num-grande">7</span> provincias.</h2>
+    <p>Hemos llevado el mensaje a colegios en casi todo Costa Rica. Y vamos por la última.</p>
+  </div>
+
+  <div class="mapa-grid">
+    <div class="mapa-svg-wrap">
+      <svg viewBox="0 0 764.4 695.8" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mapaTitulo">
+        <title id="mapaTitulo">Mapa de provincias de Costa Rica</title>
+
+        <!-- Country outline (Wikimedia CC BY-SA) -->
+        <g class="country" set:html={countryPaths}></g>
+
+        <!-- Marcadores -->
+        <g class="markers">
+          {markers.map((m) => (
+            <g class={`marker ${m.visitada ? "visitada" : "pendiente"}`} transform={`translate(${m.x},${m.y})`}>
+              <circle class="mk-glow" r="32" />
+              <circle class="mk-bg" r="20" />
+              <circle class="mk-dot" r="6" />
+            </g>
+          ))}
+        </g>
+
+        <!-- Labels -->
+        <g class="labels">
+          {markers.map((m) => (
+            <text x={m.x} y={m.y - 28} text-anchor="middle">{m.nombre}</text>
+          ))}
+        </g>
+      </svg>
+
+      <div class="mapa-leyenda">
+        <span class="leyenda-item"><span class="dot dot-visitada"></span>Visitada ({visitadas})</span>
+        <span class="leyenda-item"><span class="dot dot-pendiente"></span>Próxima (1)</span>
+      </div>
+      <div class="mapa-attrib">Outline: Wikimedia Commons · CC BY-SA</div>
+    </div>
+
+    <div class="mapa-lista">
+      <div class="lista-eyebrow">Las 7 provincias</div>
+      <ul>
+        {markers.map((m) => (
+          <li class={m.visitada ? "visitada" : "pendiente"}>
+            <span class="check">{m.visitada ? "✓" : "○"}</span>
+            <span class="nombre">{m.nombre}</span>
+            <span class="estado">{m.visitada ? "Visitada" : "Próxima"}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .mapa-wrap {
+    background: var(--crema);
+    border-radius: 24px;
+    padding: 56px 48px;
+  }
+  .mapa-header { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+  .mapa-header .eyebrow { margin-bottom: 16px; }
+  .mapa-header h2 {
+    font-size: clamp(36px, 5vw, 56px);
+    margin-bottom: 16px;
+  }
+  .num-grande { color: var(--charcoal); }
+  .num-de { font-weight: 400; color: var(--ink-soft); font-style: italic; }
+  .mapa-header p { font-size: 17px; color: var(--ink-soft); }
+
+  .mapa-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .mapa-svg-wrap { position: relative; }
+  .mapa-svg-wrap svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 600px;
+  }
+
+  .country :global(.cr-shape) {
+    fill: #DCD4C0;
+    stroke: white;
+    stroke-width: 0.8;
+    stroke-linejoin: round;
+  }
+
+  /* Marker styles */
+  .marker .mk-glow {
+    fill: var(--yellow);
+    opacity: 0.18;
+    transition: opacity 0.3s, r 0.3s;
+  }
+  .marker .mk-bg {
+    fill: var(--yellow);
+    stroke: white;
+    stroke-width: 3;
+    transition: fill 0.2s, transform 0.2s;
+  }
+  .marker .mk-dot {
+    fill: var(--charcoal);
+  }
+  .marker.pendiente .mk-glow { opacity: 0; }
+  .marker.pendiente .mk-bg {
+    fill: transparent;
+    stroke: var(--ink-faint);
+    stroke-width: 2.5;
+    stroke-dasharray: 3 3;
+  }
+  .marker.pendiente .mk-dot {
+    fill: var(--ink-faint);
+  }
+  .marker:hover .mk-glow { opacity: 0.32; r: 38; }
+  .marker { cursor: default; }
+
+  .labels text {
+    font-family: "Fraunces", serif;
+    font-size: 19px;
+    font-weight: 700;
+    fill: var(--charcoal);
+    pointer-events: none;
+    letter-spacing: -0.01em;
+    paint-order: stroke;
+    stroke: var(--crema);
+    stroke-width: 4;
+    stroke-linejoin: round;
+  }
+
+  .mapa-leyenda {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 8px;
+  }
+  .leyenda-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-visitada { background: var(--yellow); }
+  .dot-pendiente { background: transparent; border: 1.5px dashed var(--ink-faint); }
+
+  .mapa-attrib {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+
+  /* Lista */
+  .mapa-lista .lista-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+  }
+  .mapa-lista ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .mapa-lista li {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: white;
+    transition: transform 0.15s;
+  }
+  .mapa-lista li:hover { transform: translateX(2px); }
+  .mapa-lista li.pendiente { opacity: 0.6; }
+  .mapa-lista .check {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--charcoal); color: var(--yellow);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Fraunces", serif; font-weight: 700; font-size: 13px;
+  }
+  .mapa-lista li.pendiente .check {
+    background: transparent; border: 1px dashed var(--ink-faint); color: var(--ink-faint);
+  }
+  .mapa-lista .nombre {
+    font-family: "Fraunces", serif; font-size: 17px; font-weight: 600; color: var(--ink);
+  }
+  .mapa-lista .estado {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .mapa-lista li.visitada .estado { color: var(--charcoal); }
+
+  @media (max-width: 900px) {
+    .mapa-wrap { padding: 36px 24px; }
+    .mapa-grid { grid-template-columns: 1fr; gap: 32px; }
+    .labels text { font-size: 22px; }
+  }
+</style>

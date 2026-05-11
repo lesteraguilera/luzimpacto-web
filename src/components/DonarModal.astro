@@ -12,6 +12,24 @@
     <h2 id="donarTitle">Cómo donar</h2>
     <p class="modal-lede">Cada colón llega a un colegio. Cubre transporte, materiales, equipo y eventos donde los jóvenes escuchan el evangelio.</p>
 
+    <div class="impacto-amounts">
+      <div class="impacto-eyebrow">Lo que tu donación logra</div>
+      <div class="impacto-tiers">
+        <div class="impacto-tier">
+          <div class="tier-amount"><span class="tier-cur">₡</span>5,000<span class="tier-usd">/ $10</span></div>
+          <div class="tier-impact">Materiales para que un grupo de jóvenes reciba el mensaje</div>
+        </div>
+        <div class="impacto-tier tier-featured">
+          <div class="tier-amount"><span class="tier-cur">₡</span>20,000<span class="tier-usd">/ $40</span></div>
+          <div class="tier-impact">Transporte y materiales para una visita a un colegio</div>
+        </div>
+        <div class="impacto-tier">
+          <div class="tier-amount"><span class="tier-cur">₡</span>75,000<span class="tier-usd">/ $150</span></div>
+          <div class="tier-impact">Un evento completo: equipo, sonido, materiales y refrigerio</div>
+        </div>
+      </div>
+    </div>
+
     <div class="donar-options">
       <div class="donar-opt">
         <div class="opt-head">
@@ -196,8 +214,70 @@
   .modal-lede {
     font-size: 16px;
     color: var(--ink-soft);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     line-height: 1.55;
+  }
+
+  .impacto-amounts {
+    background: var(--crema);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    border-left: 3px solid var(--yellow);
+  }
+  .impacto-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+  }
+  .impacto-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .impacto-tier {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid var(--line);
+  }
+  .impacto-tier.tier-featured {
+    background: rgba(252,211,77,0.10);
+    border-color: var(--yellow);
+  }
+  .tier-amount {
+    font-family: "Fraunces", serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--charcoal);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .tier-cur { color: var(--yellow); font-weight: 700; margin-right: 2px; }
+  .tier-usd {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin-left: 6px;
+    letter-spacing: 0;
+  }
+  .tier-impact {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  @media (max-width: 500px) {
+    .impacto-tier { grid-template-columns: 1fr; gap: 4px; padding: 12px; }
+    .tier-amount { font-size: 18px; }
   }
 
   .donar-options {

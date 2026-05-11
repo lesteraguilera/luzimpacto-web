@@ -85,8 +85,8 @@ const procesoIcons = {
           <div class="proceso-step">
             <div class="proceso-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={procesoIcons[p.iconKey]} />
+              <span class="proceso-num-badge">{p.n}</span>
             </div>
-            <div class="proceso-num">{p.n}</div>
             <h3>{p.titulo}</h3>
             <p>{p.desc}</p>
           </div>
@@ -157,30 +157,34 @@ const procesoIcons = {
     text-align: center;
   }
   .proceso-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
     background: var(--yellow);
     color: var(--charcoal);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 8px;
+    margin: 0 auto 18px;
+    position: relative;
   }
-  .proceso-icon svg { width: 28px; height: 28px; }
-  .proceso-num {
-    width: 28px;
-    height: 28px;
+  .proceso-icon svg { width: 30px; height: 30px; }
+  .proceso-num-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     background: var(--charcoal);
     color: var(--yellow);
     font-family: "Fraunces", serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12px;
+    border: 2px solid white;
   }
   .proceso-step h3 {
     font-size: 17px;

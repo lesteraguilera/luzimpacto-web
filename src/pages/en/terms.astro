@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PageHero from "../../components/PageHero.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<BaseLayout title="Terms · LUZ Impacto" description="LUZ Impacto Foundation terms of use.">
+  <Header />
+
+  <PageHero
+    eyebrow="Legal"
+    title="Terms of use."
+    lede="The conditions under which this website is used."
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="intro-humana">
+        Here are the basic rules for using the site and for donating.
+        <strong>In plain English:</strong> use the content with respect, donations
+        are voluntary, and if anything is unclear,
+        <a href="mailto:samuel@luzimpacto.org">message us</a> and we'll clarify.
+      </div>
+
+      <p class="updated">Last updated: May 2026</p>
+
+      <h2>About LUZ Impacto</h2>
+      <p>
+        LUZ Impacto Foundation is a Costa Rican evangelical Christian ministry.
+        We're not a church — we're a bridge between young people who receive Christ
+        in Costa Rica's schools and the local churches that can disciple them.
+      </p>
+
+      <h2>Site use</h2>
+      <p>
+        This website (<strong>luzimpacto.org</strong>) is for free and informational use.
+        By using it, you accept:
+      </p>
+      <ul>
+        <li>That published information is informational and may change over time.</li>
+        <li>Not to use the site's content for commercial, political, or misleading purposes.</li>
+        <li>Not to impersonate LUZ Impacto Foundation or its team.</li>
+      </ul>
+
+      <h2>Donations</h2>
+      <p>
+        Donations to LUZ Impacto are <strong>voluntary</strong> and go exclusively
+        to the ministry's mission: transportation, materials, equipment, and events
+        in Costa Rica's schools.
+      </p>
+      <p>
+        Donations are <strong>non-refundable</strong> except in cases of documented
+        technical error. If you have any question or want to reverse a donation made
+        in error, message us at
+        <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a> within 7 days.
+      </p>
+      <p>
+        Donations do not constitute a commercial obligation or purchase of services.
+        They are voluntary gifts to the ministry.
+      </p>
+
+      <h2>Intellectual property</h2>
+      <p>
+        The name <strong>"LUZ Impacto"</strong>, the logo, and original site texts are property
+        of LUZ Impacto Foundation. Photographs are from our own events. The map of
+        Costa Rica used on the site comes from Wikimedia Commons under CC BY-SA license.
+      </p>
+
+      <h2>Limitation of liability</h2>
+      <p>
+        LUZ Impacto makes reasonable efforts to keep site information accurate and current,
+        but does not guarantee it is free of errors. Use of the site is at your own risk.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        For any inquiry about these terms, message us at
+        <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a> or by WhatsApp at
+        <a href="https://wa.me/50685493929" target="_blank" rel="noopener">+506 8549 3929</a>.
+      </p>
+
+      <h2>Jurisdiction</h2>
+      <p>
+        These terms are governed by the laws of the Republic of Costa Rica.
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 760px; }
+  .intro-humana {
+    background: var(--crema);
+    border-left: 4px solid var(--yellow);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .intro-humana strong { color: var(--charcoal); }
+  .intro-humana a { color: var(--charcoal); font-weight: 600; }
+  .updated {
+    font-size: 13px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-family: "Fraunces", serif;
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  h2:first-of-type { margin-top: 0; }
+  p, li { font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
+  ul { padding-left: 24px; margin-bottom: 16px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--charcoal); font-weight: 500; }
+  strong { color: var(--ink); font-weight: 600; }
+</style>

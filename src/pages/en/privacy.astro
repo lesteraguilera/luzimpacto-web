@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PageHero from "../../components/PageHero.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<BaseLayout title="Privacy · LUZ Impacto" description="LUZ Impacto Foundation privacy policy.">
+  <Header />
+
+  <PageHero
+    eyebrow="Legal"
+    title="Privacy Policy."
+    lede="How we handle the personal information we receive."
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="intro-humana">
+        Here's how we handle your data. <strong>In plain English:</strong>
+        we don't sell information, we don't share donors, we don't use tracking cookies.
+        Questions? Write us at <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a>.
+      </div>
+
+      <p class="updated">Last updated: May 2026</p>
+
+      <h2>Who we are</h2>
+      <p>
+        LUZ Impacto Foundation is a Costa Rican evangelical Christian ministry.
+        We operate the website <strong>luzimpacto.org</strong>. Any inquiry about this
+        policy can be directed to <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a>.
+      </p>
+
+      <h2>What information we collect</h2>
+      <p>Our website does not automatically collect personal data. Specifically:</p>
+      <ul>
+        <li>We don't use tracking cookies or personalized analytics.</li>
+        <li>We don't have forms that ask for personal data without your explicit action.</li>
+        <li>Initial contact is by <strong>WhatsApp</strong>, <strong>Instagram</strong>, or <strong>email</strong>, where you choose what information to share.</li>
+      </ul>
+
+      <h2>Information you voluntarily share</h2>
+      <p>
+        When you message us by WhatsApp, Instagram, or email, we only collect the
+        information you share with us (name, contact, reason for your message).
+        We use it exclusively to respond and coordinate what you need.
+      </p>
+
+      <h2>Donations</h2>
+      <p>
+        Donations are processed through <strong>SINPE Móvil</strong> or <strong>bank transfer (IBAN)</strong>.
+        For international donations, we coordinate by WhatsApp. Donation data is handled
+        directly by those platforms — we only receive the amount and, if you send it,
+        your name as a donor.
+      </p>
+      <p>
+        We don't sell, rent, or share donor information with third parties under any circumstances.
+      </p>
+
+      <h2>Photos and testimonies</h2>
+      <p>
+        The photos on the site are from real LUZ Impacto events. When we include
+        identifiable faces or personal testimonies, we do so with explicit permission.
+        If you appear in a photo and don't want it published, message us and we'll
+        remove it within 48 hours.
+      </p>
+
+      <h2>Third-party services</h2>
+      <p>The site uses the following external services:</p>
+      <ul>
+        <li><strong>Cloudflare Pages</strong> — for site hosting.</li>
+        <li><strong>Google Fonts</strong> — for loading the Fraunces and Inter typefaces.</li>
+      </ul>
+      <p>These services may collect basic technical information (IP, browser) per their own policies.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If we update this policy, we'll reflect it in the date above. Significant changes
+        will be announced on our social media.
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 760px; }
+  .intro-humana {
+    background: var(--crema);
+    border-left: 4px solid var(--yellow);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .intro-humana strong { color: var(--charcoal); }
+  .intro-humana a { color: var(--charcoal); font-weight: 600; }
+  .updated {
+    font-size: 13px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-family: "Fraunces", serif;
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  h2:first-of-type { margin-top: 0; }
+  p, li { font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
+  ul { padding-left: 24px; margin-bottom: 16px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--charcoal); font-weight: 500; }
+  strong { color: var(--ink); font-weight: 600; }
+</style>

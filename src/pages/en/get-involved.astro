@@ -1,0 +1,246 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PageHero from "../../components/PageHero.astro";
+import Footer from "../../components/Footer.astro";
+
+const caminos = [
+  {
+    iconKey: "heart",
+    titulo: "Give",
+    tag: "For everyone",
+    desc: "Your gift goes straight to the schools. It covers transportation, materials, equipment, events, and everything needed for a young person to hear the gospel.",
+    cta: "Give now",
+    btnClass: "btn-yellow",
+    href: "#donar",
+  },
+  {
+    iconKey: "church",
+    titulo: "Partner",
+    tag: "For churches",
+    desc: "Your church can receive the young people who turn to Christ in our visits. We partner with evangelical churches across Costa Rica to give each young person a spiritual home.",
+    cta: "Request partnership",
+    btnClass: "btn-dark",
+    href: "https://wa.me/50685493929?text=Hello%20LUZ%2C%20our%20church%20wants%20to%20partner",
+  },
+  {
+    iconKey: "people",
+    titulo: "Join the team",
+    tag: "For volunteers",
+    desc: "Do you have talent, time, and faith? We're looking for volunteers who want to grow alongside us. Preachers, musicians, photographers, organizers, intercessors — there's a place for every gift.",
+    cta: "Apply",
+    btnClass: "btn-dark",
+    href: "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20join%20the%20team",
+  },
+  {
+    iconKey: "megaphone",
+    titulo: "Share the mission",
+    tag: "For anyone",
+    desc: "Pray for us. Share our visits on social media. Spread the mission with those who need it. Prayer moves mountains, and one share can change someone's life.",
+    cta: "Follow us on Instagram",
+    btnClass: "btn-dark",
+    href: "https://instagram.com/luzimpacto_cr",
+  },
+];
+
+const icons = {
+  heart: `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>`,
+  church: `<path d="M10 9h4"/><path d="M12 7v5"/><path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/><path d="M18 22V5.5a1 1 0 0 0-.5-.866L12 1.5 6.5 4.634A1 1 0 0 0 6 5.5V22"/><path d="M22 22V9.4a.8.8 0 0 0-.45-.717L18 7"/><path d="M2 22V9.4a.8.8 0 0 1 .45-.717L6 7"/><path d="M18 22H6"/>`,
+  people: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+  megaphone: `<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>`,
+};
+---
+
+<BaseLayout title="Get involved · LUZ Impacto" description="Four ways to be part of the mission. Give, partner, join the team, or share.">
+  <Header />
+
+  <PageHero
+    eyebrow="Join the mission"
+    title="There's a place<br>for <span class='marker'>you</span>."
+    lede="Each person contributes in their own way. There are four paths to be part of LUZ. Find yours."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="caminos">
+        {caminos.map((c) => (
+          <div class="camino">
+            <div class="camino-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icons[c.iconKey]} />
+            </div>
+            <div class="camino-tag">{c.tag}</div>
+            <h2>{c.titulo}</h2>
+            <p>{c.desc}</p>
+            <a href={c.href} class={`btn ${c.btnClass}`} {...(c.href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})}>{c.cta} <span class="arrow">→</span></a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-charcoal">
+    <div class="container">
+      <div class="reasons">
+        <div class="eyebrow center">Why it matters</div>
+        <h2>Every colón reaches a school.</h2>
+        <div class="reasons-grid">
+          <div class="reason">
+            <div class="reason-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-3H5a2 2 0 0 0-2 2v1Z"/>
+                <circle cx="15" cy="13" r="2"/>
+              </svg>
+            </div>
+            <h3>Lean team</h3>
+            <p>We're a small, committed team. Every colón we receive goes straight to the mission: visits, events, transportation, and materials.</p>
+          </div>
+          <div class="reason">
+            <div class="reason-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 9h4"/><path d="M12 7v5"/><path d="M18 22V5.5a1 1 0 0 0-.5-.866L12 1.5 6.5 4.634A1 1 0 0 0 6 5.5V22"/><path d="M22 22V9.4a.8.8 0 0 0-.45-.717L18 7"/><path d="M2 22V9.4a.8.8 0 0 1 .45-.717L6 7"/><path d="M18 22H6"/>
+              </svg>
+            </div>
+            <h3>We serve the church</h3>
+            <p>We don't want to replace it — we strengthen it. We connect every young person who receives Christ with a local church that already exists in their community.</p>
+          </div>
+          <div class="reason">
+            <div class="reason-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="10" r="3"/>
+                <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7Z"/>
+              </svg>
+            </div>
+            <h3>Costa Ricans, in Costa Rica</h3>
+            <p>We know the context, we speak the language, we live the culture. We don't bring an agenda from outside — we're part of the same land we want to reach.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .caminos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .camino {
+    background: white;
+    border-radius: 24px;
+    padding: 44px 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .camino:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 20px 48px rgba(0,0,0,0.07);
+  }
+  .camino-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--yellow);
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .camino-icon svg { width: 32px; height: 32px; }
+  .camino-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    background: rgba(252,211,77,0.14);
+    padding: 6px 12px;
+    border-radius: 100px;
+    align-self: flex-start;
+    margin-bottom: 14px;
+    color: #8B6F0C;
+  }
+  .camino h2 {
+    font-size: clamp(28px, 3.5vw, 38px);
+    margin-bottom: 14px;
+    line-height: 1.1;
+  }
+  .camino p {
+    font-size: 16px;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 24px;
+  }
+  .camino .btn { align-self: flex-start; }
+
+  .section-charcoal {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-charcoal::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(252,211,77,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .reasons { text-align: center; position: relative; max-width: 980px; margin: 0 auto; }
+  .reasons .eyebrow.center { color: var(--yellow); margin-bottom: 16px; }
+  .reasons h2 { color: var(--on-dark); margin-bottom: 56px; }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: left;
+  }
+  .reason {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px 28px;
+  }
+  .reason-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(252,211,77,0.14);
+    color: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .reason-icon svg { width: 26px; height: 26px; }
+  .reason h3 {
+    color: var(--on-dark);
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+  .reason p {
+    color: var(--on-dark-soft);
+    font-size: 15px;
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .caminos { grid-template-columns: 1fr; }
+    .reasons-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .camino { padding: 32px 28px; }
+  }
+</style>

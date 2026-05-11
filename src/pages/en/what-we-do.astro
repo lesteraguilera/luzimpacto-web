@@ -1,0 +1,222 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PageHero from "../../components/PageHero.astro";
+import CTAFinal from "../../components/CTAFinal.astro";
+import Footer from "../../components/Footer.astro";
+
+const pilares = [
+  {
+    n: "01",
+    titulo: "We preach in schools",
+    desc: "We visit Costa Rica's schools with events that combine music, testimonies, and clear gospel preaching.",
+    detalle: "Each visit is coordinated with school administration and adapted to the school's context. The LUZ team brings a message designed for young people: direct, real, without unnecessary religiosity.",
+  },
+  {
+    n: "02",
+    titulo: "We connect with churches",
+    desc: "When a young person receives Christ, we refer them to a partner church near their home.",
+    detalle: "We have a network of evangelical churches across the country ready to receive those who took the step. We don't compete with churches — we serve them.",
+  },
+  {
+    n: "03",
+    titulo: "We walk with them",
+    desc: "We follow up personally with every young person who takes the step, so they're not alone after the event.",
+    detalle: "Conversations, informal mentoring, and connection with the pastor or leader of the church where they landed. The goal: that they move from a decision to a real new life.",
+  },
+  {
+    n: "04",
+    titulo: "We raise leaders",
+    desc: "We welcome those who want to serve: preachers, musicians, volunteers, intercessors.",
+    detalle: "LUZ is also a space for growth for the team: prayer, biblical training, real experience in evangelism. Each member grows alongside the mission.",
+  },
+];
+
+const proceso = [
+  { n: "1", iconKey: "school", titulo: "We coordinate with a school", desc: "We work with school leadership to schedule a visit that fits the school calendar." },
+  { n: "2", iconKey: "team",   titulo: "We arrive with the team",     desc: "We bring an event that combines music, testimonies, activities, and gospel preaching." },
+  { n: "3", iconKey: "heart",  titulo: "Young people respond",        desc: "Those who receive Christ leave their information and are invited to personal follow-up." },
+  { n: "4", iconKey: "church", titulo: "We connect them with a church", desc: "We refer them to a partner church near their home, where they can be discipled." },
+];
+
+const procesoIcons = {
+  school: `<path d="m22 10-10-5L2 10l10 5 10-5Z"/><path d="M6 12v5c0 .8.5 1.5 1.2 1.8L12 21l4.8-2.2c.7-.3 1.2-1 1.2-1.8v-5"/>`,
+  team:   `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+  heart:  `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>`,
+  church: `<path d="M10 9h4"/><path d="M12 7v5"/><path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/><path d="M18 22V5.5a1 1 0 0 0-.5-.866L12 1.5 6.5 4.634A1 1 0 0 0 6 5.5V22"/><path d="M22 22V9.4a.8.8 0 0 0-.45-.717L18 7"/><path d="M2 22V9.4a.8.8 0 0 1 .45-.717L6 7"/><path d="M18 22H6"/>`,
+};
+---
+
+<BaseLayout title="What we do · LUZ Impacto" description="Four steps and a clear process: how LUZ Impacto brings the gospel to Costa Rica's schools.">
+  <Header />
+
+  <PageHero
+    eyebrow="What we do"
+    title="Four steps.<br><span class='marker'>One clear mission.</span>"
+    lede="We don't just preach and leave. Every young person who receives Christ enters a process: we connect them with a church and walk with them."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="pilares-grid">
+        {pilares.map((p) => (
+          <div class="pilar-card">
+            <div class="pilar-num">{p.n}</div>
+            <h3>{p.titulo}</h3>
+            <p class="pilar-desc">{p.desc}</p>
+            <p class="pilar-detalle">{p.detalle}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-crema">
+    <div class="container">
+      <div class="head">
+        <div class="eyebrow">How we do it</div>
+        <h2>A simple process,<br>a clear vision.</h2>
+        <p class="lede">Every visit follows four steps that ensure no young person is left alone after receiving Christ.</p>
+      </div>
+
+      <div class="proceso-grid">
+        {proceso.map((p) => (
+          <div class="proceso-step">
+            <div class="proceso-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={procesoIcons[p.iconKey]} />
+              <span class="proceso-num-badge">{p.n}</span>
+            </div>
+            <h3>{p.titulo}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="que-hacemos-cta">
+        <h2>Are you part of a school that wants to host us?</h2>
+        <p>Message us on WhatsApp and let's talk about coordinating a visit.</p>
+        <a href="https://wa.me/50685493929?text=Hello%20LUZ%2C%20we%20are%20a%20school%20interested%20in%20hosting%20you" target="_blank" rel="noopener" class="btn btn-dark">Talk on WhatsApp <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .pilar-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .pilar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.06);
+  }
+  .pilar-num {
+    font-family: "Fraunces", serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--yellow);
+    line-height: 1;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
+  .pilar-card h3 { margin-bottom: 12px; }
+  .pilar-desc { font-size: 16px; margin-bottom: 14px; color: var(--ink); }
+  .pilar-detalle { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+  .section-crema { background: var(--crema); border: none; }
+  .head { max-width: 720px; margin-bottom: 56px; }
+  .head .lede { margin-top: 16px; }
+
+  .proceso-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .proceso-step {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .proceso-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--yellow);
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    position: relative;
+  }
+  .proceso-icon svg { width: 30px; height: 30px; }
+  .proceso-num-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--charcoal);
+    color: var(--yellow);
+    font-family: "Fraunces", serif;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+  }
+  .proceso-step h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .proceso-step p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  .que-hacemos-cta {
+    background: var(--crema);
+    border-radius: 24px;
+    padding: 56px 48px;
+    text-align: center;
+    border-left: 4px solid var(--yellow);
+  }
+  .que-hacemos-cta h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    margin-bottom: 12px;
+  }
+  .que-hacemos-cta p {
+    font-size: 17px;
+    margin-bottom: 24px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 900px) {
+    .pilares-grid { grid-template-columns: 1fr; }
+    .proceso-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .proceso-grid { grid-template-columns: 1fr; }
+    .que-hacemos-cta { padding: 36px 24px; }
+  }
+</style>

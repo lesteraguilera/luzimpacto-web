@@ -1,0 +1,220 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PageHero from "../../components/PageHero.astro";
+import CTAFinal from "../../components/CTAFinal.astro";
+import Footer from "../../components/Footer.astro";
+import MapaCR from "../../components/MapaCR.astro";
+
+const provincias = [
+  { nombre: "San José", visitada: true },
+  { nombre: "Alajuela", visitada: true },
+  { nombre: "Cartago", visitada: true },
+  { nombre: "Heredia", visitada: true },
+  { nombre: "Guanacaste", visitada: true },
+  { nombre: "Puntarenas", visitada: false },
+  { nombre: "Limón", visitada: true },
+];
+const visitadas = provincias.filter(p => p.visitada).length;
+---
+
+<BaseLayout title="Impact · LUZ Impacto" description="The real reach of LUZ Impacto in Costa Rica: schools visited, youth reached, partner churches.">
+  <Header />
+
+  <PageHero
+    eyebrow="Impact"
+    title="Real numbers.<br><span class='marker'>Real lives.</span>"
+    lede="Every number represents real schools, real young people who heard the gospel, real churches that opened their doors."
+  />
+
+  <section class="metricas-big">
+    <div class="container">
+      <div class="grid">
+        <div class="met">
+          <div class="num"><span class="count" data-target="60">0</span><span class="plus">+</span></div>
+          <div class="label">Schools visited</div>
+          <p>Each visit is coordinated with school administration and adapted to the school's context.</p>
+        </div>
+        <div class="met">
+          <div class="num"><span class="count" data-target="50" data-suffix="K">0</span><span class="plus">+</span></div>
+          <div class="label">Youth reached</div>
+          <p>Thousands of students have heard the message of Christ in events organized with LUZ.</p>
+        </div>
+        <div class="met">
+          <div class="num"><span class="count" data-target="30">0</span><span class="plus">+</span></div>
+          <div class="label">Partner churches</div>
+          <p>A network of evangelical churches across the country receives the young people who turn to Christ.</p>
+        </div>
+        <div class="met">
+          <div class="num">{visitadas}<span class="of">/7</span></div>
+          <div class="label">Provinces reached</div>
+          <p>We've brought the message to schools in {visitadas} of Costa Rica's 7 provinces.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <MapaCR />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cinema-wrap">
+      <div class="cinema-card">
+        <img
+          class="cinema-photo"
+          src="/assets/photos/gallery/large/foto_44.jpg"
+          alt="Group of students with a LUZ Impacto leader after an event at their school"
+          loading="lazy"
+        />
+        <div class="cinema-overlay"></div>
+        <div class="cinema-content">
+          <div class="cinema-pull">God grabbed me.</div>
+          <p class="cinema-rest">
+            That afternoon — I can't explain it any better. My friends and I cried like never before, and since that day we're different. <span class="cinema-em">I no longer feel alone in what I felt.</span>
+          </p>
+        </div>
+      </div>
+      <p class="impacto-note">We collect testimonies with explicit permission from each person or their guardians. We'll be adding more voices from youth, pastors, and volunteers soon.</p>
+    </div>
+  </section>
+
+  <CTAFinal />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .metricas-big {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 80px 0;
+  }
+  .metricas-big .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .metricas-big .met {
+    padding: 24px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+  .metricas-big .met:first-child { border-left: none; }
+  .metricas-big .num {
+    font-family: "Fraunces", serif;
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 600;
+    color: var(--yellow);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .metricas-big .num .plus, .metricas-big .num .of { font-size: 0.55em; opacity: 0.7; }
+  .metricas-big .label {
+    margin: 12px 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--on-dark);
+  }
+  .metricas-big .met p {
+    font-size: 14px;
+    color: var(--on-dark-soft);
+    margin-bottom: 0;
+    line-height: 1.55;
+  }
+
+  .cinema-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .cinema-card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+  }
+  .cinema-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+  .cinema-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.95) 100%);
+    pointer-events: none;
+  }
+  .cinema-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 56px 64px;
+    color: white;
+    z-index: 2;
+  }
+  .cinema-pull {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: 1;
+    color: var(--yellow);
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+    text-shadow: 0 4px 28px rgba(0,0,0,0.6);
+  }
+  .cinema-rest {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 1.9vw, 24px);
+    line-height: 1.45;
+    color: white;
+    max-width: 720px;
+    letter-spacing: -0.005em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  }
+  .cinema-em { color: var(--yellow); font-weight: 500; }
+  .impacto-note {
+    margin: 32px auto 0;
+    max-width: 640px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .metricas-big .grid { grid-template-columns: repeat(2, 1fr); }
+    .metricas-big .met:nth-child(3) { border-left: none; }
+  }
+  @media (max-width: 700px) {
+    .cinema-wrap { padding: 0 16px; }
+    .cinema-card { aspect-ratio: 4 / 5; border-radius: 20px; }
+    .cinema-content { padding: 28px 24px 32px; }
+    .cinema-pull {
+      font-size: clamp(34px, 11vw, 52px);
+      margin-bottom: 16px;
+    }
+    .cinema-rest { font-size: 17px; }
+    .cinema-overlay {
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.97) 100%);
+    }
+  }
+  @media (max-width: 500px) {
+    .metricas-big .grid { grid-template-columns: 1fr; gap: 24px; }
+    .metricas-big .met { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; }
+    .metricas-big .met:first-child { border-top: none; padding-top: 0; }
+  }
+</style>

@@ -127,6 +127,7 @@
   .nav-drawer {
     position: fixed;
     inset: 0;
+    height: 100dvh;
     padding-top: 80px;
     background: var(--bg);
     transform: translateY(-100%);
@@ -134,13 +135,14 @@
     z-index: 150;
     visibility: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .nav-drawer[aria-hidden="false"] {
     transform: translateY(0);
     visibility: visible;
   }
   .drawer-inner {
-    padding: 40px 32px calc(40px + env(safe-area-inset-bottom, 0px));
+    padding: 40px 32px calc(120px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     gap: 4px;

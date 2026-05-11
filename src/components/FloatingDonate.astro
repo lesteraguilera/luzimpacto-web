@@ -16,19 +16,39 @@
     const btn = document.getElementById('floatingDonate');
     if (!btn) return;
 
-    // Mostrar solo tras scrollear 200px (no obstruye hero)
-    let shown = false;
+    let lastY = window.scrollY;
+    let visible = false;
+    let scrollingDown = false;
+
     const update = () => {
-      const should = window.scrollY > 200;
-      if (should !== shown) {
+      const y = window.scrollY;
+      scrollingDown = y > lastY;
+      lastY = y;
+
+      // Visible solo si: scrolleó >200px Y no está scrolleando hacia abajo activamente
+      const should = y > 200 && !scrollingDown;
+      if (should !== visible) {
         btn.classList.toggle('visible', should);
-        shown = should;
+        visible = should;
       }
     };
     window.addEventListener('scroll', update, { passive: true });
+
+    // Cuando para de scrollear, mostrar
+    let scrollTimer;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        if (window.scrollY > 200) {
+          btn.classList.add('visible');
+          visible = true;
+        }
+      }, 200);
+    }, { passive: true });
+
     update();
 
-    // Ocultar cuando se abre el modal
+    // Ocultar cuando se abre el modal de donación
     const modal = document.getElementById('donarModal');
     if (modal) {
       const observer = new MutationObserver(() => {
@@ -40,43 +60,60 @@
       });
       observer.observe(modal, { attributes: true, attributeFilter: ['aria-hidden'] });
     }
+
+    // Ocultar cuando se abre el drawer de navegación
+    const drawer = document.getElementById('navDrawer');
+    if (drawer) {
+      const observer = new MutationObserver(() => {
+        if (drawer.getAttribute('aria-hidden') === 'false') {
+          btn.classList.add('hidden-by-modal');
+        } else {
+          btn.classList.remove('hidden-by-modal');
+        }
+      });
+      observer.observe(drawer, { attributes: true, attributeFilter: ['aria-hidden'] });
+    }
   })();
 </script>
 
 <style>
   .floating-donate {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 16px;
+    right: 16px;
     z-index: 90;
     display: none;
     align-items: center;
-    gap: 8px;
-    padding: 14px 22px 14px 18px;
+    gap: 6px;
+    padding: 11px 18px 11px 14px;
     background: var(--yellow);
     color: var(--charcoal);
     text-decoration: none;
     border-radius: 100px;
     font-family: "Inter", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: -0.01em;
-    box-shadow: 0 8px 24px rgba(252,211,77,0.4), 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 18px rgba(252,211,77,0.35), 0 2px 8px rgba(0,0,0,0.12);
     transform: translateY(80px);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
     pointer-events: none;
   }
   .floating-donate svg {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
     fill: currentColor;
     stroke-width: 0;
   }
   .floating-donate.visible {
     transform: translateY(0);
-    opacity: 1;
+    opacity: 0.92;
     pointer-events: auto;
+  }
+  .floating-donate.visible:hover,
+  .floating-donate.visible:focus-visible {
+    opacity: 1;
   }
   .floating-donate.hidden-by-modal {
     transform: translateY(80px);

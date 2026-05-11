@@ -4,7 +4,6 @@ import Header from "../components/Header.astro";
 import PageHero from "../components/PageHero.astro";
 import CTAFinal from "../components/CTAFinal.astro";
 import Footer from "../components/Footer.astro";
-import DonarModal from "../components/DonarModal.astro";
 import photos from "../data/photos.json";
 ---
 
@@ -24,11 +23,11 @@ import photos from "../data/photos.json";
           <button
             class="gallery-item"
             data-id={p.id}
-            aria-label={`Foto ${p.id.replace('foto_', '')}`}
+            aria-label={`Abrir foto ${p.id.replace('foto_', '')} en pantalla completa`}
           >
             <img
               src={`/assets/photos/gallery/thumbs/${p.id}.jpg`}
-              alt=""
+              alt={`Momento de un evento de LUZ Impacto en un colegio de Costa Rica (foto ${p.id.replace('foto_', '')})`}
               loading="lazy"
               width={p.w}
               height={p.h}
@@ -41,7 +40,6 @@ import photos from "../data/photos.json";
 
   <CTAFinal />
   <Footer />
-  <DonarModal />
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
@@ -203,7 +201,17 @@ import photos from "../data/photos.json";
     font-weight: 600;
   }
   @media (max-width: 700px) {
-    .lb-prev, .lb-next { display: none; }
+    .lb-prev, .lb-next {
+      width: 44px;
+      height: 44px;
+      font-size: 28px;
+      bottom: 24px;
+      top: auto;
+      transform: none;
+    }
+    .lb-prev { left: 16px; }
+    .lb-next { right: 16px; }
     .lb-close { top: 16px; right: 16px; }
+    .lb-counter { bottom: 84px; }
   }
 </style>

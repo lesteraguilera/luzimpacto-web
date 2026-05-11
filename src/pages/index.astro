@@ -7,13 +7,11 @@ import About from "../components/About.astro";
 import Pilares from "../components/Pilares.astro";
 import ProximosEventos from "../components/ProximosEventos.astro";
 import Aliadas from "../components/Aliadas.astro";
-import Provincias from "../components/Provincias.astro";
+import MapaCR from "../components/MapaCR.astro";
 import Testimonio from "../components/Testimonio.astro";
 import SumateTeaser from "../components/SumateTeaser.astro";
 import CTAFinal from "../components/CTAFinal.astro";
 import Footer from "../components/Footer.astro";
-import DonarModal from "../components/DonarModal.astro";
-import FloatingDonate from "../components/FloatingDonate.astro";
 ---
 
 <BaseLayout
@@ -27,11 +25,18 @@ import FloatingDonate from "../components/FloatingDonate.astro";
   <ProximosEventos />
   <Pilares />
   <Aliadas />
-  <Provincias />
+  <section class="section-mapa">
+    <div class="container">
+      <MapaCR />
+    </div>
+  </section>
+
+  <style>
+    .section-mapa { padding: 100px 0; }
+    @media (max-width: 600px) { .section-mapa { padding: 64px 0; } }
+  </style>
   <Testimonio />
   <SumateTeaser />
   <CTAFinal />
   <Footer />
-  <DonarModal />
-  <FloatingDonate />
 </BaseLayout>

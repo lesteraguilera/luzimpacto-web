@@ -2,6 +2,8 @@
 // Layout principal del sitio
 // Recibe: title, description (opcional)
 import "../styles/global.css";
+import FloatingDonate from "../components/FloatingDonate.astro";
+import DonarModal from "../components/DonarModal.astro";
 
 const {
   title = "LUZ Impacto — Llevamos el Amor de Cristo a los colegios",
@@ -90,6 +92,9 @@ const orgSchema = {
 </head>
 <body>
   <slot />
+
+  <FloatingDonate />
+  <DonarModal />
 
   <!-- Animación de números (Intersection Observer) -->
   <script is:inline>

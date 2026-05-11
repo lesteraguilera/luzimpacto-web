@@ -1,25 +1,21 @@
 ---
-// Testimonio: versículo arriba + testimonio EJEMPLO abajo.
-// El testimonio es ficticio — mostrar el diseño antes de tener uno real.
+// Testimonio real de tres estudiantes que recibieron a Cristo
+// en un evento de LUZ Impacto en Heredia.
 ---
 
 <section class="testimonio" id="impacto">
   <div class="container">
-    <!-- Versículo Mateo 5:14 -->
-    <div class="quote-mark">"</div>
-    <div class="quote">
-      Vosotros sois la <span class="highlight">luz</span> del mundo;<br>
-      una ciudad asentada sobre un monte<br>
-      no se puede esconder.
+    <div class="testimonio-head">
+      <div class="eyebrow center">Historias reales</div>
+      <h2>Una visita a un colegio.<br><span class="highlight">Una familia</span> nueva.</h2>
     </div>
-    <div class="cite">— Jesús · Mateo 5:14</div>
   </div>
 
-  <!-- Testimonio -->
+  <!-- Testimonio real -->
   <div class="container narrow">
     <div class="testimonial-card">
       <div class="t-photo">
-        <img src="/assets/photos/gallery/large/foto_30.jpg" alt="Estudiantes de colegio en Costa Rica" loading="lazy" />
+        <img src="/assets/photos/gallery/large/foto_30.jpg" alt="Estudiantes de un colegio en Heredia tras un evento de LUZ Impacto" loading="lazy" />
       </div>
       <div class="t-content">
         <div class="t-quote-mark">"</div>
@@ -66,36 +62,21 @@
     pointer-events: none;
   }
 
-  .quote-mark {
-    font-family: "Fraunces", serif;
-    font-size: 120px;
-    color: var(--yellow);
-    line-height: 0.5;
-    margin-bottom: 20px;
-    opacity: 0.5;
-  }
-  .quote {
-    font-family: "Fraunces", serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(26px, 4vw, 44px);
-    line-height: 1.35;
-    color: var(--on-dark);
-    max-width: 900px;
-    margin: 0 auto 24px;
-    letter-spacing: -0.01em;
+  .testimonio-head {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
     position: relative;
     z-index: 1;
   }
-  .highlight { color: var(--yellow); font-style: normal; font-weight: 600; }
-  .cite {
-    font-family: "Inter", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--on-dark-soft);
+  .testimonio-head .eyebrow.center { color: var(--yellow); margin-bottom: 16px; }
+  .testimonio-head h2 {
+    color: var(--on-dark);
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
+  .highlight { color: var(--yellow); font-weight: 600; }
 
   /* Testimonial card */
   .narrow { max-width: 880px; margin-top: 80px; }

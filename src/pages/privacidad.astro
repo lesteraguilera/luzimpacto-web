@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import PageHero from "../components/PageHero.astro";
 import Footer from "../components/Footer.astro";
-import DonarModal from "../components/DonarModal.astro";
 ---
 
 <BaseLayout title="Privacidad · LUZ Impacto" description="Política de privacidad de Fundación LUZ Impacto.">
@@ -49,9 +48,10 @@ import DonarModal from "../components/DonarModal.astro";
 
       <h2>Donaciones</h2>
       <p>
-        Las donaciones se procesan por <strong>SINPE Móvil</strong>, <strong>transferencia bancaria (IBAN)</strong>
-        o <strong>PayPal</strong>. Los datos de tu donación son manejados directamente por esas plataformas —
-        nosotros solo recibimos el monto y, si lo enviás, tu nombre como donante.
+        Las donaciones se procesan por <strong>SINPE Móvil</strong> o <strong>transferencia bancaria (IBAN)</strong>.
+        Para donaciones internacionales, coordinamos por WhatsApp. Los datos de tu donación son manejados
+        directamente por esas plataformas — nosotros solo recibimos el monto y, si lo enviás, tu nombre
+        como donante.
       </p>
       <p>
         No vendemos, alquilamos ni compartimos información de donantes con terceros bajo ninguna circunstancia.
@@ -82,7 +82,6 @@ import DonarModal from "../components/DonarModal.astro";
   </section>
 
   <Footer />
-  <DonarModal />
 </BaseLayout>
 
 <style>

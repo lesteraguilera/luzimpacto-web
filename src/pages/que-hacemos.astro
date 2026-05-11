@@ -4,32 +4,31 @@ import Header from "../components/Header.astro";
 import PageHero from "../components/PageHero.astro";
 import CTAFinal from "../components/CTAFinal.astro";
 import Footer from "../components/Footer.astro";
-import DonarModal from "../components/DonarModal.astro";
 
 const pilares = [
   {
     n: "01",
-    titulo: "Desarrollo de Fe",
-    desc: "Cultivamos una relación profunda y duradera con Jesucristo como fundamento de todo crecimiento personal y liderazgo.",
-    detalle: "Cada visita comienza con la predicación del mensaje de salvación. Acompañamos a los jóvenes que reciben a Cristo conectándolos con iglesias locales aliadas.",
+    titulo: "Predicamos en colegios",
+    desc: "Vamos a los colegios de Costa Rica con eventos que combinan música, testimonios y la predicación clara del evangelio.",
+    detalle: "Cada visita la coordinamos con dirección académica y la adaptamos al contexto del colegio. El equipo de LUZ lleva un mensaje pensado para jóvenes: directo, real, sin religiosidad innecesaria.",
   },
   {
     n: "02",
-    titulo: "Liderazgo y Mentoría",
-    desc: "Formamos líderes éticos con propósito, equipados con la confianza y herramientas necesarias para impulsar cambios positivos.",
-    detalle: "Talleres, charlas y mentoría continua con líderes del equipo y de las iglesias aliadas.",
+    titulo: "Conectamos con iglesias",
+    desc: "Cuando un joven recibe a Cristo, lo referimos a una iglesia local aliada cerca de su casa.",
+    detalle: "Tenemos una red de iglesias evangélicas en todo el país listas para recibir a quien dio el paso. No competimos con las iglesias — las servimos.",
   },
   {
     n: "03",
-    titulo: "Apoyo Académico y de Vida",
-    desc: "Brindamos recursos y mentoría para excelencia educativa y para el desarrollo personal esencial de cada joven.",
-    detalle: "Acompañamiento en decisiones de vida, vocación, relaciones y salud emocional con enfoque cristiano.",
+    titulo: "Acompañamos en el camino",
+    desc: "Hacemos seguimiento personal con cada joven que da el paso, para que no quede solo después del evento.",
+    detalle: "Conversaciones, mentoría informal y conexión con el pastor o líder de la iglesia donde aterrizó. El objetivo: que pase de la decisión a una vida nueva real.",
   },
   {
     n: "04",
-    titulo: "Emprendimiento",
-    desc: "Capacitamos a jóvenes para lanzar emprendimientos sostenibles basados en valores cristianos y oportunidades reales de innovación.",
-    detalle: "Visión integral: que el joven no solo conozca a Cristo, sino que también construya un futuro con propósito.",
+    titulo: "Formamos líderes",
+    desc: "Sumamos a quienes quieren servir: predicadores, músicos, voluntarios, intercesores.",
+    detalle: "LUZ es también un espacio de crecimiento para el equipo: oración, capacitación bíblica, experiencia real en evangelismo. Cada miembro crece junto a la misión.",
   },
 ];
 
@@ -53,8 +52,8 @@ const procesoIcons = {
 
   <PageHero
     eyebrow="Qué hacemos"
-    title="Cuatro pilares.<br><span class='marker'>Una visión integral.</span>"
-    lede="No solo evangelizamos. Acompañamos a los jóvenes con un enfoque holístico que combina fe, liderazgo, apoyo académico y emprendimiento."
+    title="Cuatro pasos.<br><span class='marker'>Una misión clara.</span>"
+    lede="No solo predicamos y nos vamos. Cada joven que recibe a Cristo entra en un proceso: lo conectamos con una iglesia y lo acompañamos."
   />
 
   <section class="section">
@@ -107,7 +106,6 @@ const procesoIcons = {
 
   <CTAFinal />
   <Footer />
-  <DonarModal />
 </BaseLayout>
 
 <style>

@@ -1,0 +1,93 @@
+---
+// Botón flotante "Donar" para mobile.
+// Aparece después de scrollear un poco, abre el modal de donación.
+// Solo se muestra en pantallas <= 900px.
+---
+
+<a href="#donar" class="floating-donate" id="floatingDonate" aria-label="Donar ahora">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+  </svg>
+  <span class="fd-label">Donar</span>
+</a>
+
+<script is:inline>
+  (function() {
+    const btn = document.getElementById('floatingDonate');
+    if (!btn) return;
+
+    // Mostrar solo tras scrollear 200px (no obstruye hero)
+    let shown = false;
+    const update = () => {
+      const should = window.scrollY > 200;
+      if (should !== shown) {
+        btn.classList.toggle('visible', should);
+        shown = should;
+      }
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+
+    // Ocultar cuando se abre el modal
+    const modal = document.getElementById('donarModal');
+    if (modal) {
+      const observer = new MutationObserver(() => {
+        if (modal.getAttribute('aria-hidden') === 'false') {
+          btn.classList.add('hidden-by-modal');
+        } else {
+          btn.classList.remove('hidden-by-modal');
+        }
+      });
+      observer.observe(modal, { attributes: true, attributeFilter: ['aria-hidden'] });
+    }
+  })();
+</script>
+
+<style>
+  .floating-donate {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 90;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px 14px 18px;
+    background: var(--yellow);
+    color: var(--charcoal);
+    text-decoration: none;
+    border-radius: 100px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    box-shadow: 0 8px 24px rgba(252,211,77,0.4), 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .floating-donate svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    stroke-width: 0;
+  }
+  .floating-donate.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .floating-donate.hidden-by-modal {
+    transform: translateY(80px);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .floating-donate:active {
+    transform: translateY(0) scale(0.95);
+  }
+
+  @media (max-width: 900px) {
+    .floating-donate { display: inline-flex; }
+  }
+</style>

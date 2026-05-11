@@ -15,10 +15,10 @@ const markers = [
   { id: "guanacaste", nombre: "Guanacaste", x: 176, y: 193, visitada: true },
   { id: "alajuela",   nombre: "Alajuela",   x: 377, y: 224, visitada: true },
   { id: "heredia",    nombre: "Heredia",    x: 459, y: 244, visitada: true },
-  { id: "limon",      nombre: "Limón",      x: 580, y: 280, visitada: false },
+  { id: "limon",      nombre: "Limón",      x: 580, y: 280, visitada: true },
   { id: "san-jose",   nombre: "San José",   x: 402, y: 347, visitada: true },
   { id: "cartago",    nombre: "Cartago",    x: 531, y: 339, visitada: true },
-  { id: "puntarenas", nombre: "Puntarenas", x: 480, y: 460, visitada: true },
+  { id: "puntarenas", nombre: "Puntarenas", x: 480, y: 460, visitada: false },
 ];
 const visitadas = markers.filter(m => m.visitada).length;
 ---

@@ -50,8 +50,7 @@ import DonarModal from "../components/DonarModal.astro";
       <div class="eyebrow center">Nuestra misión y visión</div>
       <div class="mision-grid">
         <div class="mision-card">
-          <div class="mision-num">M</div>
-          <h3>Misión</h3>
+          <h3 class="mision-title"><span class="dropcap">M</span>isión</h3>
           <p>
             Llevar el mensaje de salvación de Jesucristo a los colegios de
             Costa Rica, y conectar a los jóvenes que reciben a Cristo con
@@ -60,8 +59,7 @@ import DonarModal from "../components/DonarModal.astro";
           </p>
         </div>
         <div class="mision-card">
-          <div class="mision-num">V</div>
-          <h3>Visión</h3>
+          <h3 class="mision-title"><span class="dropcap">V</span>isión</h3>
           <p>
             Una generación de jóvenes costarricenses que conozca el amor de
             Cristo, viva con propósito, y se levante como líderes de fe en
@@ -151,18 +149,25 @@ import DonarModal from "../components/DonarModal.astro";
     padding: 40px 36px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
   }
-  .mision-num {
+  .mision-title {
     font-family: "Fraunces", serif;
-    font-size: 56px;
+    font-size: 44px;
     font-weight: 600;
-    color: var(--yellow);
+    color: var(--ink);
     line-height: 1;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
     border-bottom: 1px solid var(--line);
-    padding-bottom: 12px;
+    letter-spacing: -0.02em;
   }
-  .mision-card h3 { margin-bottom: 14px; }
-  .mision-card p { font-size: 16px; margin-bottom: 0; }
+  .mision-title .dropcap {
+    color: var(--yellow);
+    font-size: 1.4em;
+    font-weight: 700;
+    line-height: 1;
+    margin-right: 2px;
+  }
+  .mision-card p { font-size: 16px; margin-bottom: 0; line-height: 1.65; }
 
   .equipo-grid {
     display: grid;

@@ -1,35 +1,63 @@
 ---
-// Sección Quiénes somos con storytelling fuerte
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  sectionId: isEn ? "about" : "nosotros",
+  imgAlt: isEn
+    ? "Pastor preaching in a school during a LUZ Impacto event"
+    : "Pastor predicando en un colegio durante un evento de LUZ Impacto",
+  eyebrow: isEn ? "Who we are" : "Quiénes somos",
+  cta: isEn ? "See what we do" : "Conocer qué hacemos",
+  ctaHref: isEn ? "#what-we-do" : "#que-hacemos",
+};
 ---
 
-<section class="section" id="nosotros">
+<section class="section" id={t.sectionId}>
   <div class="container">
     <div class="about-grid">
       <div class="about-image">
-        <img src="/assets/photos/about.jpg" alt="Pastor predicando en un colegio durante un evento de LUZ Impacto" loading="lazy" />
+        <img src="/assets/photos/about.jpg" alt={t.imgAlt} loading="lazy" />
       </div>
       <div class="about-text">
-        <div class="eyebrow">Quiénes somos</div>
-        <h2>Un puente entre los jóvenes y las iglesias.</h2>
-
-        <p class="stat-line">
-          En Costa Rica, miles de jóvenes pasan <strong>11 años en colegios</strong>
-          sin escuchar nunca el evangelio.
-        </p>
-        <p>
-          Eso es lo que LUZ vino a cambiar. Somos un ministerio cristiano evangélico
-          costarricense fundado en 2024. <strong>No somos una iglesia</strong> — somos un puente.
-        </p>
-        <p>
-          Vamos a colegios de todo el país predicando el mensaje de salvación.
-          Cuando un joven recibe a Cristo, lo conectamos con iglesias locales
-          aliadas que lo pueden discipular y acompañar en su nueva vida.
-        </p>
-        <div class="quote-block">
-          "Vosotros sois la luz del mundo; una ciudad asentada sobre un monte no se puede esconder."
-          <div class="cite">— MATEO 5:14</div>
-        </div>
-        <a href="#que-hacemos" class="btn btn-ghost-dark">Conocer qué hacemos <span class="arrow">→</span></a>
+        <div class="eyebrow">{t.eyebrow}</div>
+        {isEn ? (
+          <>
+            <h2>A bridge between youth and the church.</h2>
+            <p class="stat-line">
+              In Costa Rica, thousands of young people spend <strong>11 years in school</strong> without ever hearing the gospel.
+            </p>
+            <p>
+              That's what LUZ came to change. We're a Costa Rican evangelical Christian ministry founded in 2024. <strong>We're not a church</strong> — we're a bridge.
+            </p>
+            <p>
+              We go to schools across the country preaching the message of salvation. When a young person receives Christ, we connect them with partner churches in their area that can disciple them and walk with them in their new life.
+            </p>
+            <div class="quote-block">
+              "You are the light of the world. A town built on a hill cannot be hidden."
+              <div class="cite">— MATTHEW 5:14</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2>Un puente entre los jóvenes y las iglesias.</h2>
+            <p class="stat-line">
+              En Costa Rica, miles de jóvenes pasan <strong>11 años en colegios</strong> sin escuchar nunca el evangelio.
+            </p>
+            <p>
+              Eso es lo que LUZ vino a cambiar. Somos un ministerio cristiano evangélico costarricense fundado en 2024. <strong>No somos una iglesia</strong> — somos un puente.
+            </p>
+            <p>
+              Vamos a colegios de todo el país predicando el mensaje de salvación. Cuando un joven recibe a Cristo, lo conectamos con iglesias locales aliadas que lo pueden discipular y acompañar en su nueva vida.
+            </p>
+            <div class="quote-block">
+              "Vosotros sois la luz del mundo; una ciudad asentada sobre un monte no se puede esconder."
+              <div class="cite">— MATEO 5:14</div>
+            </div>
+          </>
+        )}
+        <a href={t.ctaHref} class="btn btn-ghost-dark">{t.cta} <span class="arrow">→</span></a>
       </div>
     </div>
   </div>

@@ -1,5 +1,16 @@
 ---
-// "En vivo en Instagram" — redirige al feed de IG que muestra lo que estamos haciendo en tiempo real
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  eyebrow: isEn ? "Latest" : "Lo último",
+  title: isEn ? "Follow us live." : "Seguinos en vivo.",
+  desc: isEn
+    ? "Every school visit, every event, every moment of the ministry — we post it on Instagram. If you want to see what we're doing this week, that's where you'll find it."
+    : "Cada visita a un colegio, cada evento, cada momento del ministerio lo publicamos en Instagram. Si querés ver lo que estamos haciendo esta semana, ese es el lugar.",
+  cta: isEn ? "See Instagram" : "Ver Instagram",
+};
 ---
 
 <section class="eventos">
@@ -13,10 +24,10 @@
         </svg>
       </div>
       <div class="eventos-body">
-        <div class="eyebrow">Lo último</div>
-        <h2>Seguinos en vivo.</h2>
-        <p>Cada visita a un colegio, cada evento, cada momento del ministerio lo publicamos en Instagram. Si querés ver lo que estamos haciendo esta semana, ese es el lugar.</p>
-        <a href="https://instagram.com/luzimpacto_cr" target="_blank" rel="noopener" class="btn btn-yellow">Ver Instagram <span class="arrow">→</span></a>
+        <div class="eyebrow">{t.eyebrow}</div>
+        <h2>{t.title}</h2>
+        <p>{t.desc}</p>
+        <a href="https://instagram.com/luzimpacto_cr" target="_blank" rel="noopener" class="btn btn-yellow">{t.cta} <span class="arrow">→</span></a>
       </div>
     </div>
   </div>

@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
+import Metricas from "../../components/Metricas.astro";
+import About from "../../components/About.astro";
+import Pilares from "../../components/Pilares.astro";
+import ProximosEventos from "../../components/ProximosEventos.astro";
+import Aliadas from "../../components/Aliadas.astro";
+import MapaCR from "../../components/MapaCR.astro";
+import Testimonio from "../../components/Testimonio.astro";
+import SumateTeaser from "../../components/SumateTeaser.astro";
+import CTAFinal from "../../components/CTAFinal.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<BaseLayout
+  title="LUZ Impacto — Bringing Christ's love to Costa Rica's schools"
+  description="LUZ Impacto Foundation: a Costa Rican evangelical Christian ministry. We visit schools with the gospel and connect young people with local churches. 60+ schools visited, 50K+ youth reached."
+>
+  <Header />
+  <Hero />
+  <Metricas />
+  <About />
+  <ProximosEventos />
+  <Pilares />
+  <Aliadas />
+  <section class="section-mapa">
+    <div class="container">
+      <MapaCR />
+    </div>
+  </section>
+  <Testimonio />
+  <SumateTeaser />
+  <CTAFinal />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .section-mapa { padding: 100px 0; }
+  @media (max-width: 600px) { .section-mapa { padding: 64px 0; } }
+</style>

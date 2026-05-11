@@ -1,5 +1,9 @@
 ---
 // Iglesias aliadas — statement institucional + nombres reales
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
 const iglesias = [
   { nombre: "Iglesia Arca", ig: "arcaiglesia.cr" },
   { nombre: "History Makers Costa Rica", ig: "history_makers.cr" },
@@ -12,22 +16,39 @@ const iglesias = [
   { nombre: "Iglesia Bíblica Visión de Reino", ig: "iglesia_vision_de_reino" },
   { nombre: "Comunidad Emaús", ig: "__emaus__" },
 ];
+
+const t = {
+  eyebrow: isEn ? "Partner churches" : "Iglesias aliadas",
+  h3: isEn
+    ? "A network of evangelical churches across Costa Rica receives the young people we reach."
+    : "Una red de iglesias evangélicas en todo Costa Rica recibe a los jóvenes que evangelizamos.",
+  desc: isEn
+    ? "When a young person receives Christ in one of our events, we connect them with a local church that can disciple them, walk with them, and become part of their growth."
+    : "Cuando un joven recibe a Cristo en uno de nuestros eventos, lo conectamos con una iglesia local que pueda discipularlo, acompañarlo y formar parte de su crecimiento.",
+  cta: isEn ? "Your church? Join us" : "¿Tu iglesia? Sumate",
+  ctaWa: isEn
+    ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20our%20church%20wants%20to%20partner"
+    : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20mi%20iglesia%20quiere%20aliarse",
+  listEyebrow: isEn ? "Some of our partner churches" : "Algunas iglesias aliadas",
+  more: isEn ? `And ${30 - iglesias.length} more across the country` : `Y ${30 - iglesias.length} más en todo el país`,
+};
 ---
 
 <section class="aliadas">
   <div class="container">
     <div class="aliadas-card">
       <div class="aliadas-number">30<span class="plus">+</span></div>
+
       <div class="aliadas-text">
-        <div class="eyebrow">Iglesias aliadas</div>
-        <h3>Una red de iglesias evangélicas en todo Costa Rica recibe a los jóvenes que evangelizamos.</h3>
-        <p>Cuando un joven recibe a Cristo en uno de nuestros eventos, lo conectamos con una iglesia local que pueda discipularlo, acompañarlo y formar parte de su crecimiento.</p>
-        <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20mi%20iglesia%20quiere%20aliarse" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-sm">¿Tu iglesia? Sumate <span class="arrow">→</span></a>
+        <div class="eyebrow">{t.eyebrow}</div>
+        <h3>{t.h3}</h3>
+        <p>{t.desc}</p>
+        <a href={t.ctaWa} target="_blank" rel="noopener" class="btn btn-ghost-dark btn-sm">{t.cta} <span class="arrow">→</span></a>
       </div>
     </div>
 
     <div class="aliadas-list">
-      <div class="lista-eyebrow">Algunas iglesias aliadas</div>
+      <div class="lista-eyebrow">{t.listEyebrow}</div>
       <div class="iglesias-grid">
         {iglesias.map((i) => (
           <a href={`https://instagram.com/${i.ig}`} target="_blank" rel="noopener" class="iglesia-chip">
@@ -36,7 +57,7 @@ const iglesias = [
           </a>
         ))}
       </div>
-      <div class="iglesias-foot">Y {30 - iglesias.length} más en todo el país</div>
+      <div class="iglesias-foot">{t.more}</div>
     </div>
   </div>
 </section>

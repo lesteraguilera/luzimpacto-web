@@ -1,16 +1,17 @@
 ---
 // Mapa de Costa Rica con outline real (Wikimedia Commons, CC BY-SA)
-// Sobre el outline gris se ponen marcadores amarillos en las 6 provincias visitadas
-// y un marcador punteado gris en Limón (pendiente).
 import fs from "node:fs";
 import path from "node:path";
+import { getLang } from "../lib/i18n";
+
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
 
 const svgPath = path.resolve("src/components/cr_map_paths.svg");
 const countryPaths = fs.readFileSync(svgPath, "utf8")
   .replace(/^<svg[^>]*>/, "")
   .replace(/<\/svg>$/, "");
 
-// Posiciones aproximadas del centro de cada provincia (label en SVG original)
 const markers = [
   { id: "guanacaste", nombre: "Guanacaste", x: 176, y: 193, visitada: true },
   { id: "alajuela",   nombre: "Alajuela",   x: 360, y: 215, visitada: true },
@@ -21,19 +22,32 @@ const markers = [
   { id: "puntarenas", nombre: "Puntarenas", x: 480, y: 460, visitada: false },
 ];
 const visitadas = markers.filter(m => m.visitada).length;
+
+const t = {
+  eyebrow: isEn ? "Where we are" : "Dónde estamos",
+  de: isEn ? "of" : "de",
+  provinces: isEn ? "provinces." : "provincias.",
+  desc: isEn
+    ? "We've brought the message to schools in nearly all of Costa Rica. Going for the last one."
+    : "Hemos llevado el mensaje a colegios en casi todo Costa Rica. Y vamos por la última.",
+  mapTitle: isEn ? "Map of Costa Rica's provinces" : "Mapa de provincias de Costa Rica",
+  visited: isEn ? "Visited" : "Visitada",
+  next: isEn ? "Next" : "Próxima",
+  allProvinces: isEn ? "The 7 provinces" : "Las 7 provincias",
+};
 ---
 
 <div class="mapa-wrap">
   <div class="mapa-header">
-    <div class="eyebrow">Dónde estamos</div>
-    <h2><span class="num-grande">{visitadas}</span><span class="num-de"> de </span><span class="num-grande">7</span> provincias.</h2>
-    <p>Hemos llevado el mensaje a colegios en casi todo Costa Rica. Y vamos por la última.</p>
+    <div class="eyebrow">{t.eyebrow}</div>
+    <h2><span class="num-grande">{visitadas}</span><span class="num-de"> {t.de} </span><span class="num-grande">7</span> {t.provinces}</h2>
+    <p>{t.desc}</p>
   </div>
 
   <div class="mapa-grid">
     <div class="mapa-svg-wrap">
       <svg viewBox="0 0 764.4 695.8" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mapaTitulo">
-        <title id="mapaTitulo">Mapa de provincias de Costa Rica</title>
+        <title id="mapaTitulo">{t.mapTitle}</title>
 
         <!-- Country outline (Wikimedia CC BY-SA) -->
         <g class="country" set:html={countryPaths}></g>
@@ -58,20 +72,20 @@ const visitadas = markers.filter(m => m.visitada).length;
       </svg>
 
       <div class="mapa-leyenda">
-        <span class="leyenda-item"><span class="dot dot-visitada"></span>Visitada ({visitadas})</span>
-        <span class="leyenda-item"><span class="dot dot-pendiente"></span>Próxima (1)</span>
+        <span class="leyenda-item"><span class="dot dot-visitada"></span>{t.visited} ({visitadas})</span>
+        <span class="leyenda-item"><span class="dot dot-pendiente"></span>{t.next} (1)</span>
       </div>
       <div class="mapa-attrib">Outline: Wikimedia Commons · CC BY-SA</div>
     </div>
 
     <div class="mapa-lista">
-      <div class="lista-eyebrow">Las 7 provincias</div>
+      <div class="lista-eyebrow">{t.allProvinces}</div>
       <ul>
         {markers.map((m) => (
           <li class={m.visitada ? "visitada" : "pendiente"}>
             <span class="check">{m.visitada ? "✓" : "○"}</span>
             <span class="nombre">{m.nombre}</span>
-            <span class="estado">{m.visitada ? "Visitada" : "Próxima"}</span>
+            <span class="estado">{m.visitada ? t.visited : t.next}</span>
           </li>
         ))}
       </ul>

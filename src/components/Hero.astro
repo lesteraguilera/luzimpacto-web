@@ -1,24 +1,45 @@
 ---
-// Hero con headline + 2 CTAs + foto placeholder
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  eyebrow: isEn ? "LUZ Impacto Foundation · Costa Rica" : "Fundación LUZ Impacto · Costa Rica",
+  ctaDonate: isEn ? "Give now" : "Donar ahora",
+  ctaOther: isEn ? "Other ways to help" : "Otras formas de sumarte",
+  videoAlt: isEn
+    ? "Youth at a school in Costa Rica during a LUZ Impacto event"
+    : "Jóvenes en un colegio de Costa Rica durante un evento de LUZ Impacto",
+  getInvolvedPath: isEn ? "/en/get-involved" : "/sumate",
+};
 ---
 
 <section class="hero">
   <div class="container">
     <div>
-      <div class="eyebrow hero-eyebrow">Fundación LUZ Impacto · Costa Rica</div>
-      <h1>
-        Llevamos el<br>
-        Amor de Cristo<br>
-        <span class="marker">a los colegios.</span>
-      </h1>
+      <div class="eyebrow hero-eyebrow">{t.eyebrow}</div>
+      {isEn ? (
+        <h1>
+          Bringing<br>
+          Christ's love<br>
+          <span class="marker">to schools.</span>
+        </h1>
+      ) : (
+        <h1>
+          Llevamos el<br>
+          Amor de Cristo<br>
+          <span class="marker">a los colegios.</span>
+        </h1>
+      )}
       <p class="lede">
-        Miles de jóvenes pasan once años en colegios costarricenses
-        sin escuchar nunca el evangelio. Vamos a cambiar eso, colegio
-        por colegio, hasta llegar a cada uno.
+        {isEn
+          ? "Thousands of young people spend eleven years in Costa Rica's schools without ever hearing the gospel. We're changing that — one school at a time, until we reach every one."
+          : "Miles de jóvenes pasan once años en colegios costarricenses sin escuchar nunca el evangelio. Vamos a cambiar eso, colegio por colegio, hasta llegar a cada uno."
+        }
       </p>
       <div class="ctas">
-        <a href="#donar" class="btn btn-yellow">Donar ahora <span class="arrow">→</span></a>
-        <a href="/sumate" class="btn btn-ghost-light">Otras formas de sumarte <span class="arrow">→</span></a>
+        <a href="#donar" class="btn btn-yellow">{t.ctaDonate} <span class="arrow">→</span></a>
+        <a href={t.getInvolvedPath} class="btn btn-ghost-light">{t.ctaOther} <span class="arrow">→</span></a>
       </div>
     </div>
     <div class="hero-image">
@@ -31,7 +52,7 @@
         loop
         playsinline
         preload="metadata"
-        aria-label="Jóvenes en un colegio de Costa Rica durante un evento de LUZ Impacto"
+        aria-label={t.videoAlt}
       ></video>
     </div>
   </div>

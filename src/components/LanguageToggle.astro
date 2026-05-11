@@ -1,0 +1,60 @@
+---
+// Pill ES|EN — toggle de idioma. Lleva al equivalente de la página actual en el otro idioma.
+import { getLang, getAlternatePath } from "../lib/i18n";
+
+const lang = getLang(Astro.url);
+const altPath = getAlternatePath(Astro.url.pathname);
+const esActive = lang === "es";
+const enActive = lang === "en";
+---
+
+<div class="lang-toggle" role="group" aria-label={enActive ? "Language" : "Idioma"}>
+  <a
+    href={esActive ? Astro.url.pathname : altPath}
+    class={`lang-opt ${esActive ? "active" : ""}`}
+    aria-current={esActive ? "true" : undefined}
+    aria-label="Español"
+  >ES</a>
+  <span class="lang-sep">|</span>
+  <a
+    href={enActive ? Astro.url.pathname : altPath}
+    class={`lang-opt ${enActive ? "active" : ""}`}
+    aria-current={enActive ? "true" : undefined}
+    aria-label="English"
+  >EN</a>
+</div>
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .lang-opt {
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 4px 2px;
+    transition: color 0.15s ease;
+  }
+  .lang-opt:hover { color: var(--charcoal); }
+  .lang-opt.active {
+    color: var(--charcoal);
+    font-weight: 700;
+  }
+  .lang-opt.active::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: var(--yellow);
+    margin-top: 2px;
+    border-radius: 2px;
+  }
+  .lang-sep {
+    color: var(--ink-faint);
+    opacity: 0.5;
+  }
+</style>

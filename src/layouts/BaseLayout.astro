@@ -1,16 +1,38 @@
 ---
-// Layout principal del sitio
-// Recibe: title, description (opcional)
+// Layout principal del sitio — soporte ES/EN
 import "../styles/global.css";
 import FloatingDonate from "../components/FloatingDonate.astro";
 import DonarModal from "../components/DonarModal.astro";
+import { getLang, getAlternatePath } from "../lib/i18n";
+
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const defaults = {
+  es: {
+    title: "LUZ Impacto — Llevamos el Amor de Cristo a los colegios",
+    description: "Fundación LUZ Impacto: ministerio cristiano evangélico costarricense. Visitamos colegios con un mensaje de salvación y conectamos a los jóvenes con iglesias locales que los discipulen.",
+    keywords: "LUZ Impacto, ministerio cristiano, evangelio en colegios, Costa Rica, evangelismo juvenil, fundación cristiana",
+    ogAlt: "Llevamos el Amor de Cristo a los colegios — Fundación LUZ Impacto",
+    locale: "es_CR",
+  },
+  en: {
+    title: "LUZ Impacto — Bringing Christ's love to Costa Rica's schools",
+    description: "LUZ Impacto Foundation: a Costa Rican evangelical Christian ministry. We visit schools with the message of salvation and connect young people with local churches to disciple them.",
+    keywords: "LUZ Impacto, Christian ministry, school evangelism, Costa Rica, youth ministry, Christian foundation",
+    ogAlt: "Bringing Christ's love to Costa Rica's schools — LUZ Impacto Foundation",
+    locale: "en_US",
+  },
+};
 
 const {
-  title = "LUZ Impacto — Llevamos el Amor de Cristo a los colegios",
-  description = "Fundación LUZ Impacto: ministerio cristiano evangélico costarricense. Visitamos colegios con un mensaje de salvación y conectamos a los jóvenes con iglesias locales que los discipulen.",
+  title = defaults[lang].title,
+  description = defaults[lang].description,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://luzimpacto.org").toString();
+const alternatePath = getAlternatePath(Astro.url.pathname);
+const alternateURL = new URL(alternatePath, Astro.site || "https://luzimpacto.org").toString();
 
 const orgSchema = {
   "@context": "https://schema.org",
@@ -20,7 +42,9 @@ const orgSchema = {
   "url": "https://luzimpacto.org",
   "logo": "https://luzimpacto.org/assets/logos/luz.png",
   "image": "https://luzimpacto.org/og-image.jpg",
-  "description": "Ministerio cristiano evangélico costarricense que visita colegios con un mensaje de salvación y conecta a los jóvenes con iglesias locales para su discipulado.",
+  "description": isEn
+    ? "Costa Rican evangelical Christian ministry that visits schools with the message of salvation and connects young people with local churches for discipleship."
+    : "Ministerio cristiano evangélico costarricense que visita colegios con un mensaje de salvación y conecta a los jóvenes con iglesias locales para su discipulado.",
   "foundingDate": "2024",
   "address": {
     "@type": "PostalAddress",
@@ -33,7 +57,7 @@ const orgSchema = {
     "telephone": "+506-8549-3929",
     "contactType": "customer service",
     "areaServed": "CR",
-    "availableLanguage": "Spanish"
+    "availableLanguage": ["Spanish", "English"]
   },
   "sameAs": [
     "https://instagram.com/luzimpacto_cr"
@@ -42,15 +66,20 @@ const orgSchema = {
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang={isEn ? "en" : "es"}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
+
+  <!-- Hreflang alternates -->
+  <link rel="alternate" hreflang={isEn ? "es" : "en"} href={alternateURL} />
+  <link rel="alternate" hreflang="x-default" href="https://luzimpacto.org/" />
+
   <meta name="theme-color" content="#1F2125" />
   <meta name="author" content="Fundación LUZ Impacto" />
-  <meta name="keywords" content="LUZ Impacto, ministerio cristiano, evangelio en colegios, Costa Rica, evangelismo juvenil, fundación cristiana" />
+  <meta name="keywords" content={defaults[lang].keywords} />
   <title>{title}</title>
 
   <!-- Open Graph -->
@@ -62,8 +91,9 @@ const orgSchema = {
   <meta property="og:image" content="https://luzimpacto.org/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Llevamos el Amor de Cristo a los colegios — Fundación LUZ Impacto" />
-  <meta property="og:locale" content="es_CR" />
+  <meta property="og:image:alt" content={defaults[lang].ogAlt} />
+  <meta property="og:locale" content={defaults[lang].locale} />
+  <meta property="og:locale:alternate" content={isEn ? "es_CR" : "en_US"} />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -77,8 +107,8 @@ const orgSchema = {
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/logos/luz.png" />
 
-  <!-- Preload hero poster (LCP) — solo en home -->
-  {Astro.url.pathname === "/" && (
+  <!-- Preload hero poster (LCP) — solo en home (ES o EN) -->
+  {(Astro.url.pathname === "/" || Astro.url.pathname === "/en/" || Astro.url.pathname === "/en") && (
     <link rel="preload" as="image" href="/assets/photos/hero-poster.jpg" fetchpriority="high" />
   )}
 
@@ -134,4 +164,3 @@ const orgSchema = {
   </script>
 </body>
 </html>
-

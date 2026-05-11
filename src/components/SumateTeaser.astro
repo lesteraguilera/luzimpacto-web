@@ -1,11 +1,31 @@
 ---
 // Teaser de "Sumate" para la home — versión compacta que dirige a /sumate
-const caminos = [
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const caminos = isEn ? [
+  { iconKey: "heart",     titulo: "Give",    href: "#donar", external: false },
+  { iconKey: "church",    titulo: "Partner", href: "https://wa.me/50685493929?text=Hello%20LUZ%2C%20our%20church%20wants%20to%20partner", external: true },
+  { iconKey: "people",    titulo: "Join",    href: "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20join%20the%20team", external: true },
+  { iconKey: "megaphone", titulo: "Share",   href: "https://instagram.com/luzimpacto_cr", external: true },
+] : [
   { iconKey: "heart",     titulo: "Donar",     href: "#donar", external: false },
   { iconKey: "church",    titulo: "Aliarse",   href: "https://wa.me/50685493929?text=Hola%20LUZ%2C%20mi%20iglesia%20quiere%20aliarse", external: true },
   { iconKey: "people",    titulo: "Sumarme",   href: "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20sumarme%20al%20equipo", external: true },
   { iconKey: "megaphone", titulo: "Compartir", href: "https://instagram.com/luzimpacto_cr", external: true },
 ];
+
+const t = {
+  sectionId: isEn ? "get-involved" : "sumate",
+  eyebrow: isEn ? "Join the mission" : "Sumate a la misión",
+  lede: isEn
+    ? "Each person contributes in their own way. Give, partner as a church, join the team, or share the mission."
+    : "Cada persona aporta de una forma distinta. Donar, aliarte como iglesia, sumarte al equipo o compartir la misión.",
+  ctaSeeAll: isEn ? "See the four ways" : "Ver las cuatro maneras",
+  ctaDonate: isEn ? "Give now" : "Donar ahora",
+  seeAllPath: isEn ? "/en/get-involved" : "/sumate",
+};
 
 const icons = {
   heart: `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>`,
@@ -15,12 +35,16 @@ const icons = {
 };
 ---
 
-<section class="section" id="sumate">
+<section class="section" id={t.sectionId}>
   <div class="container">
     <div class="teaser-head">
-      <div class="eyebrow">Sumate a la misión</div>
-      <h2>Hay <span class="marker">cuatro maneras</span> de ser parte.</h2>
-      <p class="lede">Cada persona aporta de una forma distinta. Donar, aliarte como iglesia, sumarte al equipo o compartir la misión.</p>
+      <div class="eyebrow">{t.eyebrow}</div>
+      {isEn ? (
+        <h2>There are <span class="marker">four ways</span> to be part.</h2>
+      ) : (
+        <h2>Hay <span class="marker">cuatro maneras</span> de ser parte.</h2>
+      )}
+      <p class="lede">{t.lede}</p>
     </div>
 
     <div class="teaser-chips">
@@ -36,8 +60,8 @@ const icons = {
     </div>
 
     <div class="teaser-cta">
-      <a href="/sumate" class="btn btn-yellow">Ver las cuatro maneras <span class="arrow">→</span></a>
-      <a href="#donar" class="btn btn-ghost-dark">Donar ahora <span class="arrow">→</span></a>
+      <a href={t.seeAllPath} class="btn btn-yellow">{t.ctaSeeAll} <span class="arrow">→</span></a>
+      <a href="#donar" class="btn btn-ghost-dark">{t.ctaDonate} <span class="arrow">→</span></a>
     </div>
   </div>
 </section>

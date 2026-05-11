@@ -1,13 +1,33 @@
 ---
-// Testimonio cinematic con jerarquía tipográfica:
-// "Dios me agarró" como pull-quote gigante + resto del quote debajo
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  sectionId: isEn ? "impact" : "impacto",
+  eyebrow: isEn ? "Real stories" : "Historias reales",
+  imgAlt: isEn
+    ? "Group of students with a LUZ Impacto leader after an event at their school"
+    : "Grupo de estudiantes con un líder de LUZ Impacto tras un evento en su colegio",
+  pull: isEn ? "God grabbed me." : "Dios me agarró.",
+  rest: isEn
+    ? "That afternoon — I can't explain it any better. My friends and I cried like never before, and since that day we're different."
+    : "Esa tarde no sé cómo explicarlo mejor. Mis amigas y yo lloramos como nunca, y desde ese día somos diferentes.",
+  em: isEn
+    ? "I no longer feel alone in what I felt."
+    : "Ya no me siento sola en lo que sentía.",
+};
 ---
 
-<section class="testimonio" id="impacto">
+<section class="testimonio" id={t.sectionId}>
   <div class="container">
     <div class="testimonio-head">
-      <div class="eyebrow center">Historias reales</div>
-      <h2>Una visita a un colegio.<br><span class="highlight">Una familia</span> nueva.</h2>
+      <div class="eyebrow center">{t.eyebrow}</div>
+      {isEn ? (
+        <h2>One school visit.<br><span class="highlight">One new family.</span></h2>
+      ) : (
+        <h2>Una visita a un colegio.<br><span class="highlight">Una familia</span> nueva.</h2>
+      )}
     </div>
   </div>
 
@@ -16,14 +36,14 @@
       <img
         class="cinema-photo"
         src="/assets/photos/gallery/large/foto_44.jpg"
-        alt="Grupo de estudiantes con un líder de LUZ Impacto tras un evento en su colegio"
+        alt={t.imgAlt}
         loading="lazy"
       />
       <div class="cinema-overlay"></div>
       <div class="cinema-content">
-        <div class="cinema-pull">Dios me agarró.</div>
+        <div class="cinema-pull">{t.pull}</div>
         <p class="cinema-rest">
-          Esa tarde no sé cómo explicarlo mejor. Mis amigas y yo lloramos como nunca, y desde ese día somos diferentes. <span class="cinema-em">Ya no me siento sola en lo que sentía.</span>
+          {t.rest} <span class="cinema-em">{t.em}</span>
         </p>
       </div>
     </div>

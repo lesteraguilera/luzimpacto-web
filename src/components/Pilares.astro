@@ -1,6 +1,30 @@
 ---
-// Los 4 pilares con números 01-04
-const pilares = [
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const pilares = isEn ? [
+  {
+    n: "01",
+    titulo: "We preach in schools",
+    desc: "We visit Costa Rica's schools with events that combine music, testimonies, and clear gospel preaching.",
+  },
+  {
+    n: "02",
+    titulo: "We connect with churches",
+    desc: "When a young person receives Christ, we refer them to a partner church near their home that can disciple them.",
+  },
+  {
+    n: "03",
+    titulo: "We walk with them",
+    desc: "We follow up personally with every young person who takes the step, so they're not alone after the event.",
+  },
+  {
+    n: "04",
+    titulo: "We raise leaders",
+    desc: "We welcome those who want to serve: preachers, musicians, volunteers, intercessors. Everyone grows alongside the mission.",
+  },
+] : [
   {
     n: "01",
     titulo: "Predicamos en colegios",
@@ -22,17 +46,26 @@ const pilares = [
     desc: "Sumamos a quienes quieren servir: predicadores, músicos, voluntarios, intercesores. Todos crecen junto a la misión.",
   },
 ];
+
+const t = {
+  sectionId: isEn ? "what-we-do" : "que-hacemos",
+  eyebrow: isEn ? "What we do" : "Qué hacemos",
+  lede: isEn
+    ? "We don't just preach and leave. Every young person who receives Christ enters a process: we connect them with a church and walk alongside them."
+    : "No solo predicamos y nos vamos. Cada joven que recibe a Cristo entra en un proceso: lo conectamos con una iglesia y lo acompañamos.",
+};
 ---
 
-<section class="section pilares-section" id="que-hacemos">
+<section class="section pilares-section" id={t.sectionId}>
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">Qué hacemos</div>
-      <h2>Cuatro pasos.<br>Una misión clara.</h2>
-      <p class="lede">
-        No solo predicamos y nos vamos. Cada joven que recibe a Cristo entra
-        en un proceso: lo conectamos con una iglesia y lo acompañamos.
-      </p>
+      <div class="eyebrow">{t.eyebrow}</div>
+      {isEn ? (
+        <h2>Four steps.<br>One clear mission.</h2>
+      ) : (
+        <h2>Cuatro pasos.<br>Una misión clara.</h2>
+      )}
+      <p class="lede">{t.lede}</p>
     </div>
 
     <div class="pilares-grid">

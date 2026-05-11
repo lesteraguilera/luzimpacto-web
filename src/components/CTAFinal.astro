@@ -1,17 +1,32 @@
 ---
-// Banner CTA final
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  desc: isEn
+    ? "Every day without you, there's a young person in a Costa Rican school looking for hope. Join us and let's be light together."
+    : "Cada día sin vos, hay un joven en un colegio de Costa Rica buscando esperanza. Sumate y seamos luz juntos.",
+  ctaJoin: isEn ? "Join the mission" : "Sumate a la misión",
+  ctaTalk: isEn ? "Talk to us on WhatsApp" : "Hablemos por WhatsApp",
+  joinPath: isEn ? "/en/get-involved" : "/sumate",
+  waLink: isEn
+    ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20know%20more"
+    : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20saber%20m%C3%A1s",
+};
 ---
 
 <section class="cta-final">
   <div class="container">
-    <h2>Hay una generación<br><span class="marker">esperando ser alcanzada.</span></h2>
-    <p>
-      Cada día sin vos, hay un joven en un colegio de Costa Rica buscando esperanza.
-      Sumate y seamos luz juntos.
-    </p>
+    {isEn ? (
+      <h2>There's a generation<br><span class="marker">waiting to be reached.</span></h2>
+    ) : (
+      <h2>Hay una generación<br><span class="marker">esperando ser alcanzada.</span></h2>
+    )}
+    <p>{t.desc}</p>
     <div class="ctas">
-      <a href="/sumate" class="btn btn-yellow">Sumate a la misión <span class="arrow">→</span></a>
-      <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20saber%20m%C3%A1s" target="_blank" rel="noopener" class="btn btn-ghost-light">Hablemos por WhatsApp <span class="arrow">→</span></a>
+      <a href={t.joinPath} class="btn btn-yellow">{t.ctaJoin} <span class="arrow">→</span></a>
+      <a href={t.waLink} target="_blank" rel="noopener" class="btn btn-ghost-light">{t.ctaTalk} <span class="arrow">→</span></a>
     </div>
   </div>
 </section>

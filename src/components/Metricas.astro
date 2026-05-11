@@ -1,5 +1,18 @@
 ---
-// Banda de métricas con animación de números
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  schools: isEn ? "Schools visited" : "Colegios visitados",
+  schoolsSub: isEn ? "across Costa Rica" : "en todo Costa Rica",
+  youth: isEn ? "Youth reached" : "Jóvenes alcanzados",
+  youthSub: isEn ? "in school events" : "en eventos en colegios",
+  churches: isEn ? "Partner churches" : "Iglesias aliadas",
+  churchesSub: isEn ? "across all 7 provinces" : "red en las 7 provincias",
+  provinces: isEn ? "Provinces reached" : "Provincias alcanzadas",
+  provincesSub: isEn ? "going for the last one" : "y vamos por la última",
+};
 ---
 
 <div class="metrics">
@@ -7,23 +20,23 @@
     <div class="metrics-band">
       <div class="metric">
         <div class="num"><span class="count" data-target="60">0</span><span class="plus">+</span></div>
-        <div class="label">Colegios visitados</div>
-        <div class="sub">en todo Costa Rica</div>
+        <div class="label">{t.schools}</div>
+        <div class="sub">{t.schoolsSub}</div>
       </div>
       <div class="metric">
         <div class="num"><span class="count" data-target="50" data-suffix="K">0</span><span class="plus">+</span></div>
-        <div class="label">Jóvenes alcanzados</div>
-        <div class="sub">en eventos en colegios</div>
+        <div class="label">{t.youth}</div>
+        <div class="sub">{t.youthSub}</div>
       </div>
       <div class="metric">
         <div class="num"><span class="count" data-target="30">0</span><span class="plus">+</span></div>
-        <div class="label">Iglesias aliadas</div>
-        <div class="sub">red en las 7 provincias</div>
+        <div class="label">{t.churches}</div>
+        <div class="sub">{t.churchesSub}</div>
       </div>
       <div class="metric">
         <div class="num">6<span class="of">/7</span></div>
-        <div class="label">Provincias alcanzadas</div>
-        <div class="sub">y vamos por la última</div>
+        <div class="label">{t.provinces}</div>
+        <div class="sub">{t.provincesSub}</div>
       </div>
     </div>
   </div>

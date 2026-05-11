@@ -1,60 +1,105 @@
 ---
 // Modal de donación — se abre cuando alguien hace click en cualquier botón con href="#donar"
 // 2 métodos directos (SINPE Móvil, IBAN) + coordinación por WhatsApp para donantes internacionales.
+import { getLang } from "../lib/i18n";
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  closeAria: isEn ? "Close" : "Cerrar",
+  eyebrow: isEn ? "Every colón reaches a school" : "Cada colón viaja a un colegio",
+  title: isEn ? "How to give" : "Cómo donar",
+  lede: isEn
+    ? "Your donation covers transportation, materials, and events where young people hear the gospel."
+    : "Tu donación cubre transporte, materiales y eventos donde los jóvenes escuchan el evangelio.",
+  founderRole: isEn ? "Founder" : "Fundador",
+  founderQuote: isEn
+    ? `"Every donation goes directly to a school. Thank you for joining this mission."`
+    : `"Cada donación llega directo a un colegio. Gracias por sumarte a esta misión."`,
+  impactEyebrow: isEn ? "What your donation does" : "Lo que tu donación logra",
+  tier1: isEn ? "Materials for a group of young people to receive the message" : "Materiales para que un grupo de jóvenes reciba el mensaje",
+  tier2: isEn ? "Transportation and materials for one school visit" : "Transporte y materiales para una visita a un colegio",
+  tier3: isEn ? "A complete event: equipment, sound, materials, and refreshments" : "Un evento completo: equipo, sonido, materiales y refrigerio",
+  monthlyLink: isEn ? "🔁 Want to give monthly?" : "🔁 ¿Querés ser donante mensual?",
+  monthlyHref: isEn
+    ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20become%20a%20monthly%20donor"
+    : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20ser%20donante%20mensual",
+  sinpeTag: isEn ? "Costa Rica · fastest" : "Costa Rica · más rápido",
+  ibanTag: isEn ? "Costa Rica · bank transfer" : "Costa Rica · transferencia",
+  ibanName: isEn ? "Cuenta IBAN" : "Cuenta IBAN",
+  numberLabel: isEn ? "Number" : "Número",
+  accountHolderLabel: isEn ? "Account holder" : "A nombre de",
+  ibanLabel: isEn ? "IBAN" : "IBAN",
+  copiedText: isEn ? "Copied! ✓" : "¡Copiado! ✓",
+  intlTag: isEn ? "International · USD" : "Internacional · USD",
+  intlTitle: isEn ? "Donating from outside Costa Rica?" : "¿Donás desde fuera de Costa Rica?",
+  intlDesc: isEn
+    ? "We're setting up PayPal and Wise in the Foundation's name. Meanwhile, we coordinate your international donation by WhatsApp."
+    : "Estamos habilitando PayPal y Wise a nombre de la Fundación. Mientras tanto, coordinamos tu donación internacional por WhatsApp.",
+  intlCta: isEn ? "Message us on WhatsApp" : "Escribir por WhatsApp",
+  intlWa: isEn
+    ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20donate%20from%20abroad"
+    : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20donar%20desde%20el%20exterior",
+  footLine: isEn ? "Prefer to talk first?" : "¿Preferís hablar primero?",
+  footLink: isEn ? "Message us on WhatsApp" : "Escribinos por WhatsApp",
+  footWa: isEn
+    ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20donate"
+    : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20donar",
+};
 ---
 
 <div class="donar-modal" id="donarModal" aria-hidden="true" role="dialog" aria-labelledby="donarTitle">
   <div class="modal-backdrop" data-close></div>
   <div class="modal-panel">
-    <button class="modal-close" aria-label="Cerrar" data-close>×</button>
+    <button class="modal-close" aria-label={t.closeAria} data-close>×</button>
     <div class="modal-scroll">
 
-    <div class="modal-eyebrow">Cada colón viaja a un colegio</div>
-    <h2 id="donarTitle">Cómo donar</h2>
-    <p class="modal-lede">Tu donación cubre transporte, materiales y eventos donde los jóvenes escuchan el evangelio.</p>
+    <div class="modal-eyebrow">{t.eyebrow}</div>
+    <h2 id="donarTitle">{t.title}</h2>
+    <p class="modal-lede">{t.lede}</p>
 
     <div class="founder-note">
       <img src="/assets/photos/equipo/samuel.jpg" alt="Samuel Pizzo, fundador de LUZ Impacto" loading="lazy" />
       <div class="founder-text">
-        <div class="founder-name"><strong>Samuel Pizzo</strong> · Fundador</div>
-        <p>"Cada donación llega directo a un colegio. Gracias por sumarte a esta misión."</p>
+        <div class="founder-name"><strong>Samuel Pizzo</strong> · {t.founderRole}</div>
+        <p>{t.founderQuote}</p>
       </div>
     </div>
 
     <div class="impacto-amounts">
-      <div class="impacto-eyebrow">Lo que tu donación logra</div>
+      <div class="impacto-eyebrow">{t.impactEyebrow}</div>
       <div class="impacto-tiers">
         <div class="impacto-tier">
           <div class="tier-amount"><span class="tier-cur">₡</span>5,000<span class="tier-usd">≈ $10</span></div>
-          <div class="tier-impact">Materiales para que un grupo de jóvenes reciba el mensaje</div>
+          <div class="tier-impact">{t.tier1}</div>
         </div>
         <div class="impacto-tier tier-featured">
           <div class="tier-amount"><span class="tier-cur">₡</span>20,000<span class="tier-usd">≈ $40</span></div>
-          <div class="tier-impact">Transporte y materiales para una visita a un colegio</div>
+          <div class="tier-impact">{t.tier2}</div>
         </div>
         <div class="impacto-tier">
           <div class="tier-amount"><span class="tier-cur">₡</span>75,000<span class="tier-usd">≈ $150</span></div>
-          <div class="tier-impact">Un evento completo: equipo, sonido, materiales y refrigerio</div>
+          <div class="tier-impact">{t.tier3}</div>
         </div>
       </div>
-      <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20ser%20donante%20mensual" target="_blank" rel="noopener" class="mensual-link">
-        🔁 ¿Querés ser donante mensual? <span class="mensual-arrow">→</span>
+      <a href={t.monthlyHref} target="_blank" rel="noopener" class="mensual-link">
+        {t.monthlyLink} <span class="mensual-arrow">→</span>
       </a>
     </div>
 
     <div class="donar-options">
       <div class="donar-opt">
         <div class="opt-head">
-          <div class="opt-tag">Costa Rica · más rápido</div>
+          <div class="opt-tag">{t.sinpeTag}</div>
           <h3>SINPE Móvil</h3>
         </div>
         <div class="opt-data">
           <div class="data-row">
-            <span class="data-label">Número</span>
+            <span class="data-label">{t.numberLabel}</span>
             <button class="data-value" data-copy="85493929">8549 3929 <span class="copy-ico">⧉</span></button>
           </div>
           <div class="data-row">
-            <span class="data-label">A nombre de</span>
+            <span class="data-label">{t.accountHolderLabel}</span>
             <span class="data-value-static">Fundación LUZ Impacto</span>
           </div>
         </div>
@@ -62,16 +107,16 @@
 
       <div class="donar-opt">
         <div class="opt-head">
-          <div class="opt-tag">Costa Rica · transferencia</div>
-          <h3>Cuenta IBAN</h3>
+          <div class="opt-tag">{t.ibanTag}</div>
+          <h3>{t.ibanName}</h3>
         </div>
         <div class="opt-data">
           <div class="data-row">
-            <span class="data-label">IBAN</span>
+            <span class="data-label">{t.ibanLabel}</span>
             <button class="data-value" data-copy="CR10015110720010495519">CR10 0151 1072 0010 4955 19 <span class="copy-ico">⧉</span></button>
           </div>
           <div class="data-row">
-            <span class="data-label">A nombre de</span>
+            <span class="data-label">{t.accountHolderLabel}</span>
             <span class="data-value-static">Fundación LUZ Impacto</span>
           </div>
         </div>
@@ -79,18 +124,18 @@
 
       <div class="donar-opt opt-international">
         <div class="opt-head">
-          <div class="opt-tag">Internacional · USD</div>
-          <h3>¿Donás desde fuera de Costa Rica?</h3>
+          <div class="opt-tag">{t.intlTag}</div>
+          <h3>{t.intlTitle}</h3>
         </div>
         <div class="opt-data">
-          <p class="opt-desc">Estamos habilitando PayPal y Wise a nombre de la Fundación. Mientras tanto, coordinamos tu donación internacional por WhatsApp.</p>
-          <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20donar%20desde%20el%20exterior" target="_blank" rel="noopener" class="btn btn-dark btn-sm">Escribir por WhatsApp <span class="arrow">→</span></a>
+          <p class="opt-desc">{t.intlDesc}</p>
+          <a href={t.intlWa} target="_blank" rel="noopener" class="btn btn-dark btn-sm">{t.intlCta} <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
 
     <div class="modal-foot">
-      ¿Preferís hablar primero? <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20donar" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+      {t.footLine} <a href={t.footWa} target="_blank" rel="noopener">{t.footLink}</a>
     </div>
     </div>
   </div>
@@ -130,7 +175,8 @@
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(val).then(() => {
               const orig = copyBtn.innerHTML;
-              copyBtn.innerHTML = '¡Copiado! ✓';
+              const isEn = location.pathname.startsWith('/en');
+              copyBtn.innerHTML = isEn ? 'Copied! ✓' : '¡Copiado! ✓';
               copyBtn.classList.add('copied');
               setTimeout(() => { copyBtn.innerHTML = orig; copyBtn.classList.remove('copied'); }, 1500);
             }).catch(() => {

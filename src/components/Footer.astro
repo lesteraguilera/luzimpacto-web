@@ -1,46 +1,64 @@
 ---
 // Footer limpio (solo links que funcionan)
+import { getLang } from "../lib/i18n";
+
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  brandTagline: isEn
+    ? "Costa Rican evangelical Christian ministry. Bringing Christ's love to schools since 2024."
+    : "Ministerio cristiano evangélico costarricense. Llevamos el Amor de Cristo a los colegios desde 2024.",
+  contactTitle: isEn ? "Contact" : "Contacto",
+  followTitle: isEn ? "Follow us" : "Seguinos",
+  supportTitle: isEn ? "Support us" : "Apoyá",
+  joinCta: isEn ? "Join the mission" : "Sumate a la misión",
+  verse: isEn
+    ? '"You are the light of the world." — Matthew 5:14'
+    : '"Vosotros sois la luz del mundo." — Mateo 5:14',
+  privacy: isEn ? "Privacy" : "Privacidad",
+  terms: isEn ? "Terms" : "Términos",
+  getInvolvedPath: isEn ? "/en/get-involved" : "/sumate",
+  privacyPath: isEn ? "/en/privacy" : "/privacidad",
+  termsPath: isEn ? "/en/terms" : "/terminos",
+  contactId: isEn ? "contact" : "contacto",
+};
 ---
 
-<footer class="site-footer" id="contacto">
+<footer class="site-footer" id={t.contactId}>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="luz-logo-img size-md"></span>
-        <p>
-          Ministerio cristiano evangélico costarricense.
-          Llevamos el Amor de Cristo a los colegios desde 2024.
-        </p>
+        <p>{t.brandTagline}</p>
       </div>
 
       <div class="footer-col">
-        <h4>Contacto</h4>
+        <h4>{t.contactTitle}</h4>
         <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a>
         <a href="https://wa.me/50685493929" target="_blank" rel="noopener">WhatsApp +506 8549 3929</a>
         <span>San José, Costa Rica</span>
       </div>
 
       <div class="footer-col">
-        <h4>Seguinos</h4>
+        <h4>{t.followTitle}</h4>
         <a href="https://instagram.com/luzimpacto_cr" target="_blank" rel="noopener">Instagram</a>
       </div>
 
       <div class="footer-col footer-cta">
-        <h4>Apoyá</h4>
-        <a href="/sumate" class="btn btn-yellow btn-sm">Sumate a la misión <span class="arrow">→</span></a>
+        <h4>{t.supportTitle}</h4>
+        <a href={t.getInvolvedPath} class="btn btn-yellow btn-sm">{t.joinCta} <span class="arrow">→</span></a>
       </div>
     </div>
 
-    <div class="footer-verse">
-      "Vosotros sois la luz del mundo." — Mateo 5:14
-    </div>
+    <div class="footer-verse">{t.verse}</div>
 
     <div class="footer-bottom">
       <div>© {new Date().getFullYear()} Fundación LUZ Impacto · San José, Costa Rica</div>
       <div class="footer-meta">
-        <a href="/privacidad">Privacidad</a>
+        <a href={t.privacyPath}>{t.privacy}</a>
         <span>·</span>
-        <a href="/terminos">Términos</a>
+        <a href={t.termsPath}>{t.terms}</a>
         <span>·</span>
         <span>luzimpacto.org</span>
       </div>

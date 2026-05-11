@@ -1,22 +1,52 @@
 ---
-// Header sticky con logo + nav + toggle ES/EN + CTA + drawer móvil
+// Header sticky con logo + nav + lang toggle + CTA + drawer móvil
+import LanguageToggle from "./LanguageToggle.astro";
+import { getLang } from "../lib/i18n";
+
+const lang = getLang(Astro.url);
+const isEn = lang === "en";
+
+const t = {
+  homeLabel: isEn ? "Home" : "Inicio",
+  about: isEn ? "About" : "Nosotros",
+  whatWeDo: isEn ? "What we do" : "Qué hacemos",
+  impact: isEn ? "Impact" : "Impacto",
+  photos: isEn ? "Photos" : "Fotos",
+  contact: isEn ? "Contact" : "Contacto",
+  getInvolved: isEn ? "Get involved" : "Sumate",
+  joinMission: isEn ? "Join the mission" : "Sumate a la misión",
+  openMenu: isEn ? "Open menu" : "Abrir menú",
+  closeMenu: isEn ? "Close menu" : "Cerrar menú",
+  homeAria: isEn ? "LUZ Impacto · Home" : "LUZ Impacto · Inicio",
+};
+
+const paths = {
+  home: isEn ? "/en/" : "/",
+  about: isEn ? "/en/about" : "/nosotros",
+  whatWeDo: isEn ? "/en/what-we-do" : "/que-hacemos",
+  impact: isEn ? "/en/impact" : "/impacto",
+  photos: isEn ? "/en/photos" : "/fotos",
+  contact: isEn ? "/en/contact" : "/contacto",
+  getInvolved: isEn ? "/en/get-involved" : "/sumate",
+};
 ---
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="header-logo" aria-label="LUZ Impacto · Inicio">
+    <a href={paths.home} class="header-logo" aria-label={t.homeAria}>
       <span class="luz-logo-img size-sm"></span>
     </a>
     <nav class="nav-main">
-      <a href="/nosotros">Nosotros</a>
-      <a href="/que-hacemos">Qué hacemos</a>
-      <a href="/impacto">Impacto</a>
-      <a href="/fotos">Fotos</a>
-      <a href="/contacto">Contacto</a>
+      <a href={paths.about}>{t.about}</a>
+      <a href={paths.whatWeDo}>{t.whatWeDo}</a>
+      <a href={paths.impact}>{t.impact}</a>
+      <a href={paths.photos}>{t.photos}</a>
+      <a href={paths.contact}>{t.contact}</a>
     </nav>
     <div class="nav-tools">
-      <a href="/sumate" class="btn btn-dark btn-sm">Sumate <span class="arrow">→</span></a>
-      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="navToggle">
+      <LanguageToggle />
+      <a href={paths.getInvolved} class="btn btn-dark btn-sm">{t.getInvolved} <span class="arrow">→</span></a>
+      <button class="nav-toggle" aria-label={t.openMenu} aria-expanded="false" id="navToggle">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -25,21 +55,24 @@
 
 <!-- Drawer fuera del header para evitar stacking-context bug -->
 <div class="nav-drawer" id="navDrawer" aria-hidden="true">
-  <button class="drawer-close" id="drawerClose" aria-label="Cerrar menú" type="button">
+  <button class="drawer-close" id="drawerClose" aria-label={t.closeMenu} type="button">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M18 6L6 18M6 6l12 12"/>
     </svg>
   </button>
   <div class="drawer-scroll">
     <div class="drawer-inner">
-      <a href="/">Inicio</a>
-      <a href="/nosotros">Nosotros</a>
-      <a href="/que-hacemos">Qué hacemos</a>
-      <a href="/impacto">Impacto</a>
-      <a href="/fotos">Fotos</a>
-      <a href="/contacto">Contacto</a>
+      <div class="drawer-lang">
+        <LanguageToggle />
+      </div>
+      <a href={paths.home}>{t.homeLabel}</a>
+      <a href={paths.about}>{t.about}</a>
+      <a href={paths.whatWeDo}>{t.whatWeDo}</a>
+      <a href={paths.impact}>{t.impact}</a>
+      <a href={paths.photos}>{t.photos}</a>
+      <a href={paths.contact}>{t.contact}</a>
       <div class="drawer-ctas">
-        <a href="/sumate" class="btn btn-yellow drawer-cta">Sumate a la misión <span class="arrow">→</span></a>
+        <a href={paths.getInvolved} class="btn btn-yellow drawer-cta">{t.joinMission} <span class="arrow">→</span></a>
         <a href="https://wa.me/50685493929" class="btn btn-ghost-dark drawer-cta" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
@@ -162,6 +195,14 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+  }
+  .drawer-lang {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .drawer-lang :global(.lang-toggle) {
+    font-size: 14px;
   }
   .drawer-inner > a:not(.btn) {
     font-family: "Fraunces", serif;

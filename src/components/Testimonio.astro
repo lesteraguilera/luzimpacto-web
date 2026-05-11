@@ -1,10 +1,11 @@
 ---
-// Bloque emocional con cita bíblica (mientras no haya testimonio real)
-// Cuando llegue uno real, este componente vuelve a su forma de testimonio
+// Testimonio: versículo arriba + testimonio EJEMPLO abajo.
+// El testimonio es ficticio — mostrar el diseño antes de tener uno real.
 ---
 
 <section class="testimonio" id="impacto">
   <div class="container">
+    <!-- Versículo Mateo 5:14 -->
     <div class="quote-mark">"</div>
     <div class="quote">
       Vosotros sois la <span class="highlight">luz</span> del mundo;<br>
@@ -12,6 +13,30 @@
       no se puede esconder.
     </div>
     <div class="cite">— Jesús · Mateo 5:14</div>
+  </div>
+
+  <!-- Testimonio EJEMPLO -->
+  <div class="container narrow">
+    <div class="ejemplo-badge-wrap">
+      <span class="ejemplo-badge">⚠ Ejemplo · vista previa del diseño</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="t-photo">
+        <img src="/assets/photos/gallery/large/foto_30.jpg" alt="Estudiante de colegio en Costa Rica" loading="lazy" />
+      </div>
+      <div class="t-content">
+        <div class="t-quote-mark">"</div>
+        <p class="t-quote">
+          Llegué a ese evento sin esperar nada. Salí con una vida diferente.
+          La iglesia que LUZ me recomendó ahora es mi familia.
+        </p>
+        <div class="t-attribution">
+          <div class="t-name">María Fernanda, 16 años</div>
+          <div class="t-role">Estudiante · Colegio en Heredia</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -44,6 +69,7 @@
     background: radial-gradient(circle, rgba(252,211,77,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
+
   .quote-mark {
     font-family: "Fraunces", serif;
     font-size: 120px;
@@ -75,42 +101,102 @@
     color: var(--on-dark-soft);
   }
 
-  .impact-line {
+  /* Testimonial card */
+  .narrow { max-width: 880px; }
+  .ejemplo-badge-wrap {
+    text-align: center;
     margin-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 48px;
-    flex-wrap: wrap;
+    margin-bottom: 20px;
     position: relative;
     z-index: 1;
   }
-  .impact-item { text-align: center; }
-  .impact-num {
-    font-family: "Fraunces", serif;
-    font-size: clamp(40px, 5vw, 56px);
-    font-weight: 600;
-    color: var(--yellow);
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-  .impact-label {
-    margin-top: 8px;
+  .ejemplo-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    background: var(--yellow);
+    color: var(--charcoal);
     font-size: 12px;
-    text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 0.14em;
-    color: var(--on-dark-soft);
-    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 100px;
+    box-shadow: 0 4px 14px rgba(252,211,77,0.25);
   }
-  .impact-sep {
-    width: 1px;
-    height: 48px;
-    background: rgba(255,255,255,0.15);
+
+  .testimonial-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 24px;
+    padding: 36px;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 36px;
+    align-items: center;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(4px);
+  }
+  .t-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--yellow);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  .t-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .t-quote-mark {
+    font-family: "Fraunces", serif;
+    font-size: 60px;
+    color: var(--yellow);
+    line-height: 0.5;
+    opacity: 0.6;
+    margin-bottom: 14px;
+  }
+  .t-quote {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.4;
+    color: var(--on-dark);
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: -0.005em;
+  }
+  .t-attribution {
+    border-top: 1px solid rgba(255,255,255,0.10);
+    padding-top: 14px;
+  }
+  .t-name {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--yellow);
+    letter-spacing: -0.01em;
+  }
+  .t-role {
+    font-size: 13px;
+    color: var(--on-dark-soft);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
   }
 
   @media (max-width: 700px) {
     .testimonio { padding: 80px 0; }
-    .impact-line { gap: 24px; margin-top: 56px; }
-    .impact-sep { display: none; }
+    .testimonial-card {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      text-align: center;
+      padding: 28px 24px;
+    }
+    .t-photo { margin: 0 auto; width: 140px; height: 140px; }
+    .t-quote-mark { margin: 0 auto 8px; }
+    .t-attribution { text-align: center; }
   }
 </style>

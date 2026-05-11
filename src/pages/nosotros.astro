@@ -83,19 +83,19 @@ import DonarModal from "../components/DonarModal.astro";
 
       <div class="equipo-grid">
         <div class="equipo-card">
-          <div class="equipo-foto"></div>
+          <div class="equipo-foto equipo-foto-empty"></div>
           <h3>Samuel Pizzo</h3>
           <div class="equipo-rol">Fundador · Director</div>
           <p>Pastor y predicador. Su corazón por los jóvenes y su pasión por el evangelio dieron origen a LUZ.</p>
         </div>
         <div class="equipo-card">
-          <div class="equipo-foto"></div>
+          <div class="equipo-foto" style="background-image:url('/assets/photos/equipo/lester.jpg')"></div>
           <h3>Lester Aguilera</h3>
           <div class="equipo-rol">Asistente estratégico</div>
           <p>Trabaja en operaciones, estrategia digital y crecimiento del ministerio.</p>
         </div>
         <div class="equipo-card">
-          <div class="equipo-foto"></div>
+          <div class="equipo-foto equipo-foto-empty"></div>
           <h3>Silvia Rodríguez</h3>
           <div class="equipo-rol">Operaciones · Comunicación</div>
           <p>Coordina la presencia en redes sociales y el contacto con prospectos y colegios.</p>
@@ -178,12 +178,19 @@ import DonarModal from "../components/DonarModal.astro";
     text-align: center;
   }
   .equipo-foto {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    background: var(--crema);
+    background-color: var(--crema);
+    background-size: cover;
+    background-position: center top;
     margin: 0 auto 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    border: 3px solid white;
+  }
+  .equipo-foto-empty {
     border: 1px dashed var(--line);
+    box-shadow: none;
   }
   .equipo-card h3 { margin-bottom: 4px; }
   .equipo-rol {

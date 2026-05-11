@@ -65,13 +65,8 @@ const visitadas = provincias.filter(p => p.visitada).length;
       <div class="testimonial-real">
         <div class="quote-mark">"</div>
         <p class="quote-text">
-          Llegamos a ese evento sin esperar nada. Salimos con vida nueva.
-          La iglesia que LUZ nos conectó ahora es nuestra familia.
+          Esa tarde <span class="quote-emph">Dios me agarró</span>. No sé cómo explicarlo mejor. Mis amigas y yo lloramos como nunca, y desde ese día somos diferentes. Ya no me siento sola en lo que sentía.
         </p>
-        <div class="cite-block">
-          <div class="cite-name">María Fernanda, Sofía y Camila</div>
-          <div class="cite-role">Estudiantes · 13 años · Colegio en Heredia</div>
-        </div>
         <p class="note">Recopilamos testimonios con permiso explícito de cada persona o de sus tutores. Pronto sumaremos más voces de jóvenes, pastores y voluntarios.</p>
       </div>
     </div>
@@ -161,27 +156,7 @@ const visitadas = provincias.filter(p => p.visitada).length;
     margin-right: auto;
     position: relative;
   }
-  .cite-block {
-    position: relative;
-    display: inline-block;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.12);
-  }
-  .cite-name {
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--yellow);
-    letter-spacing: -0.01em;
-  }
-  .cite-role {
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--on-dark-soft);
-    margin-top: 4px;
-  }
+  .quote-emph { color: var(--yellow); font-weight: 600; }
   .note {
     margin-top: 40px;
     padding-top: 24px;

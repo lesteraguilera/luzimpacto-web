@@ -1,6 +1,5 @@
 ---
-// Testimonio real de tres estudiantes que recibieron a Cristo
-// en un evento de LUZ Impacto en Heredia.
+// Testimonio en formato banda cinematic — foto full-bleed con quote overlay
 ---
 
 <section class="testimonio" id="impacto">
@@ -11,22 +10,20 @@
     </div>
   </div>
 
-  <!-- Testimonio real -->
-  <div class="container narrow">
-    <div class="testimonial-card">
-      <div class="t-photo">
-        <img src="/assets/photos/gallery/large/foto_30.jpg" alt="Estudiantes de un colegio en Heredia tras un evento de LUZ Impacto" loading="lazy" />
-      </div>
-      <div class="t-content">
-        <div class="t-quote-mark">"</div>
-        <p class="t-quote">
-          Llegamos a ese evento sin esperar nada. Salimos con vida nueva.
-          La iglesia que LUZ nos conectó ahora es nuestra familia.
+  <div class="cinema-wrap">
+    <div class="cinema-card">
+      <img
+        class="cinema-photo"
+        src="/assets/photos/gallery/large/foto_44.jpg"
+        alt="Grupo de estudiantes con un líder de LUZ Impacto tras un evento en su colegio"
+        loading="lazy"
+      />
+      <div class="cinema-overlay"></div>
+      <div class="cinema-content">
+        <div class="cinema-quote-mark">"</div>
+        <p class="cinema-quote">
+          Esa tarde <span class="cinema-emph">Dios me agarró</span>. No sé cómo explicarlo mejor. Mis amigas y yo lloramos como nunca, y desde ese día somos diferentes. Ya no me siento sola en lo que sentía.
         </p>
-        <div class="t-attribution">
-          <div class="t-name">María Fernanda, Sofía y Camila · 13 años</div>
-          <div class="t-role">Estudiantes · Colegio en Heredia</div>
-        </div>
       </div>
     </div>
   </div>
@@ -36,8 +33,7 @@
   .testimonio {
     background: var(--charcoal);
     color: var(--on-dark);
-    padding: 120px 0;
-    text-align: center;
+    padding: 120px 0 100px;
     position: relative;
     overflow: hidden;
   }
@@ -51,21 +47,11 @@
     background: radial-gradient(circle, rgba(252,211,77,0.10) 0%, transparent 70%);
     pointer-events: none;
   }
-  .testimonio::after {
-    content: "";
-    position: absolute;
-    bottom: -100px;
-    right: -100px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(252,211,77,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
 
   .testimonio-head {
     text-align: center;
     max-width: 760px;
-    margin: 0 auto;
+    margin: 0 auto 56px;
     position: relative;
     z-index: 1;
   }
@@ -78,83 +64,86 @@
   }
   .highlight { color: var(--yellow); font-weight: 600; }
 
-  /* Testimonial card */
-  .narrow { max-width: 880px; margin-top: 80px; }
-  .testimonial-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 24px;
-    padding: 36px;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 36px;
-    align-items: center;
-    text-align: left;
+  .cinema-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
     position: relative;
     z-index: 1;
-    backdrop-filter: blur(4px);
   }
-  .t-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+  .cinema-card {
+    position: relative;
+    border-radius: 24px;
     overflow: hidden;
-    border: 4px solid var(--yellow);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
   }
-  .t-photo img {
+  .cinema-photo {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 15% 30%;
+    object-position: center 35%;
     display: block;
   }
-  .t-quote-mark {
-    font-family: "Fraunces", serif;
-    font-size: 60px;
-    color: var(--yellow);
-    line-height: 0.5;
-    opacity: 0.6;
-    margin-bottom: 14px;
+  .cinema-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,0.15) 0%,
+      rgba(0,0,0,0.45) 55%,
+      rgba(0,0,0,0.85) 100%
+    );
+    pointer-events: none;
   }
-  .t-quote {
+  .cinema-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 56px;
+    color: white;
+    z-index: 2;
+  }
+  .cinema-quote-mark {
+    font-family: "Fraunces", serif;
+    font-size: 100px;
+    line-height: 0.4;
+    color: var(--yellow);
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+  .cinema-quote {
     font-family: "Fraunces", serif;
     font-style: italic;
-    font-size: clamp(20px, 2.4vw, 26px);
-    line-height: 1.4;
-    color: var(--on-dark);
     font-weight: 500;
-    margin-bottom: 24px;
-    letter-spacing: -0.005em;
-  }
-  .t-attribution {
-    border-top: 1px solid rgba(255,255,255,0.10);
-    padding-top: 14px;
-  }
-  .t-name {
-    font-family: "Inter", sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--yellow);
+    font-size: clamp(22px, 3.2vw, 38px);
+    line-height: 1.35;
+    color: white;
+    max-width: 900px;
     letter-spacing: -0.01em;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.6);
   }
-  .t-role {
-    font-size: 13px;
-    color: var(--on-dark-soft);
-    margin-top: 4px;
-    letter-spacing: 0.04em;
+  .cinema-emph {
+    color: var(--yellow);
+    font-weight: 600;
   }
 
   @media (max-width: 700px) {
-    .testimonio { padding: 80px 0; }
-    .testimonial-card {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      text-align: center;
-      padding: 28px 24px;
+    .testimonio { padding: 80px 0 64px; }
+    .cinema-wrap { padding: 0 16px; }
+    .cinema-card { aspect-ratio: 4 / 5; border-radius: 20px; }
+    .cinema-content { padding: 28px 24px 32px; }
+    .cinema-quote-mark { font-size: 64px; margin-bottom: 12px; }
+    .cinema-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.10) 0%,
+        rgba(0,0,0,0.45) 50%,
+        rgba(0,0,0,0.92) 100%
+      );
     }
-    .t-photo { margin: 0 auto; width: 140px; height: 140px; }
-    .t-quote-mark { margin: 0 auto 8px; }
-    .t-attribution { text-align: center; }
   }
 </style>

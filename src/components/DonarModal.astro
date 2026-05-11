@@ -9,23 +9,31 @@
     <button class="modal-close" aria-label="Cerrar" data-close>×</button>
     <div class="modal-scroll">
 
-    <div class="modal-eyebrow">Tu aporte impacta vidas</div>
+    <div class="modal-eyebrow">Cada colón viaja a un colegio</div>
     <h2 id="donarTitle">Cómo donar</h2>
-    <p class="modal-lede">Cada colón llega a un colegio. Cubre transporte, materiales, equipo y eventos donde los jóvenes escuchan el evangelio.</p>
+    <p class="modal-lede">Tu donación cubre transporte, materiales y eventos donde los jóvenes escuchan el evangelio.</p>
+
+    <div class="founder-note">
+      <img src="/assets/photos/equipo/samuel.jpg" alt="Samuel Pizzo, fundador de LUZ Impacto" loading="lazy" />
+      <div class="founder-text">
+        <div class="founder-name"><strong>Samuel Pizzo</strong> · Fundador</div>
+        <p>"Cada donación llega directo a un colegio. Gracias por sumarte a esta misión."</p>
+      </div>
+    </div>
 
     <div class="impacto-amounts">
       <div class="impacto-eyebrow">Lo que tu donación logra</div>
       <div class="impacto-tiers">
         <div class="impacto-tier">
-          <div class="tier-amount"><span class="tier-cur">₡</span>5,000<span class="tier-usd">/ $10</span></div>
+          <div class="tier-amount"><span class="tier-cur">₡</span>5,000<span class="tier-usd">≈ $10</span></div>
           <div class="tier-impact">Materiales para que un grupo de jóvenes reciba el mensaje</div>
         </div>
         <div class="impacto-tier tier-featured">
-          <div class="tier-amount"><span class="tier-cur">₡</span>20,000<span class="tier-usd">/ $40</span></div>
+          <div class="tier-amount"><span class="tier-cur">₡</span>20,000<span class="tier-usd">≈ $40</span></div>
           <div class="tier-impact">Transporte y materiales para una visita a un colegio</div>
         </div>
         <div class="impacto-tier">
-          <div class="tier-amount"><span class="tier-cur">₡</span>75,000<span class="tier-usd">/ $150</span></div>
+          <div class="tier-amount"><span class="tier-cur">₡</span>75,000<span class="tier-usd">≈ $150</span></div>
           <div class="tier-impact">Un evento completo: equipo, sonido, materiales y refrigerio</div>
         </div>
       </div>
@@ -69,14 +77,14 @@
         </div>
       </div>
 
-      <div class="donar-opt opt-paypal">
+      <div class="donar-opt opt-international">
         <div class="opt-head">
           <div class="opt-tag">Internacional · USD</div>
-          <h3>PayPal</h3>
+          <h3>¿Donás desde fuera de Costa Rica?</h3>
         </div>
         <div class="opt-data">
-          <p class="opt-desc">Para donantes fuera de Costa Rica, recibimos donaciones por PayPal.</p>
-          <a href="https://paypal.me/lesteraguileram" target="_blank" rel="noopener" class="btn btn-yellow btn-sm">Donar por PayPal <span class="arrow">→</span></a>
+          <p class="opt-desc">Estamos habilitando PayPal y Wise a nombre de la Fundación. Mientras tanto, coordinamos tu donación internacional por WhatsApp.</p>
+          <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20donar%20desde%20el%20exterior" target="_blank" rel="noopener" class="btn btn-dark btn-sm">Escribir por WhatsApp <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -234,8 +242,48 @@
   .modal-lede {
     font-size: 16px;
     color: var(--ink-soft);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     line-height: 1.55;
+  }
+
+  .founder-note {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 16px;
+    background: var(--crema);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid var(--line);
+  }
+  .founder-note img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 30%;
+    flex-shrink: 0;
+    border: 2px solid var(--yellow);
+  }
+  .founder-text { flex: 1; min-width: 0; }
+  .founder-name {
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+  .founder-name strong {
+    color: var(--charcoal);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .founder-text p {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0;
   }
 
   .impacto-amounts {
@@ -286,7 +334,7 @@
     font-size: 12px;
     font-weight: 600;
     color: var(--ink-faint);
-    margin-left: 6px;
+    margin-left: 8px;
     letter-spacing: 0;
   }
   .tier-impact {
@@ -390,7 +438,7 @@
   }
   .copy-ico { font-size: 14px; opacity: 0.6; }
 
-  .opt-paypal .opt-desc { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
+  .opt-international .opt-desc { font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; line-height: 1.5; }
 
   .modal-foot {
     margin-top: 24px;

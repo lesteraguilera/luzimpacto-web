@@ -50,8 +50,21 @@ const icons = {
 
   <section class="section">
     <div class="container">
+      {/* WhatsApp como tarjeta destacada grande */}
+      <a href={contactos[0].href} target="_blank" rel="noopener" class="contacto-hero">
+        <div class="contacto-icon contacto-icon-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icons[contactos[0].iconKey]} />
+        </div>
+        <div class="contacto-hero-body">
+          <div class="contacto-tag">La forma más rápida</div>
+          <h3>{contactos[0].titulo}</h3>
+          <p>{contactos[0].desc}</p>
+          <div class="contacto-cta-fake">Escribir ahora <span class="arrow">→</span></div>
+        </div>
+      </a>
+
       <div class="contacto-grid">
-        {contactos.map((c) => (
+        {contactos.slice(1).map((c) => (
           <div class="contacto-card">
             <div class="contacto-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icons[c.iconKey]} />
@@ -81,9 +94,55 @@ const icons = {
 </BaseLayout>
 
 <style>
+  .contacto-hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 40px 44px;
+    border-radius: 24px;
+    border-left: 4px solid var(--yellow);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.08);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 28px;
+  }
+  .contacto-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 18px 40px rgba(0,0,0,0.12);
+  }
+  .contacto-icon-lg { width: 96px; height: 96px; border-radius: 24px; }
+  .contacto-icon-lg svg { width: 50px; height: 50px; }
+  .contacto-hero h3 {
+    font-family: "Fraunces", serif;
+    font-size: clamp(28px, 3.5vw, 36px);
+    color: var(--on-dark);
+    margin-bottom: 10px;
+  }
+  .contacto-hero p {
+    color: var(--on-dark-soft);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .contacto-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 8px;
+  }
+  .contacto-cta-fake {
+    color: var(--yellow);
+    font-weight: 600;
+    font-size: 15px;
+  }
+
   .contacto-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
   .contacto-card {
@@ -117,5 +176,8 @@ const icons = {
 
   @media (max-width: 900px) {
     .contacto-grid { grid-template-columns: 1fr; }
+    .contacto-hero { grid-template-columns: 1fr; text-align: center; padding: 32px 28px; }
+    .contacto-icon-lg { margin: 0 auto; width: 72px; height: 72px; }
+    .contacto-icon-lg svg { width: 36px; height: 36px; }
   }
 </style>

@@ -86,19 +86,33 @@ const icons = {
         <h2>Cada colón llega a un colegio.</h2>
         <div class="reasons-grid">
           <div class="reason">
-            <div class="reason-num">₡</div>
-            <h3>Sin estructura cara</h3>
-            <p>Somos un equipo pequeño. No hay sueldos hinchados ni oficinas lujosas. El dinero va a la misión.</p>
+            <div class="reason-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-3H5a2 2 0 0 0-2 2v1Z"/>
+                <circle cx="15" cy="13" r="2"/>
+              </svg>
+            </div>
+            <h3>Equipo lean</h3>
+            <p>Somos un equipo pequeño y comprometido. Cada colón que recibimos llega directo a la misión: visitas, eventos, transporte y materiales.</p>
           </div>
           <div class="reason">
-            <div class="reason-num">⛪</div>
-            <h3>Sin competencia con iglesias</h3>
-            <p>No queremos formar nuestra propia iglesia. Servimos al cuerpo de Cristo que ya existe en Costa Rica.</p>
+            <div class="reason-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 9h4"/><path d="M12 7v5"/><path d="M18 22V5.5a1 1 0 0 0-.5-.866L12 1.5 6.5 4.634A1 1 0 0 0 6 5.5V22"/><path d="M22 22V9.4a.8.8 0 0 0-.45-.717L18 7"/><path d="M2 22V9.4a.8.8 0 0 1 .45-.717L6 7"/><path d="M18 22H6"/>
+              </svg>
+            </div>
+            <h3>Servimos a la iglesia</h3>
+            <p>No queremos reemplazarla — la fortalecemos. Conectamos a cada joven que recibe a Cristo con una iglesia local que ya existe en su comunidad.</p>
           </div>
           <div class="reason">
-            <div class="reason-num">🇨🇷</div>
-            <h3>Sin agenda externa</h3>
-            <p>Somos costarricenses sirviendo a Costa Rica. Conocemos el contexto, hablamos el idioma, vivimos la cultura.</p>
+            <div class="reason-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="10" r="3"/>
+                <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7Z"/>
+              </svg>
+            </div>
+            <h3>Costarricenses, en Costa Rica</h3>
+            <p>Conocemos el contexto, hablamos el idioma, vivimos la cultura. No traemos una agenda de afuera — somos parte de la misma tierra que queremos alcanzar.</p>
           </div>
         </div>
       </div>
@@ -200,13 +214,18 @@ const icons = {
     border-radius: 20px;
     padding: 32px 28px;
   }
-  .reason-num {
-    font-family: "Fraunces", serif;
-    font-size: 40px;
+  .reason-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(252,211,77,0.14);
     color: var(--yellow);
-    line-height: 1;
-    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
   }
+  .reason-icon svg { width: 26px; height: 26px; }
   .reason h3 {
     color: var(--on-dark);
     font-size: 19px;

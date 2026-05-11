@@ -17,6 +17,13 @@ import DonarModal from "../components/DonarModal.astro";
 
   <section class="section">
     <div class="container narrow">
+      <div class="intro-humana">
+        Acá tenés las reglas básicas para usar el sitio y para donar.
+        <strong>En cristiano:</strong> usá el contenido con respeto, las donaciones
+        son voluntarias, y si algo no te queda claro,
+        <a href="mailto:samuel@luzimpacto.org">escribinos</a> y lo aclaramos.
+      </div>
+
       <p class="updated">Última actualización: mayo 2026</p>
 
       <h2>Sobre LUZ Impacto</h2>
@@ -85,6 +92,18 @@ import DonarModal from "../components/DonarModal.astro";
 
 <style>
   .narrow { max-width: 760px; }
+  .intro-humana {
+    background: var(--crema);
+    border-left: 4px solid var(--yellow);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .intro-humana strong { color: var(--charcoal); }
+  .intro-humana a { color: var(--charcoal); font-weight: 600; }
   .updated {
     font-size: 13px;
     color: var(--ink-faint);

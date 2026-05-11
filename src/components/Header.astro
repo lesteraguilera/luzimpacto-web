@@ -31,9 +31,11 @@
     <a href="/que-hacemos">Qué hacemos</a>
     <a href="/impacto">Impacto</a>
     <a href="/fotos">Fotos</a>
-    <a href="/sumate">Sumate</a>
     <a href="/contacto">Contacto</a>
-    <a href="https://wa.me/50685493929" class="btn btn-yellow drawer-cta" target="_blank" rel="noopener">WhatsApp <span class="arrow">→</span></a>
+    <div class="drawer-ctas">
+      <a href="/sumate" class="btn btn-yellow drawer-cta">Sumate a la misión <span class="arrow">→</span></a>
+      <a href="https://wa.me/50685493929" class="btn btn-ghost-dark drawer-cta drawer-cta-wa" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
   </div>
 </div>
 
@@ -153,14 +155,24 @@
     border-bottom: 1px solid var(--line);
     letter-spacing: -0.01em;
   }
-  .drawer-cta {
-    margin-top: 24px;
-    align-self: flex-start;
-    font-family: "Inter", sans-serif !important;
-    font-size: 15px !important;
+  .drawer-ctas {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     border-bottom: none !important;
-    padding: 14px 26px !important;
+    padding: 0 !important;
   }
+  .drawer-cta {
+    font-family: "Inter", sans-serif !important;
+    font-size: 16px !important;
+    border-bottom: none !important;
+    padding: 16px 26px !important;
+    align-self: stretch;
+    text-align: center;
+    justify-content: center;
+  }
+  .drawer-cta-wa { font-size: 14px !important; padding: 12px 26px !important; }
 
   @media (max-width: 900px) {
     .nav-main { display: none; }

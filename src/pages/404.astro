@@ -1,0 +1,133 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Página no encontrada — LUZ Impacto"
+  description="La página que buscás no existe. Volvé al inicio o explorá nuestra misión."
+>
+  <Header />
+
+  <main class="notfound">
+    <div class="nf-inner">
+      <div class="nf-code">404</div>
+      <h1 class="nf-title">Esta página se perdió en el camino</h1>
+      <p class="nf-text">
+        Quizás escribiste mal la dirección, o el enlace ya no existe.
+        Pero acá hay luz en otros lugares 👇
+      </p>
+
+      <div class="nf-actions">
+        <a href="/" class="btn-primary">Volver al inicio</a>
+        <a href="/que-hacemos/" class="btn-ghost">Qué hacemos</a>
+        <a href="/sumate/" class="btn-ghost">Sumate</a>
+      </div>
+
+      <div class="nf-verse">
+        <p>"Tu palabra es lámpara a mis pies,<br />y lumbrera a mi camino."</p>
+        <span>— Salmos 119:105</span>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .notfound {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+  }
+  .nf-inner {
+    max-width: 640px;
+    text-align: center;
+  }
+  .nf-code {
+    font-family: "Fraunces", serif;
+    font-size: clamp(96px, 18vw, 180px);
+    font-weight: 600;
+    line-height: 0.9;
+    color: var(--yellow);
+    letter-spacing: -0.04em;
+    text-shadow: 0 4px 0 rgba(31,33,37,0.08);
+  }
+  .nf-title {
+    font-family: "Fraunces", serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin: 24px 0 16px;
+    letter-spacing: -0.02em;
+  }
+  .nf-text {
+    font-family: "Inter", sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(31,33,37,0.7);
+    margin: 0 auto 32px;
+    max-width: 480px;
+  }
+  .nf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 56px;
+  }
+  .btn-primary,
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 24px;
+    border-radius: 100px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary {
+    background: var(--charcoal);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(31,33,37,0.2);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(31,33,37,0.3);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--charcoal);
+    border: 1.5px solid rgba(31,33,37,0.2);
+  }
+  .btn-ghost:hover {
+    background: rgba(31,33,37,0.05);
+    transform: translateY(-2px);
+  }
+  .nf-verse {
+    padding-top: 40px;
+    border-top: 1px solid rgba(31,33,37,0.1);
+  }
+  .nf-verse p {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgba(31,33,37,0.65);
+    margin: 0 0 8px;
+  }
+  .nf-verse span {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--yellow);
+    letter-spacing: 0.02em;
+  }
+</style>

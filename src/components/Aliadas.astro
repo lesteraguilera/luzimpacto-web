@@ -1,5 +1,17 @@
 ---
-// Iglesias aliadas — statement institucional
+// Iglesias aliadas — statement institucional + nombres reales
+const iglesias = [
+  { nombre: "Iglesia Arca", ig: "arcaiglesia.cr" },
+  { nombre: "History Makers Costa Rica", ig: "history_makers.cr" },
+  { nombre: "Brazos de Amor · Worship Center", ig: "worshipcenter.cr" },
+  { nombre: "Iglesia El Olivo", ig: "iglesiaelolivo" },
+  { nombre: "Iglesia Bíblica Amor Divino", ig: "amordivinocr" },
+  { nombre: "Oasis Desamparados", ig: "oasis_desamparados" },
+  { nombre: "Visión Jesús", ig: "visionjesus_cr" },
+  { nombre: "CFC Labranza", ig: "cfclabranza" },
+  { nombre: "Iglesia Bíblica Visión de Reino", ig: "iglesia_vision_de_reino" },
+  { nombre: "Comunidad Emaús", ig: "__emaus__" },
+];
 ---
 
 <section class="aliadas">
@@ -12,6 +24,19 @@
         <p>Cuando un joven recibe a Cristo en uno de nuestros eventos, lo conectamos con una iglesia local que pueda discipularlo, acompañarlo y formar parte de su crecimiento.</p>
         <a href="https://wa.me/50685493929?text=Hola%20LUZ%2C%20mi%20iglesia%20quiere%20aliarse" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-sm">¿Tu iglesia? Sumate <span class="arrow">→</span></a>
       </div>
+    </div>
+
+    <div class="aliadas-list">
+      <div class="lista-eyebrow">Algunas iglesias aliadas</div>
+      <div class="iglesias-grid">
+        {iglesias.map((i) => (
+          <a href={`https://instagram.com/${i.ig}`} target="_blank" rel="noopener" class="iglesia-chip">
+            <span class="iglesia-name">{i.nombre}</span>
+            <span class="iglesia-ig">@{i.ig}</span>
+          </a>
+        ))}
+      </div>
+      <div class="iglesias-foot">+ {30 - iglesias.length}+ más en todo el país</div>
     </div>
   </div>
 </section>
@@ -32,6 +57,7 @@
     align-items: center;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.04);
     border-left: 4px solid var(--yellow);
+    margin-bottom: 48px;
   }
   .aliadas-number {
     font-family: "Fraunces", serif;
@@ -55,6 +81,57 @@
     font-size: 16px;
     margin-bottom: 24px;
     max-width: 580px;
+  }
+
+  .aliadas-list { text-align: center; }
+  .lista-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 24px;
+  }
+  .iglesias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    max-width: 980px;
+    margin: 0 auto 24px;
+  }
+  .iglesia-chip {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 18px;
+    background: white;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-align: left;
+  }
+  .iglesia-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  }
+  .iglesia-name {
+    font-family: "Fraunces", serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .iglesia-ig {
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+  .iglesias-foot {
+    font-size: 13px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    margin-top: 8px;
   }
 
   @media (max-width: 800px) {

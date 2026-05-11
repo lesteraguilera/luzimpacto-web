@@ -22,12 +22,16 @@ const {
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://luzimpacto.org" />
-  <meta property="og:image" content="/assets/logos/luz.png" />
+  <meta property="og:image" content="https://luzimpacto.org/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_CR" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://luzimpacto.org/og-image.jpg" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/logos/luz.png" />
@@ -54,10 +58,13 @@ const {
         const start = performance.now();
         const tick = (now) => {
           const progress = Math.min((now - start) / duration, 1);
+          if (progress >= 1) {
+            el.textContent = target + suffix;
+            return;
+          }
           const eased = 1 - Math.pow(1 - progress, 3);
           el.textContent = Math.floor(eased * target) + suffix;
-          if (progress < 1) requestAnimationFrame(tick);
-          else el.textContent = target + suffix;
+          requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
       };

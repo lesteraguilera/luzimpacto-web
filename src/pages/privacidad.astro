@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import Footer from "../components/Footer.astro";
+import DonarModal from "../components/DonarModal.astro";
+---
+
+<BaseLayout title="Privacidad · LUZ Impacto" description="Política de privacidad de Fundación LUZ Impacto.">
+  <Header />
+
+  <PageHero
+    eyebrow="Legal"
+    title="Política de Privacidad."
+    lede="Cómo manejamos la información personal que recibimos."
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <p class="updated">Última actualización: mayo 2026</p>
+
+      <h2>Quiénes somos</h2>
+      <p>
+        Fundación LUZ Impacto es un ministerio cristiano evangélico costarricense.
+        Operamos el sitio web <strong>luzimpacto.org</strong>. Cualquier consulta
+        sobre esta política puede dirigirse a <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a>.
+      </p>
+
+      <h2>Qué información recopilamos</h2>
+      <p>Nuestro sitio web no recopila datos personales automáticamente. Específicamente:</p>
+      <ul>
+        <li>No usamos cookies de seguimiento ni analítica personalizada.</li>
+        <li>No tenemos formularios que pidan datos personales sin tu acción explícita.</li>
+        <li>El contacto inicial es por <strong>WhatsApp</strong>, <strong>Instagram</strong> o <strong>correo electrónico</strong>, donde vos elegís qué información compartir.</li>
+      </ul>
+
+      <h2>Información que vos compartís voluntariamente</h2>
+      <p>
+        Cuando nos escribís por WhatsApp, Instagram o email, recopilamos solo la
+        información que vos nos compartís (nombre, contacto, motivo de tu mensaje).
+        La usamos exclusivamente para responderte y coordinar lo que necesités.
+      </p>
+
+      <h2>Donaciones</h2>
+      <p>
+        Las donaciones se procesan por <strong>SINPE Móvil</strong>, <strong>transferencia bancaria (IBAN)</strong>
+        o <strong>PayPal</strong>. Los datos de tu donación son manejados directamente por esas plataformas —
+        nosotros solo recibimos el monto y, si lo enviás, tu nombre como donante.
+      </p>
+      <p>
+        No vendemos, alquilamos ni compartimos información de donantes con terceros bajo ninguna circunstancia.
+      </p>
+
+      <h2>Fotos y testimonios</h2>
+      <p>
+        Las fotos que aparecen en el sitio son de eventos reales de LUZ Impacto. Cuando incluimos
+        rostros identificables o testimonios de personas, lo hacemos con permiso explícito.
+        Si aparecés en una foto y no quisieras que se publique, escribinos y la retiramos
+        en menos de 48 horas.
+      </p>
+
+      <h2>Servicios de terceros</h2>
+      <p>El sitio usa los siguientes servicios externos:</p>
+      <ul>
+        <li><strong>Cloudflare Pages</strong> — para hospedar el sitio.</li>
+        <li><strong>Google Fonts</strong> — para cargar las tipografías Fraunces e Inter.</li>
+      </ul>
+      <p>Estos servicios pueden recopilar información técnica básica (IP, navegador) según sus propias políticas.</p>
+
+      <h2>Cambios a esta política</h2>
+      <p>
+        Si actualizamos esta política, lo reflejaremos en la fecha de arriba. Cambios significativos serán
+        anunciados en nuestras redes sociales.
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+  <DonarModal />
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 760px; }
+  .updated {
+    font-size: 13px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-family: "Fraunces", serif;
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  h2:first-of-type { margin-top: 0; }
+  p, li { font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
+  ul { padding-left: 24px; margin-bottom: 16px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--charcoal); font-weight: 500; }
+  strong { color: var(--ink); font-weight: 600; }
+</style>

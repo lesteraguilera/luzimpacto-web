@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import Footer from "../components/Footer.astro";
+import DonarModal from "../components/DonarModal.astro";
+---
+
+<BaseLayout title="Términos · LUZ Impacto" description="Términos de uso de Fundación LUZ Impacto.">
+  <Header />
+
+  <PageHero
+    eyebrow="Legal"
+    title="Términos de uso."
+    lede="Las condiciones bajo las cuales se usa este sitio web."
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <p class="updated">Última actualización: mayo 2026</p>
+
+      <h2>Sobre LUZ Impacto</h2>
+      <p>
+        Fundación LUZ Impacto es un ministerio cristiano evangélico costarricense.
+        No somos una iglesia — somos un puente entre los jóvenes que reciben a Cristo
+        en colegios de Costa Rica y las iglesias locales que los pueden discipular.
+      </p>
+
+      <h2>Uso del sitio</h2>
+      <p>
+        Este sitio web (<strong>luzimpacto.org</strong>) es de uso libre e informativo.
+        Al usarlo, aceptás:
+      </p>
+      <ul>
+        <li>Que la información publicada es informativa y puede cambiar en el tiempo.</li>
+        <li>No usar el contenido del sitio para fines comerciales, políticos o engañosos.</li>
+        <li>No suplantar la identidad de Fundación LUZ Impacto ni de su equipo.</li>
+      </ul>
+
+      <h2>Donaciones</h2>
+      <p>
+        Las donaciones a LUZ Impacto son <strong>voluntarias</strong> y se destinan exclusivamente
+        a la misión del ministerio: transporte, materiales, equipo y eventos en colegios de Costa Rica.
+      </p>
+      <p>
+        Las donaciones <strong>no son reembolsables</strong> salvo en caso de error técnico documentado.
+        Si tenés alguna duda o querés revertir una donación por error, escribinos a
+        <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a> en un plazo de 7 días.
+      </p>
+      <p>
+        Las donaciones no constituyen una obligación comercial ni una compra de servicios.
+        Son aportes voluntarios al ministerio.
+      </p>
+
+      <h2>Propiedad intelectual</h2>
+      <p>
+        El nombre <strong>"LUZ Impacto"</strong>, el logo y los textos originales del sitio son propiedad
+        de Fundación LUZ Impacto. Las fotografías son de eventos propios. El mapa de
+        Costa Rica usado en el sitio proviene de Wikimedia Commons bajo licencia CC BY-SA.
+      </p>
+
+      <h2>Limitación de responsabilidad</h2>
+      <p>
+        LUZ Impacto hace esfuerzos razonables para mantener la información del sitio precisa y al día,
+        pero no garantiza que esté libre de errores. El uso del sitio es bajo tu propia responsabilidad.
+      </p>
+
+      <h2>Contacto</h2>
+      <p>
+        Para cualquier consulta sobre estos términos, escribinos a
+        <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a> o por WhatsApp al
+        <a href="https://wa.me/50685493929" target="_blank" rel="noopener">+506 8549 3929</a>.
+      </p>
+
+      <h2>Jurisdicción</h2>
+      <p>
+        Estos términos se rigen por las leyes de la República de Costa Rica.
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+  <DonarModal />
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 760px; }
+  .updated {
+    font-size: 13px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-family: "Fraunces", serif;
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  h2:first-of-type { margin-top: 0; }
+  p, li { font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
+  ul { padding-left: 24px; margin-bottom: 16px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--charcoal); font-weight: 500; }
+  strong { color: var(--ink); font-weight: 600; }
+</style>

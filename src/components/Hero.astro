@@ -22,7 +22,17 @@
       </div>
     </div>
     <div class="hero-image">
-      <img src="/assets/photos/hero.jpg" alt="Jóvenes en un colegio de Costa Rica durante un evento de LUZ Impacto" loading="eager" fetchpriority="high" decoding="async" width="1200" height="900" />
+      <video
+        class="hero-video"
+        src="/assets/photos/hero.mp4"
+        poster="/assets/photos/hero-poster.jpg"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Jóvenes en un colegio de Costa Rica durante un evento de LUZ Impacto"
+      ></video>
     </div>
   </div>
 </section>
@@ -71,11 +81,11 @@
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     position: relative;
   }
-  .hero-image img {
+  .hero-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 69%;
+    object-position: center;
     display: block;
   }
 

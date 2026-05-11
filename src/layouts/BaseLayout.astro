@@ -77,9 +77,9 @@ const orgSchema = {
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/logos/luz.png" />
 
-  <!-- Preload hero image (LCP) — solo en home -->
+  <!-- Preload hero poster (LCP) — solo en home -->
   {Astro.url.pathname === "/" && (
-    <link rel="preload" as="image" href="/assets/photos/hero.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/photos/hero-poster.jpg" fetchpriority="high" />
   )}
 
   <!-- Google Fonts: Fraunces + Inter -->

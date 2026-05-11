@@ -1,5 +1,6 @@
 ---
-// Testimonio en formato banda cinematic — foto full-bleed con quote overlay
+// Testimonio cinematic con jerarquía tipográfica:
+// "Dios me agarró" como pull-quote gigante + resto del quote debajo
 ---
 
 <section class="testimonio" id="impacto">
@@ -21,8 +22,9 @@
       <div class="cinema-overlay"></div>
       <div class="cinema-content">
         <div class="cinema-quote-mark">"</div>
-        <p class="cinema-quote">
-          Esa tarde <span class="cinema-emph">Dios me agarró</span>. No sé cómo explicarlo mejor. Mis amigas y yo lloramos como nunca, y desde ese día somos diferentes. Ya no me siento sola en lo que sentía.
+        <div class="cinema-pull">Dios me agarró.</div>
+        <p class="cinema-rest">
+          Esa tarde no sé cómo explicarlo mejor. Mis amigas y yo lloramos como nunca, y desde ese día somos diferentes. <span class="cinema-em">Ya no me siento sola en lo que sentía.</span>
         </p>
       </div>
     </div>
@@ -87,15 +89,12 @@
     object-position: center 35%;
     display: block;
   }
+  /* Overlay con scrim más fuerte abajo para legibilidad consistente */
   .cinema-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0,0,0,0.15) 0%,
-      rgba(0,0,0,0.45) 55%,
-      rgba(0,0,0,0.85) 100%
-    );
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.95) 100%);
     pointer-events: none;
   }
   .cinema-content {
@@ -103,32 +102,43 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 56px;
+    padding: 56px 64px;
     color: white;
     z-index: 2;
   }
   .cinema-quote-mark {
     font-family: "Fraunces", serif;
-    font-size: 100px;
-    line-height: 0.4;
+    font-size: 96px;
+    line-height: 0.3;
     color: var(--yellow);
-    opacity: 0.85;
+    opacity: 0.7;
     margin-bottom: 24px;
   }
-  .cinema-quote {
+  .cinema-pull {
     font-family: "Fraunces", serif;
     font-style: italic;
-    font-weight: 500;
-    font-size: clamp(22px, 3.2vw, 38px);
-    line-height: 1.35;
-    color: white;
-    max-width: 900px;
-    letter-spacing: -0.01em;
-    text-shadow: 0 2px 24px rgba(0,0,0,0.6);
-  }
-  .cinema-emph {
-    color: var(--yellow);
     font-weight: 600;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: 1;
+    color: var(--yellow);
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+    text-shadow: 0 4px 28px rgba(0,0,0,0.6);
+  }
+  .cinema-rest {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 1.9vw, 24px);
+    line-height: 1.45;
+    color: white;
+    max-width: 720px;
+    letter-spacing: -0.005em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  }
+  .cinema-em {
+    color: var(--yellow);
+    font-weight: 500;
   }
 
   @media (max-width: 700px) {
@@ -136,14 +146,16 @@
     .cinema-wrap { padding: 0 16px; }
     .cinema-card { aspect-ratio: 4 / 5; border-radius: 20px; }
     .cinema-content { padding: 28px 24px 32px; }
-    .cinema-quote-mark { font-size: 64px; margin-bottom: 12px; }
+    .cinema-quote-mark { font-size: 60px; margin-bottom: 12px; }
+    .cinema-pull {
+      font-size: clamp(34px, 11vw, 52px);
+      margin-bottom: 16px;
+    }
+    .cinema-rest { font-size: 17px; }
+    /* Scrim más agresivo en mobile para garantizar legibilidad */
     .cinema-overlay {
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,0.10) 0%,
-        rgba(0,0,0,0.45) 50%,
-        rgba(0,0,0,0.92) 100%
-      );
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.97) 100%);
     }
   }
 </style>

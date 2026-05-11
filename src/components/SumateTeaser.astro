@@ -1,10 +1,10 @@
 ---
 // Teaser de "Sumate" para la home — versión compacta que dirige a /sumate
 const caminos = [
-  { iconKey: "heart",     titulo: "Donar" },
-  { iconKey: "church",    titulo: "Aliarse" },
-  { iconKey: "people",    titulo: "Sumarme" },
-  { iconKey: "megaphone", titulo: "Compartir" },
+  { iconKey: "heart",     titulo: "Donar",     href: "#donar", external: false },
+  { iconKey: "church",    titulo: "Aliarse",   href: "https://wa.me/50685493929?text=Hola%20LUZ%2C%20mi%20iglesia%20quiere%20aliarse", external: true },
+  { iconKey: "people",    titulo: "Sumarme",   href: "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20sumarme%20al%20equipo", external: true },
+  { iconKey: "megaphone", titulo: "Compartir", href: "https://instagram.com/luzimpacto_cr", external: true },
 ];
 
 const icons = {
@@ -25,12 +25,13 @@ const icons = {
 
     <div class="teaser-chips">
       {caminos.map((c) => (
-        <div class="chip">
+        <a class="chip" href={c.href} {...(c.external ? { target: '_blank', rel: 'noopener' } : {})}>
           <span class="chip-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icons[c.iconKey]} />
           </span>
           <span class="chip-name">{c.titulo}</span>
-        </div>
+          <span class="chip-arrow">→</span>
+        </a>
       ))}
     </div>
 
@@ -64,17 +65,30 @@ const icons = {
   .chip {
     background: white;
     border-radius: 16px;
-    padding: 24px 16px;
+    padding: 24px 16px 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    text-decoration: none;
+    cursor: pointer;
   }
   .chip:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+    background: var(--yellow-soft, #FEEBC8);
+  }
+  .chip-arrow {
+    color: var(--ink-faint);
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .chip:hover .chip-arrow {
+    color: var(--charcoal);
+    transform: translateX(3px);
   }
   .chip-icon {
     width: 44px;

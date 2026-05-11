@@ -24,9 +24,8 @@ import photos from "../data/photos.json";
           <button
             class="gallery-item"
             data-id={p.id}
-            data-w={p.w}
-            data-h={p.h}
             aria-label={`Foto ${p.id.replace('foto_', '')}`}
+            style={`aspect-ratio: ${p.w}/${p.h}`}
           >
             <img
               src={`/assets/photos/gallery/thumbs/${p.id}.jpg`}
@@ -34,6 +33,7 @@ import photos from "../data/photos.json";
               loading="lazy"
               width={p.w}
               height={p.h}
+              style={`aspect-ratio: ${p.w}/${p.h}`}
             />
           </button>
         ))}

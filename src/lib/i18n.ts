@@ -18,6 +18,8 @@ const PATH_MAP: Record<string, string> = {
   "/fotos": "/en/photos",
   "/privacidad": "/en/privacy",
   "/terminos": "/en/terms",
+  "/lo-que-creemos": "/en/what-we-believe",
+  "/para-iglesias": "/en/for-churches",
 };
 
 const REVERSE_PATH_MAP: Record<string, string> = Object.fromEntries(

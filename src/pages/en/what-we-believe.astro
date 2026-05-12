@@ -1,0 +1,200 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PageHero from "../../components/PageHero.astro";
+import CTAFinal from "../../components/CTAFinal.astro";
+import Footer from "../../components/Footer.astro";
+
+const beliefs = [
+  {
+    n: "01",
+    title: "The Trinity",
+    body: "We believe in one God eternally existing in three persons: Father, Son, and Holy Spirit. Equal in essence and power, distinct in role. One God whom we worship, serve, and obey.",
+  },
+  {
+    n: "02",
+    title: "Scripture",
+    body: "We believe that the Bible — Old and New Testaments — is the inspired, true, and sufficient Word of God. It is our final authority in doctrine, faith, and conduct. We add nothing to it and take nothing from it.",
+  },
+  {
+    n: "03",
+    title: "Jesus Christ",
+    body: "We believe Jesus is the eternal Son of God, fully God and fully man, conceived by the Holy Spirit and born of the virgin Mary. He lived without sin, died on the cross as a substitutionary sacrifice for our sins, rose on the third day, and ascended to the Father. He will return in glory.",
+  },
+  {
+    n: "04",
+    title: "Salvation by grace through faith",
+    body: "We believe salvation is a free gift of God. It is received by grace, through faith in Jesus Christ — not by works or personal merit. Whoever repents and believes is justified, forgiven, adopted as a child of God, and given eternal life.",
+  },
+  {
+    n: "05",
+    title: "Christ, the only mediator",
+    body: "We believe Jesus Christ alone is the mediator between God and humanity. There is no other name under heaven by which we can be saved. That's why we preach Christ clearly, without alternate agendas.",
+  },
+  {
+    n: "06",
+    title: "The Holy Spirit",
+    body: "We believe the Holy Spirit convicts the world of sin, regenerates the believer, dwells in them, guides them, and equips them to live and serve. We recognize the diversity of gifts the Spirit distributes among His people, and we honor the various traditions of local evangelical churches in how they understand and exercise them.",
+  },
+  {
+    n: "07",
+    title: "The local church",
+    body: "We believe the local church is the spiritual home of the believer. LUZ is not a church: we are a ministry that serves churches. When a young person receives Christ at one of our events, we connect them with a local evangelical church nearby where they can be discipled, gathered, and walked with.",
+  },
+  {
+    n: "08",
+    title: "The Great Commission",
+    body: "We believe in Christ's command to make disciples of all nations. We begin with Costa Rica's schools because that's where we are and where God has placed us, with the conviction that every generation needs to hear the gospel with clarity and closeness.",
+  },
+];
+
+const t = {
+  eyebrow: "What we believe",
+  title: `Our faith in <span class="marker">8 points.</span>`,
+  lede: "LUZ Impacto is an interdenominational evangelical Christian ministry. These are the convictions that hold up everything we do.",
+  introHeader: "The essentials",
+  introBody: "We serve alongside evangelical churches of different traditions and we respect their differences on secondary matters. This statement covers the essentials: what every historic evangelical church recognizes as the foundation of faith in Christ. It's what unites us, and what we preach in every school.",
+  noteHeader: "A note on the non-essentials",
+  noteBody: "There are issues on which evangelical churches hold different positions (mode of baptism, emphasis on specific gifts, fine points of eschatology). LUZ does not take a public position on these matters so as not to limit our partner churches. Every young person referred is discipled within the doctrinal framework of the local church that receives them.",
+  closeHeader: "Does your church share these convictions?",
+  closeBody: "If you share the essentials, we're on the same side and we'd love to serve together. Learn about the partnership model.",
+  closeCta: "Learn about the partnership",
+  closeLink: "/en/for-churches",
+};
+---
+
+<BaseLayout title="What we believe · LUZ Impacto" description="Our statement of faith: eight historic evangelical convictions that hold up the LUZ Impacto ministry.">
+  <Header />
+
+  <PageHero
+    eyebrow={t.eyebrow}
+    title={t.title}
+    lede={t.lede}
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="intro-block">
+        <div class="intro-label">{t.introHeader}</div>
+        <p>{t.introBody}</p>
+      </div>
+
+      <div class="creencias">
+        {beliefs.map((c) => (
+          <article class="creencia">
+            <div class="creencia-num">{c.n}</div>
+            <div class="creencia-body">
+              <h2>{c.title}</h2>
+              <p>{c.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="note-block">
+        <div class="note-label">{t.noteHeader}</div>
+        <p>{t.noteBody}</p>
+      </div>
+
+      <div class="close-block">
+        <h3>{t.closeHeader}</h3>
+        <p>{t.closeBody}</p>
+        <a href={t.closeLink} class="btn btn-dark">{t.closeCta} <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal title={`We believe the same.<br><span class="marker">Let's walk together.</span>`} />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 820px; }
+
+  .intro-block, .note-block {
+    background: var(--crema);
+    border-left: 4px solid var(--yellow);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+  .intro-label, .note-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+  }
+  .intro-block p, .note-block p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0;
+  }
+  .note-block { margin: 56px 0 48px; }
+
+  .creencias {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .creencia {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 28px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .creencia:first-child { padding-top: 0; }
+  .creencia:last-child { border-bottom: none; }
+  .creencia-num {
+    font-family: "Fraunces", serif;
+    font-size: 44px;
+    font-weight: 600;
+    color: var(--yellow);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .creencia-body h2 {
+    font-family: "Fraunces", serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .creencia-body p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .close-block {
+    text-align: center;
+    padding: 48px 32px;
+    background: var(--crema);
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+  .close-block h3 {
+    font-family: "Fraunces", serif;
+    font-size: 28px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .close-block p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 0 auto 24px;
+    max-width: 560px;
+  }
+
+  @media (max-width: 600px) {
+    .creencia { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
+    .creencia-num { font-size: 36px; }
+    .creencia-body h2 { font-size: 22px; }
+  }
+</style>

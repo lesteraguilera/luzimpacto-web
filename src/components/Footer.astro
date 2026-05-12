@@ -16,9 +16,13 @@ const t = {
   verse: isEn
     ? '"You are the light of the world." — Matthew 5:14'
     : '"Vosotros sois la luz del mundo." — Mateo 5:14',
+  beliefs: isEn ? "What we believe" : "Lo que creemos",
+  forChurches: isEn ? "For churches" : "Para iglesias",
   privacy: isEn ? "Privacy" : "Privacidad",
   terms: isEn ? "Terms" : "Términos",
   getInvolvedPath: isEn ? "/en/get-involved" : "/sumate",
+  beliefsPath: isEn ? "/en/what-we-believe" : "/lo-que-creemos",
+  forChurchesPath: isEn ? "/en/for-churches" : "/para-iglesias",
   privacyPath: isEn ? "/en/privacy" : "/privacidad",
   termsPath: isEn ? "/en/terms" : "/terminos",
   contactId: isEn ? "contact" : "contacto",
@@ -56,6 +60,10 @@ const t = {
     <div class="footer-bottom">
       <div>© {new Date().getFullYear()} Fundación LUZ Impacto · {isEn ? "Founded 2024" : "Fundada 2024"} · San José, Costa Rica</div>
       <div class="footer-meta">
+        <a href={t.beliefsPath}>{t.beliefs}</a>
+        <span>·</span>
+        <a href={t.forChurchesPath}>{t.forChurches}</a>
+        <span>·</span>
         <a href={t.privacyPath}>{t.privacy}</a>
         <span>·</span>
         <a href={t.termsPath}>{t.terms}</a>

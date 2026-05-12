@@ -1,0 +1,200 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import CTAFinal from "../components/CTAFinal.astro";
+import Footer from "../components/Footer.astro";
+
+const creencias = [
+  {
+    n: "01",
+    titulo: "La Trinidad",
+    texto: "Creemos en un solo Dios eternamente existente en tres personas: Padre, Hijo y Espíritu Santo. Iguales en esencia y poder, distintos en función. Un solo Dios al que adoramos, sirvimos y obedecemos.",
+  },
+  {
+    n: "02",
+    titulo: "La Escritura",
+    texto: "Creemos que la Biblia — Antiguo y Nuevo Testamento — es la Palabra de Dios inspirada, verdadera y suficiente. Es nuestra autoridad final en doctrina, fe y conducta. No le sumamos ni le restamos.",
+  },
+  {
+    n: "03",
+    titulo: "Jesucristo",
+    texto: "Creemos que Jesús es el Hijo eterno de Dios, plenamente Dios y plenamente hombre, concebido por el Espíritu Santo y nacido de la virgen María. Vivió sin pecado, murió en la cruz como sacrificio sustitutivo por nuestros pecados, resucitó al tercer día y ascendió al Padre. Volverá en gloria.",
+  },
+  {
+    n: "04",
+    titulo: "Salvación por gracia mediante la fe",
+    texto: "Creemos que la salvación es un don gratuito de Dios. Se recibe por gracia, mediante la fe en Jesucristo, no por obras ni méritos propios. Quien se arrepiente y cree es justificado, perdonado, adoptado como hijo de Dios y recibe vida eterna.",
+  },
+  {
+    n: "05",
+    titulo: "Cristo, único mediador",
+    texto: "Creemos que solo Jesucristo es mediador entre Dios y los hombres. No hay otro nombre dado bajo el cielo en el cual podamos ser salvos. Por eso predicamos a Cristo con claridad, sin agendas alternas.",
+  },
+  {
+    n: "06",
+    titulo: "El Espíritu Santo",
+    texto: "Creemos que el Espíritu Santo convence al mundo de pecado, regenera al creyente, lo habita, lo guía y lo capacita para vivir y servir. Reconocemos la diversidad de dones que el Espíritu reparte entre su pueblo, y honramos las distintas tradiciones de las iglesias evangélicas locales en su forma de comprenderlos y ejercerlos.",
+  },
+  {
+    n: "07",
+    titulo: "La iglesia local",
+    texto: "Creemos que la iglesia local es el hogar espiritual del creyente. LUZ no es una iglesia: somos un ministerio que sirve a las iglesias. Cuando un joven recibe a Cristo en uno de nuestros eventos, lo conectamos con una iglesia evangélica local cercana donde pueda ser discipulado, congregado y acompañado.",
+  },
+  {
+    n: "08",
+    titulo: "La gran comisión",
+    texto: "Creemos en el mandato de Cristo de hacer discípulos en todas las naciones. Comenzamos por los colegios de Costa Rica porque es donde estamos y donde Dios nos puso, con la convicción de que cada generación necesita escuchar el evangelio con claridad y cercanía.",
+  },
+];
+
+const t = {
+  eyebrow: "Lo que creemos",
+  title: `Nuestra fe en <span class="marker">8 puntos.</span>`,
+  lede: "LUZ Impacto es un ministerio cristiano evangélico interdenominacional. Estas son las convicciones que sostienen todo lo que hacemos.",
+  introHeader: "Lo esencial",
+  introBody: "Servimos junto a iglesias evangélicas de distintas tradiciones y respetamos sus diferencias en lo secundario. Esta declaración cubre lo central: lo que toda iglesia evangélica histórica reconoce como fundamento de la fe en Cristo. Es lo que nos une, y lo que predicamos en cada colegio.",
+  noteHeader: "Una nota sobre lo no esencial",
+  noteBody: "Hay temas en los que las iglesias evangélicas tienen posiciones distintas (modo del bautismo, énfasis sobre dones específicos, aspectos de la escatología). LUZ no toma posición pública en estos temas para no condicionar a las iglesias aliadas. Cada joven referido es discipulado dentro del marco doctrinal de la iglesia local que lo recibe.",
+  closeHeader: "¿Tu iglesia comparte estas convicciones?",
+  closeBody: "Si compartís lo central, estamos del mismo lado y nos encantaría servir juntos. Conocé el modelo de alianza.",
+  closeCta: "Conocer el modelo de alianza",
+  closeLink: "/para-iglesias",
+};
+---
+
+<BaseLayout title="Lo que creemos · LUZ Impacto" description="Nuestra declaración de fe: ocho convicciones evangélicas históricas que sostienen el ministerio de LUZ Impacto.">
+  <Header />
+
+  <PageHero
+    eyebrow={t.eyebrow}
+    title={t.title}
+    lede={t.lede}
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="intro-block">
+        <div class="intro-label">{t.introHeader}</div>
+        <p>{t.introBody}</p>
+      </div>
+
+      <div class="creencias">
+        {creencias.map((c) => (
+          <article class="creencia">
+            <div class="creencia-num">{c.n}</div>
+            <div class="creencia-body">
+              <h2>{c.titulo}</h2>
+              <p>{c.texto}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="note-block">
+        <div class="note-label">{t.noteHeader}</div>
+        <p>{t.noteBody}</p>
+      </div>
+
+      <div class="close-block">
+        <h3>{t.closeHeader}</h3>
+        <p>{t.closeBody}</p>
+        <a href={t.closeLink} class="btn btn-dark">{t.closeCta} <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal title={`Creemos lo mismo.<br><span class="marker">Caminemos juntos.</span>`} />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 820px; }
+
+  .intro-block, .note-block {
+    background: var(--crema);
+    border-left: 4px solid var(--yellow);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+  .intro-label, .note-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+  }
+  .intro-block p, .note-block p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0;
+  }
+  .note-block { margin: 56px 0 48px; }
+
+  .creencias {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .creencia {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 28px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .creencia:first-child { padding-top: 0; }
+  .creencia:last-child { border-bottom: none; }
+  .creencia-num {
+    font-family: "Fraunces", serif;
+    font-size: 44px;
+    font-weight: 600;
+    color: var(--yellow);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .creencia-body h2 {
+    font-family: "Fraunces", serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .creencia-body p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .close-block {
+    text-align: center;
+    padding: 48px 32px;
+    background: var(--crema);
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+  .close-block h3 {
+    font-family: "Fraunces", serif;
+    font-size: 28px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .close-block p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 0 auto 24px;
+    max-width: 560px;
+  }
+
+  @media (max-width: 600px) {
+    .creencia { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
+    .creencia-num { font-size: 36px; }
+    .creencia-body h2 { font-size: 22px; }
+  }
+</style>

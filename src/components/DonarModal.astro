@@ -24,18 +24,18 @@ const t = {
   monthlyHref: isEn
     ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20become%20a%20monthly%20donor"
     : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20ser%20donante%20mensual",
-  sinpeTag: isEn ? "Costa Rica · fastest" : "Costa Rica · más rápido",
+  sinpeTag: isEn ? "Costa Rica · SINPE Móvil (instant mobile transfer)" : "Costa Rica · más rápido",
   ibanTag: isEn ? "Costa Rica · bank transfer" : "Costa Rica · transferencia",
   ibanName: isEn ? "Bank account (IBAN)" : "Cuenta IBAN",
   numberLabel: isEn ? "Number" : "Número",
   accountHolderLabel: isEn ? "Account holder:" : "A nombre de",
   ibanLabel: isEn ? "IBAN" : "IBAN",
   copiedText: isEn ? "Copied! ✓" : "¡Copiado! ✓",
-  intlTag: isEn ? "International · USD · Tax-deductible (US)" : "Internacional · USD",
+  intlTag: isEn ? "International · USD · Tax-deductible (US)" : "Internacional · USD · Deducible en USA",
   intlTitle: isEn ? "Donating from outside Costa Rica?" : "¿Donás desde fuera de Costa Rica?",
   intlDesc: isEn
     ? "LUZ Impacto is a registered 501(c)(3) nonprofit in the United States. Donations from US donors are tax-deductible to the extent allowed by law. Our online giving portal is launching soon — in the meantime, write us and we'll guide you through Wise, PayPal, or a direct US bank transfer."
-    : "Estamos habilitando PayPal y Wise a nombre de la Fundación. Mientras tanto, coordinamos tu donación internacional por WhatsApp.",
+    : "LUZ Impacto está registrada como organización sin fines de lucro 501(c)(3) en Estados Unidos. Las donaciones desde EE. UU. son deducibles de impuestos según la ley aplicable. Estamos terminando de habilitar el portal de donación online — mientras tanto, escribinos y te guiamos por Wise, PayPal o transferencia directa.",
   intlCta: isEn ? "Coordinate your donation" : "Escribir por WhatsApp",
   intlWa: isEn
     ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20donate%20from%20abroad"
@@ -70,15 +70,27 @@ const t = {
       <div class="impacto-eyebrow">{t.impactEyebrow}</div>
       <div class="impacto-tiers">
         <div class="impacto-tier">
-          <div class="tier-amount"><span class="tier-cur">₡</span>5,000<span class="tier-usd">≈ $10</span></div>
+          <div class="tier-amount">
+            {isEn
+              ? (<><span class="tier-cur">$</span>10<span class="tier-usd">≈ ₡5,000</span></>)
+              : (<><span class="tier-cur">₡</span>5,000<span class="tier-usd">≈ $10</span></>)}
+          </div>
           <div class="tier-impact">{t.tier1}</div>
         </div>
         <div class="impacto-tier tier-featured">
-          <div class="tier-amount"><span class="tier-cur">₡</span>20,000<span class="tier-usd">≈ $40</span></div>
+          <div class="tier-amount">
+            {isEn
+              ? (<><span class="tier-cur">$</span>40<span class="tier-usd">≈ ₡20,000</span></>)
+              : (<><span class="tier-cur">₡</span>20,000<span class="tier-usd">≈ $40</span></>)}
+          </div>
           <div class="tier-impact">{t.tier2}</div>
         </div>
         <div class="impacto-tier">
-          <div class="tier-amount"><span class="tier-cur">₡</span>75,000<span class="tier-usd">≈ $150</span></div>
+          <div class="tier-amount">
+            {isEn
+              ? (<><span class="tier-cur">$</span>150<span class="tier-usd">≈ ₡75,000</span></>)
+              : (<><span class="tier-cur">₡</span>75,000<span class="tier-usd">≈ $150</span></>)}
+          </div>
           <div class="tier-impact">{t.tier3}</div>
         </div>
       </div>

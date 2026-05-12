@@ -11,6 +11,10 @@ const t = {
     ? "Youth at a school in Costa Rica during a LUZ Impacto event"
     : "Jóvenes en un colegio de Costa Rica durante un evento de LUZ Impacto",
   getInvolvedPath: isEn ? "/en/get-involved" : "/sumate",
+  churchCta: isEn ? "Are you a pastor? Bring LUZ to your church" : "¿Sos pastor? Llevá LUZ a tu iglesia",
+  churchWa: isEn
+    ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20our%20church%20wants%20to%20receive%20you"
+    : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20nuestra%20iglesia%20quiere%20recibirlos",
 };
 ---
 
@@ -41,6 +45,9 @@ const t = {
         <a href="#donar" class="btn btn-yellow">{t.ctaDonate} <span class="arrow">→</span></a>
         <a href={t.getInvolvedPath} class="btn btn-ghost-light">{t.ctaOther} <span class="arrow">→</span></a>
       </div>
+      <a href={t.churchWa} target="_blank" rel="noopener" class="hero-church-link">
+        {t.churchCta} <span class="arrow">→</span>
+      </a>
     </div>
     <div class="hero-image">
       <video
@@ -95,6 +102,19 @@ const t = {
     font-weight: 400;
   }
   .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-church-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.22);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-church-link:hover { color: var(--yellow); border-color: var(--yellow); }
+  .hero-church-link .arrow { transition: transform 0.2s; display: inline-block; }
+  .hero-church-link:hover .arrow { transform: translateX(3px); }
   .hero-image {
     border-radius: 20px;
     aspect-ratio: 4/5;

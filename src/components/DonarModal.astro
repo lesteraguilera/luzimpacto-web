@@ -7,7 +7,7 @@ const isEn = lang === "en";
 
 const t = {
   closeAria: isEn ? "Close" : "Cerrar",
-  eyebrow: isEn ? "Every colón reaches a school" : "Cada colón viaja a un colegio",
+  eyebrow: isEn ? "Every gift reaches a school" : "Cada colón viaja a un colegio",
   title: isEn ? "How to give" : "Cómo donar",
   lede: isEn
     ? "Your donation covers transportation, materials, and events where young people hear the gospel."
@@ -26,17 +26,17 @@ const t = {
     : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20ser%20donante%20mensual",
   sinpeTag: isEn ? "Costa Rica · fastest" : "Costa Rica · más rápido",
   ibanTag: isEn ? "Costa Rica · bank transfer" : "Costa Rica · transferencia",
-  ibanName: isEn ? "Cuenta IBAN" : "Cuenta IBAN",
+  ibanName: isEn ? "Bank account (IBAN)" : "Cuenta IBAN",
   numberLabel: isEn ? "Number" : "Número",
-  accountHolderLabel: isEn ? "Account holder" : "A nombre de",
+  accountHolderLabel: isEn ? "Account holder:" : "A nombre de",
   ibanLabel: isEn ? "IBAN" : "IBAN",
   copiedText: isEn ? "Copied! ✓" : "¡Copiado! ✓",
-  intlTag: isEn ? "International · USD" : "Internacional · USD",
+  intlTag: isEn ? "International · USD · Tax-deductible (US)" : "Internacional · USD",
   intlTitle: isEn ? "Donating from outside Costa Rica?" : "¿Donás desde fuera de Costa Rica?",
   intlDesc: isEn
-    ? "We're setting up PayPal and Wise in the Foundation's name. Meanwhile, we coordinate your international donation by WhatsApp."
+    ? "LUZ Impacto is a registered 501(c)(3) nonprofit in the United States. Donations from US donors are tax-deductible to the extent allowed by law. Our online giving portal is launching soon — in the meantime, write us and we'll guide you through Wise, PayPal, or a direct US bank transfer."
     : "Estamos habilitando PayPal y Wise a nombre de la Fundación. Mientras tanto, coordinamos tu donación internacional por WhatsApp.",
-  intlCta: isEn ? "Message us on WhatsApp" : "Escribir por WhatsApp",
+  intlCta: isEn ? "Coordinate your donation" : "Escribir por WhatsApp",
   intlWa: isEn
     ? "https://wa.me/50685493929?text=Hello%20LUZ%2C%20I%20want%20to%20donate%20from%20abroad"
     : "https://wa.me/50685493929?text=Hola%20LUZ%2C%20quiero%20donar%20desde%20el%20exterior",
@@ -128,6 +128,8 @@ const t = {
           <h3>{t.intlTitle}</h3>
         </div>
         <div class="opt-data">
+          {/* Donorbox embed — reemplazar cuando esté el URL del campaign:
+              <a href="https://donorbox.org/luz-impacto" target="_blank" rel="noopener" class="btn btn-yellow btn-sm">Donate via Donorbox →</a> */}
           <p class="opt-desc">{t.intlDesc}</p>
           <a href={t.intlWa} target="_blank" rel="noopener" class="btn btn-dark btn-sm">{t.intlCta} <span class="arrow">→</span></a>
         </div>

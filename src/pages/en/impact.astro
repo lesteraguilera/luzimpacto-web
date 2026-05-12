@@ -31,17 +31,17 @@ const visitadas = provincias.filter(p => p.visitada).length;
     <div class="container">
       <div class="grid">
         <div class="met">
-          <div class="num"><span class="count" data-target="60">0</span><span class="plus">+</span></div>
+          <div class="num"><span class="count" data-target="60">60</span><span class="plus">+</span></div>
           <div class="label">Schools visited</div>
           <p>Each visit is coordinated with school administration and adapted to the school's context.</p>
         </div>
         <div class="met">
-          <div class="num"><span class="count" data-target="50" data-suffix="K">0</span><span class="plus">+</span></div>
+          <div class="num"><span class="count" data-target="50" data-suffix="K">50K</span><span class="plus">+</span></div>
           <div class="label">Youth reached</div>
           <p>Thousands of students have heard the message of Christ in events organized with LUZ.</p>
         </div>
         <div class="met">
-          <div class="num"><span class="count" data-target="30">0</span><span class="plus">+</span></div>
+          <div class="num"><span class="count" data-target="30">30</span><span class="plus">+</span></div>
           <div class="label">Partner churches</div>
           <p>A network of evangelical churches across the country receives the young people who turn to Christ.</p>
         </div>
@@ -71,9 +71,9 @@ const visitadas = provincias.filter(p => p.visitada).length;
         />
         <div class="cinema-overlay"></div>
         <div class="cinema-content">
-          <div class="cinema-pull">God grabbed me.</div>
+          <div class="cinema-pull">God reached me.</div>
           <p class="cinema-rest">
-            That afternoon — I can't explain it any better. My friends and I cried like never before, and since that day we're different. <span class="cinema-em">I no longer feel alone in what I felt.</span>
+            That afternoon — I can't explain it any better. My friends and I cried like never before, and since that day we're different. <span class="cinema-em">I'm not alone in what I was carrying anymore.</span>
           </p>
         </div>
       </div>
@@ -81,7 +81,7 @@ const visitadas = provincias.filter(p => p.visitada).length;
     </div>
   </section>
 
-  <CTAFinal />
+  <CTAFinal title={`These aren't statistics.<br><span class="marker">They are lives touched.</span>`} />
   <Footer />
 </BaseLayout>
 

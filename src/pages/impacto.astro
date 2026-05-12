@@ -31,17 +31,17 @@ const visitadas = provincias.filter(p => p.visitada).length;
     <div class="container">
       <div class="grid">
         <div class="met">
-          <div class="num"><span class="count" data-target="60">0</span><span class="plus">+</span></div>
+          <div class="num"><span class="count" data-target="60">60</span><span class="plus">+</span></div>
           <div class="label">Colegios visitados</div>
           <p>Cada visita es coordinada con dirección académica y adaptada al contexto del colegio.</p>
         </div>
         <div class="met">
-          <div class="num"><span class="count" data-target="50" data-suffix="K">0</span><span class="plus">+</span></div>
+          <div class="num"><span class="count" data-target="50" data-suffix="K">50K</span><span class="plus">+</span></div>
           <div class="label">Jóvenes alcanzados</div>
           <p>Miles de estudiantes han escuchado el mensaje de Cristo en eventos realizados con LUZ.</p>
         </div>
         <div class="met">
-          <div class="num"><span class="count" data-target="30">0</span><span class="plus">+</span></div>
+          <div class="num"><span class="count" data-target="30">30</span><span class="plus">+</span></div>
           <div class="label">Iglesias aliadas</div>
           <p>Una red de iglesias evangélicas en todo el país recibe a los jóvenes que reciben a Cristo.</p>
         </div>
@@ -81,7 +81,7 @@ const visitadas = provincias.filter(p => p.visitada).length;
     </div>
   </section>
 
-  <CTAFinal />
+  <CTAFinal title={`Esto no son estadísticas.<br><span class="marker">Son vidas tocadas.</span>`} />
   <Footer />
 </BaseLayout>
 

@@ -46,6 +46,7 @@ const orgSchema = {
     ? "Costa Rican evangelical Christian ministry that visits schools with the message of salvation and connects young people with local churches for discipleship."
     : "Ministerio cristiano evangélico costarricense que visita colegios con un mensaje de salvación y conecta a los jóvenes con iglesias locales para su discipulado.",
   "foundingDate": "2024",
+  "nonprofitStatus": "Nonprofit501c3",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "San José",
@@ -126,40 +127,39 @@ const orgSchema = {
   <FloatingDonate />
   <DonarModal />
 
-  <!-- Animación de números (Intersection Observer) -->
+  <!-- Animación de números (Intersection Observer) — el HTML estático ya trae el valor final; este script solo anima -->
   <script is:inline>
     (function() {
       const counters = document.querySelectorAll('.count');
+      if (!counters.length) return;
+      const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) return; // HTML ya tiene el valor final
+
       const animate = (el) => {
         const target = parseInt(el.dataset.target, 10);
         const suffix = el.dataset.suffix || '';
         const duration = 1600;
         const start = performance.now();
+        el.textContent = '0' + suffix;
         const tick = (now) => {
           const progress = Math.min((now - start) / duration, 1);
-          if (progress >= 1) {
-            el.textContent = target + suffix;
-            return;
-          }
+          if (progress >= 1) { el.textContent = target + suffix; return; }
           const eased = 1 - Math.pow(1 - progress, 3);
           el.textContent = Math.floor(eased * target) + suffix;
           requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
       };
-      if ('IntersectionObserver' in window) {
-        const obs = new IntersectionObserver((entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting && !e.target.dataset.done) {
-              e.target.dataset.done = '1';
-              animate(e.target);
-            }
-          });
-        }, { threshold: 0.4 });
-        counters.forEach((c) => obs.observe(c));
-      } else {
-        counters.forEach(animate);
-      }
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !e.target.dataset.done) {
+            e.target.dataset.done = '1';
+            animate(e.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      counters.forEach((c) => obs.observe(c));
     })();
   </script>
 </body>

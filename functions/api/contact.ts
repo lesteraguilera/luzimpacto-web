@@ -1,7 +1,13 @@
 // Cloudflare Pages Function: maneja el form de contacto
-// Envía 2 emails vía MailChannels (gratis, integración nativa Cloudflare Workers):
-//   1. Notificación al equipo de LUZ (samuel@ con cc a lester@)
+// Usa Resend (https://resend.com) — API key configurada como env var RESEND_API_KEY (encrypted).
+// Envía 2 emails:
+//   1. Notificación al equipo: samuel@luzimpacto.org + cc lesteraguilera2004@gmail.com
 //   2. Confirmación automática al remitente
+//
+// Importante: para que el envío a CUALQUIER dirección funcione (incluyendo CC y confirmación al remitente),
+// el dominio luzimpacto.org debe estar VERIFICADO en Resend. Si no está verificado, los envíos a direcciones
+// distintas de la cuenta Resend serán rechazados — la función igual responde 200 si al menos el email
+// principal a samuel@luzimpacto.org funcionó, así no rompe la UX del usuario.
 
 interface ContactPayload {
   nombre?: string;
@@ -12,6 +18,10 @@ interface ContactPayload {
   mensaje?: string;
   honeypot?: string;
   lang?: string;
+}
+
+interface Env {
+  RESEND_API_KEY: string;
 }
 
 const TIPO_LABELS: Record<string, { es: string; en: string }> = {
@@ -33,40 +43,38 @@ function escapeHtml(s: string): string {
     .replace(/'/g, "&#039;");
 }
 
-async function sendMailChannels(payload: {
-  from: { email: string; name: string };
-  to: { email: string; name?: string }[];
-  cc?: { email: string; name?: string }[];
-  reply_to?: { email: string; name?: string };
+interface ResendEmailPayload {
+  from: string;
+  to: string[];
+  cc?: string[];
+  reply_to?: string;
   subject: string;
   html: string;
-}) {
-  const body = {
-    personalizations: [
-      {
-        to: payload.to,
-        ...(payload.cc ? { cc: payload.cc } : {}),
-      },
-    ],
-    from: payload.from,
-    ...(payload.reply_to ? { reply_to: payload.reply_to } : {}),
-    subject: payload.subject,
-    content: [{ type: "text/html", value: payload.html }],
-  };
-
-  const res = await fetch("https://api.mailchannels.net/tx/v1/send", {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    const errText = await res.text();
-    throw new Error(`MailChannels error ${res.status}: ${errText}`);
-  }
 }
 
-export const onRequestPost: PagesFunction = async ({ request }) => {
+async function sendViaResend(apiKey: string, payload: ResendEmailPayload): Promise<{ ok: boolean; status: number; body: string }> {
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const body = await res.text();
+  return { ok: res.ok, status: res.status, body };
+}
+
+export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+  const apiKey = env.RESEND_API_KEY;
+  if (!apiKey) {
+    return new Response(JSON.stringify({ ok: false, error: "config_missing" }), {
+      status: 500,
+      headers: { "content-type": "application/json" },
+    });
+  }
+
   let data: ContactPayload;
   try {
     data = await request.json();
@@ -77,7 +85,7 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
     });
   }
 
-  // Honeypot: si está lleno, lo descartamos silenciosamente (responde 200 para no alertar al bot)
+  // Honeypot: si está lleno, descartamos silenciosamente
   if (data.honeypot && data.honeypot.trim().length > 0) {
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
@@ -114,7 +122,7 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
   const yellow = "#FCD34D";
   const charcoal = "#1F2125";
 
-  // Email 1: notificación al equipo (samuel + cc lester)
+  // ── Email 1: notificación al equipo ──
   const teamSubject = isEn
     ? `[LUZ contact] ${nombre} — ${tipoLabel}`
     : `[Contacto LUZ] ${nombre} — ${tipoLabel}`;
@@ -142,7 +150,7 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
 </body></html>
   `.trim();
 
-  // Email 2: confirmación al remitente
+  // ── Email 2: confirmación al remitente ──
   const confirmSubject = isEn
     ? "We received your message — LUZ Impacto"
     : "Recibimos tu mensaje — LUZ Impacto";
@@ -166,37 +174,46 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
 </body></html>
   `.trim();
 
-  try {
-    // Email al equipo
-    await sendMailChannels({
-      from: { email: "noreply@luzimpacto.org", name: "LUZ Impacto (contact form)" },
-      to: [{ email: "samuel@luzimpacto.org", name: "Samuel Pizzo" }],
-      cc: [{ email: "lesteraguilera2004@gmail.com", name: "Lester Aguilera" }],
-      reply_to: { email, name: nombre },
-      subject: teamSubject,
-      html: teamHtml,
-    });
+  // FROM: usamos noreply@luzimpacto.org si el dominio está verificado en Resend.
+  // Si no está verificado, Resend rechaza el envío con error 403 — el log lo va a mostrar
+  // y se puede cambiar temporalmente a "onboarding@resend.dev" para diagnóstico.
+  const FROM_TEAM = "LUZ Impacto <noreply@luzimpacto.org>";
+  const FROM_CONFIRM = "LUZ Impacto <noreply@luzimpacto.org>";
 
-    // Email de confirmación al remitente
-    await sendMailChannels({
-      from: { email: "noreply@luzimpacto.org", name: "LUZ Impacto" },
-      to: [{ email, name: nombre }],
-      reply_to: { email: "samuel@luzimpacto.org", name: "Samuel Pizzo" },
-      subject: confirmSubject,
-      html: confirmHtml,
-    });
+  // Email al equipo: indispensable. Si falla, devolvemos error y la UX muestra el mensaje de fallback.
+  const teamResult = await sendViaResend(apiKey, {
+    from: FROM_TEAM,
+    to: ["samuel@luzimpacto.org"],
+    cc: ["lesteraguilera2004@gmail.com"],
+    reply_to: email,
+    subject: teamSubject,
+    html: teamHtml,
+  });
 
-    return new Response(JSON.stringify({ ok: true }), {
-      status: 200,
-      headers: { "content-type": "application/json" },
-    });
-  } catch (err) {
+  if (!teamResult.ok) {
+    console.error("Resend team email failed:", teamResult.status, teamResult.body);
     return new Response(
-      JSON.stringify({ ok: false, error: "send_failed", detail: String(err) }),
-      {
-        status: 500,
-        headers: { "content-type": "application/json" },
-      }
+      JSON.stringify({ ok: false, error: "team_email_failed", status: teamResult.status }),
+      { status: 502, headers: { "content-type": "application/json" } }
     );
   }
+
+  // Email de confirmación: best-effort. Si falla (ej. dominio no verificado todavía), no rompemos la UX:
+  // el usuario ya tiene su banner de éxito.
+  const confirmResult = await sendViaResend(apiKey, {
+    from: FROM_CONFIRM,
+    to: [email],
+    reply_to: "samuel@luzimpacto.org",
+    subject: confirmSubject,
+    html: confirmHtml,
+  });
+
+  if (!confirmResult.ok) {
+    console.warn("Resend confirmation email failed (non-blocking):", confirmResult.status, confirmResult.body);
+  }
+
+  return new Response(
+    JSON.stringify({ ok: true, confirmation_sent: confirmResult.ok }),
+    { status: 200, headers: { "content-type": "application/json" } }
+  );
 };

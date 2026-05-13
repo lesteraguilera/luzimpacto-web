@@ -1,0 +1,986 @@
+---
+// Reporte anual borrador 2025 — Fundación LUZ Impacto
+// NO está en el nav. Solo accesible por URL directa.
+// NO tiene versión EN (es para uso interno / donantes seleccionados).
+// Print CSS habilitado para que Cmd+P genere un PDF profesional multi-página.
+
+import "../styles/global.css";
+
+const numeros = [
+  { valor: "25", label: "Colegios visitados", sub: "en 2025" },
+  { valor: "~15,000", label: "Jóvenes alcanzados", sub: "en eventos en colegios" },
+  { valor: "~3,000", label: "Decisiones por Cristo", sub: "registradas en eventos" },
+  { valor: "18", label: "Iglesias aliadas", sub: "en red activa" },
+  { valor: "6/7", label: "Provincias", sub: "Puntarenas pendiente para 2026" },
+];
+
+const provincias = [
+  { nombre: "San José", iglesias: 9, visitada: true },
+  { nombre: "Alajuela", iglesias: 5, visitada: true },
+  { nombre: "Guanacaste", iglesias: 4, visitada: true },
+  { nombre: "Cartago", iglesias: 0, visitada: true },
+  { nombre: "Heredia", iglesias: 0, visitada: true },
+  { nombre: "Limón", iglesias: 0, visitada: true },
+  { nombre: "Puntarenas", iglesias: 0, visitada: false },
+];
+
+const historias = [
+  {
+    quien: "Una joven · 16 años",
+    colegio: "Colegio en San José",
+    texto: "Llegó a una visita de LUZ sin nada, salió con Cristo. Hoy se congrega en una iglesia aliada cerca de su casa y trae a sus amigas. Su pastora dice que es de las jóvenes más activas en el discipulado.",
+  },
+  {
+    quien: "Pastor aliado",
+    colegio: "Alajuela",
+    texto: "Antes de ser parte de la red, mi iglesia recibía jóvenes nuevos esporádicamente. Desde que somos aliados de LUZ, recibimos referidos mes a mes. El equipo de LUZ nos ayudó a estructurar mejor cómo recibirlos.",
+  },
+  {
+    quien: "Voluntario · 22 años",
+    colegio: "Equipo LUZ",
+    texto: "Vine a una visita como invitado y terminé sumándome al equipo. Lo que vi en los chicos no me lo esperaba — necesitan escuchar de Cristo y no tienen quién se los diga.",
+  },
+];
+
+const metas2026 = [
+  {
+    icon: "⭐",
+    titulo: "Evento masivo en el Estadio Nacional",
+    desc: "Un evento gratis para jóvenes de todo el país, con predicación clara del evangelio, música y testimonios. Meta: 30,000-50,000 asistentes. Es el sueño que sostiene este 2026.",
+  },
+  {
+    icon: "🌎",
+    titulo: "Cerrar las 7 provincias",
+    desc: "Llegar a Puntarenas — la provincia que falta — antes del segundo semestre. Cobertura nacional completa.",
+  },
+  {
+    icon: "🤝",
+    titulo: "Crecer la red a 25-30 iglesias aliadas",
+    desc: "De las 18 actuales, sumar 7-12 nuevas en provincias donde aún tenemos baja cobertura (Cartago, Heredia, Limón, Puntarenas).",
+  },
+  {
+    icon: "💛",
+    titulo: "50-100 donantes recurrentes",
+    desc: "Activar Donorbox para captar donantes mensuales que sostengan el ministerio sin depender 100% del fundador. Base sostenible para escalar.",
+  },
+  {
+    icon: "📖",
+    titulo: "Capacitar líderes de iglesias aliadas",
+    desc: "Lanzar un programa formal de training en evangelismo y discipulado para pastores y líderes de las iglesias aliadas. Ya iniciado con NSI Alajuela.",
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Reporte anual borrador 2025 — Fundación LUZ Impacto. Documento interno con cifras aproximadas." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32.png" />
+  <title>Reporte 2025 (borrador) · LUZ Impacto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="watermark">BORRADOR · NÚMEROS APROXIMADOS</div>
+
+  {/* ───────────────────────── PORTADA ───────────────────────── */}
+  <section class="page page-cover">
+    <div class="cover-inner">
+      <div class="cover-brand">
+        <span class="cover-logo"></span>
+        <span class="cover-brand-text">LUZ IMPACTO</span>
+      </div>
+      <div class="cover-year">2025</div>
+      <h1 class="cover-title">Un año <span class="hl">predicando</span> en colegios.</h1>
+      <p class="cover-sub">Reporte anual de la Fundación LUZ Impacto · San José, Costa Rica</p>
+      <div class="cover-tag">📋 Documento borrador · cifras aproximadas pendientes de auditar</div>
+    </div>
+    <div class="cover-footer">
+      <span>luzimpacto.org</span>
+      <span>·</span>
+      <span>Borrador interno · {new Date().toLocaleDateString('es-CR', {year: 'numeric', month: 'long', day: 'numeric'})}</span>
+    </div>
+  </section>
+
+  {/* ───────────────────────── CARTA DEL FUNDADOR ───────────────────────── */}
+  <section class="page page-letter">
+    <div class="page-inner">
+      <div class="eyebrow">Carta del fundador</div>
+      <h2>Lo que Dios hizo en 2025.</h2>
+
+      <p class="letter-lead">
+        Hace un año atrás, cuando comenzamos formalmente como Fundación, no sabíamos cuántas
+        puertas Dios abriría. Hoy puedo decir, con el corazón lleno, que lo que pasó en 2025
+        nos sobrepasa.
+      </p>
+
+      <p>
+        Visitamos colegios en seis de las siete provincias de Costa Rica. Vimos a miles de
+        jóvenes recibir el mensaje de Cristo con hambre. Conectamos a cada uno con una
+        iglesia local — porque LUZ <strong>no es una iglesia, somos un puente</strong>.
+      </p>
+
+      <p>
+        Quiero ser transparente con vos: este ministerio se ha sostenido casi totalmente con
+        fondos personales. No es queja — es contexto. Para que este puente siga creciendo
+        en 2026 necesitamos una base de donantes que crea, como nosotros, que vale la pena
+        que cada joven de Costa Rica escuche el evangelio antes de salir del colegio.
+      </p>
+
+      <p>
+        Este reporte es nuestra forma de decirte gracias por estar atento. Y de invitarte a
+        soñar con nosotros lo que viene: un evento masivo en el Estadio Nacional, llegar a
+        Puntarenas, multiplicar la red de iglesias aliadas.
+      </p>
+
+      <p class="letter-sign">
+        <em>"Vosotros sois la luz del mundo."</em><br/>
+        <span class="verse">— Mateo 5:14</span>
+      </p>
+
+      <div class="signature">
+        <div class="sign-name">Samuel Pizzo</div>
+        <div class="sign-rol">Fundador · Director</div>
+      </div>
+    </div>
+    <div class="page-foot">2 · Carta del fundador</div>
+  </section>
+
+  {/* ───────────────────────── 2025 EN NÚMEROS ───────────────────────── */}
+  <section class="page page-numbers">
+    <div class="page-inner">
+      <div class="eyebrow">2025 en números</div>
+      <h2>Lo que pasó, en cifras.</h2>
+
+      <div class="borrador-tag">
+        <strong>BORRADOR.</strong> Cifras aproximadas estimadas para el sitio en desarrollo.
+        Antes de publicar el sitio oficial, estos números serán reemplazados por los datos
+        auditados de la operación 2025.
+      </div>
+
+      <div class="numbers-grid">
+        {numeros.map((n) => (
+          <div class="number-card">
+            <div class="number-value">{n.valor}</div>
+            <div class="number-label">{n.label}</div>
+            <div class="number-sub">{n.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="sub-h3">Presencia por provincia</h3>
+      <div class="provincias-list">
+        {provincias.map((p) => (
+          <div class={`prov-row ${!p.visitada ? 'prov-pending' : ''}`}>
+            <div class="prov-name">{p.nombre}</div>
+            <div class="prov-status">
+              {p.visitada ? '✓ Visitada' : '○ Pendiente 2026'}
+            </div>
+            <div class="prov-iglesias">{p.iglesias > 0 ? `${p.iglesias} iglesia${p.iglesias > 1 ? 's' : ''} aliada${p.iglesias > 1 ? 's' : ''}` : '—'}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="page-foot">3 · 2025 en números</div>
+  </section>
+
+  {/* ───────────────────────── HISTORIAS ───────────────────────── */}
+  <section class="page page-stories">
+    <div class="page-inner">
+      <div class="eyebrow">Historias</div>
+      <h2>No son estadísticas. Son vidas.</h2>
+      <p class="page-lead">
+        Detrás de cada número hay un nombre y una historia. Acá tres ejemplos del fruto que
+        Dios dio en 2025.
+      </p>
+
+      <div class="borrador-tag soft">
+        <strong>BORRADOR.</strong> Los tres testimonios son <em>placeholders representativos</em>.
+        Antes de publicar el reporte oficial reemplazamos cada uno por testimonios reales
+        con nombre, foto y permiso explícito de la persona (y tutor, si es menor).
+      </div>
+
+      <div class="historias">
+        {historias.map((h) => (
+          <article class="historia">
+            <div class="historia-quien">
+              <span class="quien-tag">PLACEHOLDER</span>
+              <div class="quien-name">{h.quien}</div>
+              <div class="quien-where">{h.colegio}</div>
+            </div>
+            <p class="historia-texto">"{h.texto}"</p>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="page-foot">4 · Historias</div>
+  </section>
+
+  {/* ───────────────────────── FINANZAS ───────────────────────── */}
+  <section class="page page-finanzas">
+    <div class="page-inner">
+      <div class="eyebrow">Finanzas 2025</div>
+      <h2>Transparencia total.</h2>
+      <p class="page-lead">
+        En 2025 la fundación operó con un presupuesto cercano a <strong>US$14,000</strong>.
+        Samuel Pizzo, el fundador, aportó alrededor del <strong>85%</strong> de los fondos
+        de su patrimonio personal.
+      </p>
+
+      <div class="borrador-tag">
+        <strong>BORRADOR.</strong> Las cifras aquí mostradas son estimaciones que reflejan
+        la realidad operacional aproximada. Antes de publicar oficialmente, se sustituyen
+        por los registros contables auditados.
+      </div>
+
+      <div class="finanzas-grid">
+        <div class="fin-block">
+          <h3>Egresos</h3>
+          <div class="fin-total">≈ US$ 14,050</div>
+          <ul class="fin-list">
+            <li><span>Visitas a colegios <em>(25 × $150 promedio)</em></span><strong>$3,750</strong></li>
+            <li><span>Materiales <em>(sonido, biblias, folletos)</em></span><strong>$2,000</strong></li>
+            <li><span>Eventos especiales <em>(2-3 grandes)</em></span><strong>$3,500</strong></li>
+            <li><span>Transporte general y viáticos</span><strong>$2,500</strong></li>
+            <li><span>Operación <em>(web, software, telefonía)</em></span><strong>$800</strong></li>
+            <li><span>Refrigerios y alquileres</span><strong>$1,500</strong></li>
+          </ul>
+        </div>
+
+        <div class="fin-block">
+          <h3>Ingresos</h3>
+          <div class="fin-total">≈ US$ 14,300</div>
+          <ul class="fin-list">
+            <li><span>Aporte del fundador <em>(Samuel Pizzo)</em></span><strong>$12,000 <small>· 85%</small></strong></li>
+            <li><span>Donaciones puntuales CR</span><strong>$1,500 <small>· 11%</small></strong></li>
+            <li><span>Aportes de iglesias aliadas</span><strong>$500 <small>· 3%</small></strong></li>
+            <li><span>Donaciones internacionales</span><strong>$300 <small>· 2%</small></strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fin-summary">
+        <div>
+          <strong>Resultado neto 2025:</strong> ≈ +US$250 (operación prácticamente equilibrada)
+        </div>
+        <div class="fin-note">
+          La fundación cerró el año sin deuda y con base operativa sostenible. Para 2026
+          el reto principal es <strong>diversificar la base de donantes</strong> para no
+          depender estructuralmente del fundador.
+        </div>
+      </div>
+    </div>
+    <div class="page-foot">5 · Finanzas</div>
+  </section>
+
+  {/* ───────────────────────── VISIÓN 2026 ───────────────────────── */}
+  <section class="page page-vision">
+    <div class="page-inner">
+      <div class="eyebrow">Visión 2026</div>
+      <h2>Cinco metas para el año que viene.</h2>
+      <p class="page-lead">
+        Si 2025 fue el año en que dijimos "esto es posible", 2026 es el año en que decimos
+        "esto crece".
+      </p>
+
+      <div class="metas">
+        {metas2026.map((m, idx) => (
+          <article class={`meta ${idx === 0 ? 'meta-star' : ''}`}>
+            <div class="meta-num">{String(idx + 1).padStart(2, '0')}</div>
+            <div class="meta-body">
+              <h3>{m.titulo}</h3>
+              <p>{m.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="page-foot">6 · Visión 2026</div>
+  </section>
+
+  {/* ───────────────────────── CÓMO APOYAR ───────────────────────── */}
+  <section class="page page-apoyar">
+    <div class="page-inner">
+      <div class="eyebrow">Cómo apoyar</div>
+      <h2>Sumate a esta misión.</h2>
+      <p class="page-lead">
+        Hay tres formas de hacer crecer LUZ junto a nosotros:
+      </p>
+
+      <div class="apoyar-grid">
+        <div class="apoyar-card">
+          <div class="apoyar-num">01</div>
+          <h3>Donar</h3>
+          <p>Estamos activando <strong>Donorbox</strong> para donantes recurrentes (US$ deducibles vía 501(c)(3) US). Mientras tanto: SINPE Móvil, IBAN o WhatsApp para coordinar internacionalmente.</p>
+          <a href="/#donar" class="apoyar-link">Ver opciones de donación →</a>
+        </div>
+        <div class="apoyar-card">
+          <div class="apoyar-num">02</div>
+          <h3>Aliar tu iglesia</h3>
+          <p>Si pastoreás o liderás una iglesia evangélica en Costa Rica, podemos referirte a jóvenes que reciben a Cristo cerca de tu zona. Sin agendas alternas — vos discipulás, nosotros conectamos.</p>
+          <a href="/para-iglesias" class="apoyar-link">Conocé el modelo de alianza →</a>
+        </div>
+        <div class="apoyar-card">
+          <div class="apoyar-num">03</div>
+          <h3>Servir</h3>
+          <p>Buscamos voluntarios para acompañar visitas a colegios, ayudar con logística, comunicación y mentoría de jóvenes referidos.</p>
+          <a href="/sumate" class="apoyar-link">Sumate al equipo →</a>
+        </div>
+      </div>
+    </div>
+    <div class="page-foot">7 · Cómo apoyar</div>
+  </section>
+
+  {/* ───────────────────────── EQUIPO + CONTACTO ───────────────────────── */}
+  <section class="page page-equipo">
+    <div class="page-inner">
+      <div class="eyebrow">Equipo</div>
+      <h2>Las personas detrás del puente.</h2>
+
+      <div class="equipo-list">
+        <div class="equipo-item">
+          <div class="equipo-name">Samuel Pizzo</div>
+          <div class="equipo-rol">Fundador · Director</div>
+        </div>
+        <div class="equipo-item">
+          <div class="equipo-name">Silvia Rodríguez</div>
+          <div class="equipo-rol">Operaciones · Comunicación</div>
+        </div>
+        <div class="equipo-item">
+          <div class="equipo-name">Lester Aguilera</div>
+          <div class="equipo-rol">Estrategia · Operaciones</div>
+        </div>
+      </div>
+
+      <div class="contacto-block">
+        <div class="eyebrow small">Contacto</div>
+        <div class="contacto-grid">
+          <div><strong>Email</strong> · <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a></div>
+          <div><strong>WhatsApp</strong> · +506 8549 3929</div>
+          <div><strong>Instagram</strong> · <a href="https://instagram.com/luzimpacto_cr" target="_blank" rel="noopener">@luzimpacto_cr</a></div>
+          <div><strong>Web</strong> · luzimpacto.org</div>
+        </div>
+      </div>
+
+      <div class="entity-block">
+        <div class="eyebrow small">Entidad legal</div>
+        <p>
+          LUZ Impacto es un ministerio operado por <strong>Samuel Pizzo Ministries Foundation</strong>,
+          organización 501(c)(3) registrada en Estados Unidos. Las donaciones desde EE. UU. son
+          deducibles de impuestos según la ley aplicable.
+        </p>
+      </div>
+
+      <div class="closing">
+        <p class="closing-verse">
+          "Vosotros sois la luz del mundo; una ciudad asentada sobre un monte no se puede esconder."
+        </p>
+        <p class="closing-ref">— Mateo 5:14</p>
+      </div>
+    </div>
+    <div class="page-foot">8 · Equipo y contacto</div>
+  </section>
+
+  <div class="print-only print-stamp">
+    Documento generado desde luzimpacto.org/luz-2025 · Borrador interno · No es la versión oficial publicada.
+  </div>
+</body>
+</html>
+
+<style is:global>
+  body {
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    margin: 0;
+    padding: 0;
+  }
+  .watermark {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--yellow);
+    color: var(--charcoal);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 80px 80px 100px;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 12px 32px rgba(0,0,0,0.04);
+    margin-bottom: 24px;
+    border-radius: 4px;
+  }
+  .page:first-child { margin-top: 32px; }
+  .page-inner { max-width: 640px; margin: 0 auto; }
+  .page-foot {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 14px;
+  }
+  .eyebrow.small { color: var(--ink-faint); font-size: 10px; }
+
+  h2 {
+    font-family: "Fraunces", serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+  h3.sub-h3 {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 40px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .page-lead {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+
+  /* PORTADA */
+  .page-cover {
+    background: var(--charcoal);
+    color: var(--on-dark);
+    padding: 120px 80px 80px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 8px solid var(--yellow);
+  }
+  .cover-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 80px;
+  }
+  .cover-logo {
+    width: 50px;
+    height: 28px;
+    background-image: url("/assets/logos/luz.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+  }
+  .cover-brand-text {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--on-dark);
+  }
+  .cover-year {
+    font-family: "Fraunces", serif;
+    font-size: clamp(80px, 14vw, 160px);
+    font-weight: 600;
+    color: var(--yellow);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .cover-title {
+    font-family: "Fraunces", serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 500;
+    color: var(--on-dark);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+    max-width: 580px;
+  }
+  .cover-title .hl { color: var(--yellow); }
+  .cover-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    margin: 0 0 40px;
+    max-width: 480px;
+  }
+  .cover-tag {
+    display: inline-block;
+    background: rgba(252,211,77,0.18);
+    color: var(--yellow);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border-left: 3px solid var(--yellow);
+  }
+  .cover-footer {
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 60px;
+  }
+
+  /* CARTA */
+  .page-letter p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin: 0 0 18px;
+    text-align: justify;
+  }
+  .letter-lead {
+    font-family: "Fraunces", serif;
+    font-size: 22px !important;
+    font-style: italic;
+    color: var(--ink) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 28px !important;
+    text-align: left !important;
+  }
+  .letter-sign {
+    margin-top: 36px;
+    padding: 20px 24px;
+    background: var(--crema);
+    border-left: 3px solid var(--yellow);
+    border-radius: 4px;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    text-align: left !important;
+  }
+  .letter-sign .verse {
+    display: block;
+    font-style: normal;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--ink-faint);
+    margin-top: 6px;
+  }
+  .signature {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .sign-name {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .sign-rol {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 4px;
+  }
+
+  /* NÚMEROS */
+  .borrador-tag {
+    background: rgba(252,211,77,0.18);
+    border-left: 4px solid var(--yellow);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 24px 0 28px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .borrador-tag.soft {
+    background: var(--crema);
+    border-left-color: var(--ink-faint);
+  }
+  .borrador-tag strong { color: var(--charcoal); letter-spacing: 0.1em; font-size: 12px; }
+
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0 36px;
+  }
+  .number-card {
+    background: var(--crema);
+    border-left: 3px solid var(--yellow);
+    border-radius: 8px;
+    padding: 20px 24px;
+  }
+  .number-value {
+    font-family: "Fraunces", serif;
+    font-size: 44px;
+    font-weight: 600;
+    color: var(--yellow);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .number-label {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .number-sub {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  .provincias-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .prov-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1.2fr 1.5fr;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .prov-row.prov-pending { opacity: 0.55; }
+  .prov-name { font-weight: 600; font-size: 15px; color: var(--ink); }
+  .prov-status {
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+  }
+  .prov-iglesias { font-size: 13px; color: var(--ink-soft); }
+
+  /* HISTORIAS */
+  .historias {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 16px;
+  }
+  .historia {
+    background: white;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--yellow);
+    border-radius: 8px;
+    padding: 24px 28px;
+  }
+  .historia-quien {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .quien-tag {
+    display: inline-block;
+    background: rgba(252,211,77,0.18);
+    color: var(--charcoal);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    align-self: flex-start;
+    margin-bottom: 4px;
+  }
+  .quien-name {
+    font-family: "Fraunces", serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .quien-where {
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+  .historia-texto {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* FINANZAS */
+  .finanzas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0 28px;
+  }
+  .fin-block {
+    background: var(--crema);
+    border-radius: 12px;
+    padding: 24px;
+    border-top: 3px solid var(--yellow);
+  }
+  .fin-block h3 {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .fin-total {
+    font-family: "Fraunces", serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--yellow);
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .fin-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .fin-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    align-items: baseline;
+  }
+  .fin-list li span { color: var(--ink-soft); flex: 1; line-height: 1.4; }
+  .fin-list li em { color: var(--ink-faint); font-style: normal; font-size: 12px; }
+  .fin-list li strong { color: var(--ink); font-weight: 700; font-size: 14px; white-space: nowrap; }
+  .fin-list li strong small { font-weight: 400; color: var(--ink-faint); font-size: 11px; }
+
+  .fin-summary {
+    background: white;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--charcoal);
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .fin-summary > div { color: var(--ink); }
+  .fin-summary strong { color: var(--charcoal); }
+  .fin-note {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
+  /* METAS 2026 */
+  .metas {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+    padding: 22px 24px;
+    background: var(--crema);
+    border-radius: 10px;
+    border-left: 3px solid var(--line);
+    align-items: start;
+  }
+  .meta-star {
+    background: rgba(252,211,77,0.18);
+    border-left-color: var(--yellow);
+  }
+  .meta-num {
+    font-family: "Fraunces", serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--yellow);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .meta-body h3 {
+    font-family: "Fraunces", serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .meta-body p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* CÓMO APOYAR */
+  .apoyar-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .apoyar-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 28px;
+    position: relative;
+  }
+  .apoyar-num {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    color: var(--yellow);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .apoyar-card h3 {
+    font-family: "Fraunces", serif;
+    font-size: 24px;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+  .apoyar-card p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin: 0 0 12px; }
+  .apoyar-link {
+    color: var(--charcoal);
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--yellow);
+  }
+
+  /* EQUIPO */
+  .equipo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0 36px;
+  }
+  .equipo-item {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .equipo-name {
+    font-family: "Fraunces", serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    min-width: 200px;
+  }
+  .equipo-rol {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .contacto-block { margin: 24px 0 28px; }
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .contacto-grid strong { color: var(--ink); font-weight: 600; }
+  .contacto-grid a { color: var(--charcoal); }
+
+  .entity-block { margin: 24px 0; }
+  .entity-block p { font-size: 13px; line-height: 1.55; color: var(--ink-soft); margin-top: 6px; }
+
+  .closing {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .closing-verse {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--yellow);
+    margin: 0 0 6px;
+    line-height: 1.4;
+  }
+  .closing-ref {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .print-only { display: none; }
+  .print-stamp {
+    margin: 40px auto 24px;
+    max-width: 800px;
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-align: center;
+    padding: 16px 24px;
+    border-top: 1px dashed var(--line);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .page { padding: 48px 28px 80px; }
+    .page-cover { padding: 80px 28px 60px; }
+    .numbers-grid, .finanzas-grid, .contacto-grid { grid-template-columns: 1fr; }
+    .prov-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; }
+    .watermark { display: none; }
+    .page {
+      box-shadow: none !important;
+      margin: 0;
+      padding: 50px 40px 60px;
+      max-width: 100%;
+      page-break-after: always;
+      page-break-inside: avoid;
+      border-radius: 0;
+    }
+    .page:last-of-type { page-break-after: auto; }
+    .page-cover { min-height: auto; }
+    .print-only { display: block; }
+    .print-stamp { margin: 0; padding: 24px 40px; }
+    @page { size: A4; margin: 0; }
+  }
+</style>

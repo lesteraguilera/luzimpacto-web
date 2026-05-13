@@ -77,6 +77,80 @@ const icons = {
     </div>
   </section>
 
+  <section class="section section-form">
+    <div class="container">
+      <div class="form-wrap">
+        <div class="form-head">
+          <div class="eyebrow">Formulario</div>
+          <h2>¿Preferís escribir un mensaje formal?</h2>
+          <p>Si tu consulta necesita más desarrollo, llenalo y te respondemos en menos de 24 horas. Te llega también una confirmación a tu email.</p>
+        </div>
+
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <label class="field">
+              <span class="field-label">Nombre <span class="req">*</span></span>
+              <input type="text" name="nombre" required autocomplete="name" />
+            </label>
+            <label class="field">
+              <span class="field-label">Email <span class="req">*</span></span>
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label class="field">
+              <span class="field-label">¿Quién sos? <span class="req">*</span></span>
+              <select name="tipo" required>
+                <option value="">Seleccioná una opción</option>
+                <option value="pastor">Pastor o líder de iglesia</option>
+                <option value="colegio">Director o profesor de colegio</option>
+                <option value="donante">Quiero donar / apoyar económicamente</option>
+                <option value="voluntario">Quiero servir como voluntario</option>
+                <option value="joven">Joven que quiere saber más</option>
+                <option value="prensa">Prensa o medios</option>
+                <option value="otro">Otro</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field-label">Teléfono / WhatsApp <span class="opt">(opcional)</span></span>
+              <input type="tel" name="telefono" autocomplete="tel" />
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="field-label">Iglesia o colegio <span class="opt">(si aplica)</span></span>
+            <input type="text" name="iglesiaColegio" />
+          </label>
+
+          <label class="field">
+            <span class="field-label">Mensaje <span class="req">*</span></span>
+            <textarea name="mensaje" required rows="5" placeholder="Contanos en qué podemos ayudarte..."></textarea>
+          </label>
+
+          {/* Honeypot — campo invisible para bots */}
+          <div class="honeypot" aria-hidden="true">
+            <label>No llenar este campo
+              <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
+
+          <input type="hidden" name="lang" value="es" />
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-yellow btn-form" id="submitBtn">
+              <span class="btn-label">Enviar mensaje</span>
+              <span class="arrow">→</span>
+            </button>
+            <div class="form-note">Tu mensaje llega a Samuel directamente. No compartimos tu información.</div>
+          </div>
+
+          <div class="form-result" id="formResult" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <section class="section section-crema">
     <div class="container">
       <div class="ubicacion">
@@ -87,6 +161,52 @@ const icons = {
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (function() {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      const result = document.getElementById('formResult');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnLabel = submitBtn ? submitBtn.querySelector('.btn-label') : null;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!submitBtn || !result) return;
+        submitBtn.disabled = true;
+        if (btnLabel) btnLabel.textContent = 'Enviando...';
+        result.hidden = true;
+        result.className = 'form-result';
+
+        const data = Object.fromEntries(new FormData(form).entries());
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          const json = await res.json().catch(() => ({}));
+
+          if (res.ok && json.ok) {
+            result.className = 'form-result form-result-ok';
+            result.innerHTML = '<strong>¡Gracias!</strong> Recibimos tu mensaje y te contactamos en menos de 24 horas. Revisá tu email — te enviamos una confirmación.';
+            result.hidden = false;
+            form.reset();
+          } else {
+            throw new Error(json.error || 'send_failed');
+          }
+        } catch (err) {
+          result.className = 'form-result form-result-err';
+          result.innerHTML = 'No pudimos enviar tu mensaje. Probá escribirnos directo por <a href="https://wa.me/50685493929" target="_blank" rel="noopener">WhatsApp</a> o a <a href="mailto:samuel@luzimpacto.org">samuel@luzimpacto.org</a>.';
+          result.hidden = false;
+        } finally {
+          submitBtn.disabled = false;
+          if (btnLabel) btnLabel.textContent = 'Enviar mensaje';
+        }
+      });
+    })();
+  </script>
 
   <Footer />
 </BaseLayout>
@@ -171,6 +291,103 @@ const icons = {
   .ubicacion { max-width: 720px; }
   .ubicacion h2 { margin-bottom: 20px; }
   .ubicacion p { font-size: 17px; margin-bottom: 16px; }
+
+  /* Form */
+  .section-form { background: var(--bg); border-top: 1px solid var(--line); }
+  .form-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 24px;
+    padding: 56px 56px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--yellow);
+  }
+  .form-head { margin-bottom: 32px; }
+  .form-head h2 { margin: 12px 0 12px; font-size: clamp(24px, 3vw, 32px); }
+  .form-head p { font-size: 16px; color: var(--ink-soft); margin: 0; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .field-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .req { color: var(--yellow); margin-left: 2px; }
+  .opt { color: var(--ink-faint); font-weight: 400; font-size: 12px; }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--bg);
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    box-sizing: border-box;
+  }
+  .field textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--yellow);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(252,211,77,0.18);
+  }
+  .field select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231F2125' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+
+  .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    margin-top: 8px;
+  }
+  .btn-form { padding: 14px 32px; font-size: 15px; }
+  .form-note { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.02em; }
+
+  .form-result {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .form-result-ok {
+    background: rgba(252,211,77,0.18);
+    border-left: 3px solid var(--yellow);
+    color: var(--ink);
+  }
+  .form-result-err {
+    background: #FEE7E7;
+    border-left: 3px solid #DC4444;
+    color: #8B1F1F;
+  }
+  .form-result a { color: inherit; font-weight: 600; text-decoration: underline; }
+
+  @media (max-width: 700px) {
+    .form-wrap { padding: 40px 28px; border-radius: 18px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+  }
 
   @media (max-width: 900px) {
     .contacto-grid { grid-template-columns: 1fr; }

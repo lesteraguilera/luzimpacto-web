@@ -33,6 +33,7 @@ const t = {
   mapTitle: isEn ? "Map of Costa Rica's provinces" : "Mapa de provincias de Costa Rica",
   visited: isEn ? "Visited" : "Visitada",
   next: isEn ? "Next" : "Próxima",
+  nextYear: "2027",
   allProvinces: isEn ? "The 7 provinces" : "Las 7 provincias",
 };
 ---
@@ -73,7 +74,7 @@ const t = {
 
       <div class="mapa-leyenda">
         <span class="leyenda-item"><span class="dot dot-visitada"></span>{t.visited} ({visitadas})</span>
-        <span class="leyenda-item"><span class="dot dot-pendiente"></span>{t.next} (1)</span>
+        <span class="leyenda-item"><span class="dot dot-pendiente"></span>{t.next} · {t.nextYear}</span>
       </div>
       <div class="mapa-attrib">Outline: Wikimedia Commons · CC BY-SA</div>
     </div>
@@ -85,7 +86,7 @@ const t = {
           <li class={m.visitada ? "visitada" : "pendiente"}>
             <span class="check">{m.visitada ? "✓" : "○"}</span>
             <span class="nombre">{m.nombre}</span>
-            <span class="estado">{m.visitada ? t.visited : t.next}</span>
+            <span class="estado">{m.visitada ? t.visited : `${t.next} · ${t.nextYear}`}</span>
           </li>
         ))}
       </ul>

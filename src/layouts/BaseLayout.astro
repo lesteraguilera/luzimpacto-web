@@ -105,11 +105,11 @@ const orgSchema = {
   <!-- Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify(orgSchema)}></script>
 
-  <!-- Favicons (transparentes, logo LUZ amarillo sobre fondo transparente — ?v=2 fuerza recarga de cache viejo) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32.png?v=2" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/logos/favicon-16.png?v=2" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logos/apple-touch-icon.png?v=2" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/logos/favicon-192.png?v=2" />
+  <!-- Favicons (cuadrados, logo centrado con padding — no usar el luz.png 677x423 que se ve aplastado) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/logos/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logos/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/logos/favicon-192.png" />
 
   <!-- Preload hero poster (LCP) — solo en home (ES o EN) -->
   {(Astro.url.pathname === "/" || Astro.url.pathname === "/en/" || Astro.url.pathname === "/en") && (

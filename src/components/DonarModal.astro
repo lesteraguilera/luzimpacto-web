@@ -31,10 +31,6 @@ const t = {
   accountHolderLabel: isEn ? "Account holder:" : "A nombre de",
   ibanLabel: isEn ? "IBAN" : "IBAN",
   copiedText: isEn ? "Copied! ✓" : "¡Copiado! ✓",
-  transparencyTitle: isEn ? "Transparency note" : "Nota de transparencia",
-  transparencyBody: isEn
-    ? "The SINPE and IBAN accounts above currently route through the founder's personal account while we complete the transition to the foundation's institutional bank account in Q3 2026. All funds are tracked separately and used exclusively for LUZ Impacto operations."
-    : "Las cuentas SINPE e IBAN de arriba actualmente pasan por la cuenta personal del fundador mientras completamos la transición a la cuenta bancaria institucional de la fundación en Q3 2026. Todos los fondos se contabilizan por separado y se usan exclusivamente para la operación de LUZ Impacto.",
   intlTag: isEn ? "International · USD · Tax-deductible (US)" : "Internacional · USD · Deducible en USA",
   intlTitle: isEn ? "Donating from outside Costa Rica?" : "¿Donás desde fuera de Costa Rica?",
   intlDesc: isEn
@@ -135,14 +131,6 @@ const t = {
             <span class="data-label">{t.accountHolderLabel}</span>
             <span class="data-value-static">Fundación LUZ Impacto</span>
           </div>
-        </div>
-      </div>
-
-      <div class="transparency-note">
-        <div class="transparency-icon">⚠</div>
-        <div class="transparency-content">
-          <div class="transparency-title">{t.transparencyTitle}</div>
-          <p>{t.transparencyBody}</p>
         </div>
       </div>
 
@@ -511,40 +499,6 @@ const t = {
   .copy-ico { font-size: 14px; opacity: 0.6; }
 
   .opt-international .opt-desc { font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; line-height: 1.5; }
-
-  /* Transparency note (cuenta personal en transición) */
-  .transparency-note {
-    display: flex;
-    gap: 12px;
-    background: rgba(252,211,77,0.12);
-    border: 1px solid rgba(252,211,77,0.45);
-    border-left: 3px solid var(--yellow);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin: 0 0 4px;
-    align-items: flex-start;
-  }
-  .transparency-icon {
-    color: var(--charcoal);
-    font-size: 16px;
-    line-height: 1.4;
-    flex-shrink: 0;
-  }
-  .transparency-content { flex: 1; }
-  .transparency-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--charcoal);
-    margin-bottom: 6px;
-  }
-  .transparency-note p {
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--ink);
-    margin: 0;
-  }
 
   .modal-foot {
     margin-top: 24px;

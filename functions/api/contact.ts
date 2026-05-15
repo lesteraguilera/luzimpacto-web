@@ -167,8 +167,10 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       ${isEn ? "In the meantime, follow our work on Instagram:" : "Mientras tanto, seguinos en Instagram:"}<br/>
       <a href="https://instagram.com/luzimpacto_cr" style="color:${charcoal};font-weight:600;">@luzimpacto_cr</a>
     </div>
-    <div style="margin-top:24px;font-size:12px;color:#bbb;">
-      Fundación LUZ Impacto · San José, Costa Rica
+    <div style="margin-top:24px;font-size:12px;color:#bbb;line-height:1.5;">
+      ${isEn
+        ? "LUZ Impacto, a ministry of Samuel Pizzo Ministries Foundation,<br/>a registered 501(c)(3) nonprofit in the United States.<br/>San José, Costa Rica"
+        : "Fundación LUZ Impacto · San José, Costa Rica"}
     </div>
   </div>
 </body></html>

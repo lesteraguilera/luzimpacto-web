@@ -58,7 +58,12 @@ const t = {
     <div class="footer-verse">{t.verse}</div>
 
     <div class="footer-bottom">
-      <div>© {new Date().getFullYear()} Fundación LUZ Impacto · {isEn ? "Founded 2024" : "Fundada 2024"} · San José, Costa Rica</div>
+      <div>
+        © {new Date().getFullYear()} Fundación LUZ Impacto · {isEn ? "Founded 2024" : "Fundada 2024"} · San José, Costa Rica
+        {isEn && (
+          <div class="footer-legal">LUZ Impacto is a ministry of Samuel Pizzo Ministries Foundation, a registered 501(c)(3) nonprofit in the United States.</div>
+        )}
+      </div>
       <div class="footer-meta">
         <a href={t.beliefsPath}>{t.beliefs}</a>
         <span>·</span>
@@ -142,6 +147,13 @@ const t = {
   .footer-meta { display: flex; gap: 10px; align-items: center; }
   .footer-meta a { color: var(--on-dark-soft); text-decoration: none; }
   .footer-meta a:hover { color: var(--yellow); }
+  .footer-legal {
+    margin-top: 6px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+    max-width: 560px;
+  }
 
   @media (max-width: 900px) {
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
